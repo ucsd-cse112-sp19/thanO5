@@ -2,10 +2,42 @@
     <head>
         <meta charset="utf-8">
         <title>Test WC</title>
+        <style media="screen">
+            h1 {
+                color: red;
+                font-size: 40px;
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Custom HTML Tags</h1>
+        <h1>Document header</h1>
         <p>This is a test page to test out custom HTML components.</p>
+        <my-component>hsjahjhsjh</my-component>
+
+        <template id="my-component">
+            <style media="screen">
+                h1 {
+                    color: purple;
+                }
+            </style>
+            <h1>Component header</h1>
+        </template>
+
+        <script type="text/javascript">
+            class MyComponent extends HTMLElement {
+                constructor() {
+                    super();
+
+                    let shadowdom = this.attachShadow({mode: "open"})
+                    let template = document.getElementById('my-component');
+                    let templateHtml = template.content.cloneNode(true);
+                    shadowdom.appendChild(templateHtml);
+                }
+            }
+
+            customElements.define("my-component", MyComponent);
+
+        </script>
     </body>
 </html>
