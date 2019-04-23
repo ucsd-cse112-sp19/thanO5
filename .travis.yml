@@ -3,7 +3,5 @@ node_js:
     - 0.8
 
 notifications:
-  slack:
-    rooms:
-	  - cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39#alerts
+  slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
 
