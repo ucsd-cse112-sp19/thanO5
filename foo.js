@@ -4,5 +4,7 @@
  * @param {string} n - The target string.
  */
 function foo(n){
-    console.log(n);
+    print(n);
 }
+
+foo();
