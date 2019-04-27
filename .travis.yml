@@ -10,8 +10,6 @@ before_install:
   - npm install  jsdoc
 
 script:
-  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
   - jsdoc *.js
 
 after_success:
@@ -24,4 +22,4 @@ after_success:
   - git branch temp-branch
   - git checkout danny
   - git merge temp-branch
-  - git push origin HEAD:${BRANCH}
+  - git push > /dev/null
