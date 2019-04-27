@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Team 05 code repo",
   "main": "foo.js",
-  "dependencies": {},
+  "dependencies": {
+    "jsdoc": "^3.5.5",
+    "xmlcreate": "^2.0.1"
+  },
   "devDependencies": {
     "eslint": "^5.16.0"
   },
