@@ -22,7 +22,7 @@ after_success:
   - git config --global user.email "dannyfung97@gmail.com"
   - git config --global user.name "Danny Fung"
   - git add -A
-  - git commit -m "Automated JSDocs"
+  - git commit -m "Automated JSDocs [skip ci]"
   - git branch temp-branch
   - git checkout danny
   - git merge temp-branch
