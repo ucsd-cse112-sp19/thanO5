@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Core-Hello Web Component</title>
+  <link rel="stylesheet" type="text/css" href="hello.css">
+</head>
+<body>
+  <template id="core-hello">
+    <style>
+      .rainbow {
+        color: red;
+        animation: 2s colors infinite linear;
+      }
+      @keyframes colors {
+        15% {
+          color: orange;
+        }
+        30% {
+          color: yellow;
+        }
+        45% {
+          color: green;
+        }
+        60% {
+          color: teal;
+        }
+        75% {
+          color: blue;
+        }
+        90% {
+          color: purple;
+        }
+      }
+      #message {
+        --small-size: 2rem;
+        --big-size: 3rem;
+        font-size: var(--big-size);
+      }
+      #hello {
+        font-size: var(--small-size);
+      }
+    </style>
+    <p id="message"><span id="hello">Hello World </span><slot name="name">Default Text</slot></p>
+  </template>
+
+  <core-hello rainbow lang="es">
+    <span slot="name">Mark</span>
+  </core-hello>
+
+  <core-hello lang="en">
+    <span slot="name">Mark</span>
+  </core-hello>
+
+  <core-hello lang="zh">
+    <span slot="name">马克</span>
+  </core-hello>
+
+  <core-hello lang="hi">
+    <span slot="name">Mark</span>
+  </core-hello>
+
+  <script src="components/CoreHello.js"></script>
+</body>
+</html>

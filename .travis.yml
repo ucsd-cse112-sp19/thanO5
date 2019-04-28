@@ -6,13 +6,15 @@ notifications:
   slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
 
 before_install:
-  - npm install  xmlcreate
-  - npm install  jsdoc
+  - npm install -g xmlcreate
+  - npm install -g  jsdoc
+  - npm install -g eslint eslint-config-google
 
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
-  - jsdoc *.js
+  - jsdoc -r . -c jsdoc.json -d docs
+  - npx eslint ./**/*.js 
 
 after_success:
   - git branch
