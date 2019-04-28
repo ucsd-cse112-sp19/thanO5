@@ -19,5 +19,6 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "stylelint": "^10.0.1"
-  }
+  },
+  "dependencies": {}
 }
