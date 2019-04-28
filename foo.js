@@ -6,5 +6,4 @@
 function foo(n) {
   print(n);
 }
-
 foo();
