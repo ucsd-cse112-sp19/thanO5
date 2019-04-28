@@ -1,5 +1,1 @@
-# This .gitignore file must be used by all team members.
-# Only add ignored files that you think all team members will benefit from.
-.vscode
-.DS_Store
-
+node_modules

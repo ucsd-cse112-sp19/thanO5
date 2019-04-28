@@ -1,0 +1,8 @@
+{
+    "source": {
+      "exclude": [
+        "docs",
+        "node_modules"
+      ]
+    }
+  }
