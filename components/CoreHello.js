@@ -78,6 +78,7 @@ const helloTranslations = {
      */
     constructor() {
       super();
+      
       // Attach element template to shadow root
       const shadowRoot = this.attachShadow({mode: 'open'});
   
