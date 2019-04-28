@@ -9,12 +9,17 @@ before_install:
   - npm install -g xmlcreate
   - npm install -g  jsdoc
   - npm install -g eslint eslint-config-google
+  - npm install -g htmllint-cli
+  - npm install -g stylelint
+
 
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
   - jsdoc -r . -c jsdoc.json -d docs
   - npx eslint ./**/*.js 
+  - htmllint *.html
+  - stylelint ./**/*.css
 
 after_success:
   - git branch
