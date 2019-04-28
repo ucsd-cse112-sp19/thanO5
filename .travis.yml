@@ -1,7 +1,34 @@
 language: node_js
 node_js:
-    - 0.8
+    - 11.14.0
 
 notifications:
   slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
 
+before_install:
+  - npm install -g xmlcreate
+  - npm install -g eslint eslint-config-google
+  - npm install -g  jsdoc
+  - npm install -g htmllint-cli
+  - npm install -g stylelint
+
+
+script:
+  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
+  - jsdoc -r . -c jsdoc.json -d docs
+  - npx eslint ./**/*.js 
+  - htmllint *.html
+  - stylelint ./**/*.css
+
+after_success:
+  - git branch
+  - git remote set-url origin https://DannyFung97:48b5a3343ff75559980d107f1f129ca23b07576f@github.com/ucsd-cse112/thanOS.git
+  - git config --global user.email "dannyfung97@gmail.com"
+  - git config --global user.name "Danny Fung"
+  - git add -A
+  - git commit -m "Automated JSDocs [skip ci]"
+  - git branch temp-branch
+  - git checkout danny
+  - git merge temp-branch
+  - git push origin HEAD:${BRANCH}
