@@ -23,7 +23,6 @@
     "spec-char-escape": true,
     "text-ignore-regex": false,
     "tag-bans": [
-        "style",
         "b",
         "i"
     ],
@@ -39,12 +38,12 @@
     "attr-no-unsafe-char": true,
     "attr-order": false,
     "attr-quote-style": "double",
-    "attr-req-value": true,
+    "attr-req-value": false,
     "attr-new-line": false,
     "attr-validate": true,
     "id-no-dup": true,
     "id-class-no-ad": true,
-    "id-class-style": "underscore",
+    "id-class-style": false,
     "class-no-dup": true,
     "class-style": false,
     "id-class-ignore-regex": false,
