@@ -42,5 +42,5 @@ after_script:
     - git add -A
     - git commit -m "Automated JSDocs with [skip ci]"
     - git push origin HEAD:${BRANCH}
-    - ./cc-test-reporter format-coverage -t lcov "./coverage/*/lcov.info"
+    - ./cc-test-reporter format-coverage -t lcov "./coverage/**/lcov.info"
     - ./cc-test-reporter upload-coverage
