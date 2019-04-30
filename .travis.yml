@@ -35,8 +35,4 @@ script:
   - node_modules/karma/bin/karma start karma.conf.js --single-run
 
 after_script:
-    - ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.frontend.json coverage/frontend/lcov.info
-    - ./cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 2
-    - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi
-
-
+    - ./cc-test-reporter after-build -t lcov /coverage/*/lcov.info --exit-code $TRAVIS_TEST_RESULT
