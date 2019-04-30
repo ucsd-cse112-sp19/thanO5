@@ -10,6 +10,7 @@ env:
     - CC_TEST_REPORTER_ID=8a52c7f9f5cf5a0f5a87e12df01bb76055af78143883df44798132ad52975c71
 
 before_install:
+  - npm install -g codeclimate-test-reporter
   - npm install -g xmlcreate
   - npm install -g eslint eslint-config-google
   - npm install -g jsdoc
@@ -42,4 +43,5 @@ after_script:
     - git add -A
     - git commit -m "Automated JSDocs with [skip ci]"
     - git push origin HEAD:${BRANCH}
-    - ./cc-test-reporter after-build -t lcov "coverage/Chrome 62.0.3202 (Linux 0.0.0)/lcov.info" --exit-code $TRAVIS_TEST_RESULT
+    - ./cc-test-reporter format-coverage -t lcov "./coverage/Chrome 62.0.3202 (Linux 0.0.0)/lcov.info"
+    - ./cc-test-reporter upload-coverage
