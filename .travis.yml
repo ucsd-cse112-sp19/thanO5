@@ -8,10 +8,14 @@ notifications:
 before_install:
   - npm install -g xmlcreate
   - npm install -g eslint eslint-config-google
-  - npm install -g  jsdoc
+  - npm install -g jsdoc
   - npm install -g htmllint-cli
   - npm install -g stylelint
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 
+before_script:
+  - npm install
 
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
@@ -20,6 +24,7 @@ script:
   - npx eslint ./**/*.js 
   - htmllint *.html
   - stylelint ./**/*.css
+  - node_modules/karma/bin/karma start karma.conf.js --single-run
 
 after_success:
   - git branch
@@ -27,7 +32,7 @@ after_success:
   - git config --global user.email "dannyfung97@gmail.com"
   - git config --global user.name "Danny Fung"
   - git add -A
-  - git commit -m "Automated JSDocs [skip ci]"
+  - git commit -m "Automated JSDocs"
   - git branch temp-branch
   - git checkout danny
   - git merge temp-branch
