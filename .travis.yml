@@ -5,6 +5,10 @@ node_js:
 notifications:
   slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=8a52c7f9f5cf5a0f5a87e12df01bb76055af78143883df44798132ad52975c71
+
 before_install:
   - npm install -g xmlcreate
   - npm install -g eslint eslint-config-google
@@ -16,6 +20,9 @@ before_install:
 
 before_script:
   - npm install
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
@@ -25,5 +32,8 @@ script:
   - htmllint *.html
   - stylelint ./**/*.css
   - node_modules/karma/bin/karma start karma.conf.js --single-run
+
+after_script:
+    - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 
