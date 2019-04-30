@@ -5,13 +5,26 @@ node_js:
 notifications:
   slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=8a52c7f9f5cf5a0f5a87e12df01bb76055af78143883df44798132ad52975c71
+
 before_install:
+  - npm install -g codeclimate-test-reporter
   - npm install -g xmlcreate
   - npm install -g eslint eslint-config-google
-  - npm install -g  jsdoc
+  - npm install -g jsdoc
   - npm install -g htmllint-cli
   - npm install -g stylelint
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 
+
+before_script:
+  - npm install
 
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
@@ -20,15 +33,15 @@ script:
   - npx eslint ./**/*.js 
   - htmllint *.html
   - stylelint ./**/*.css
+  - node_modules/karma/bin/karma start karma.conf.js --single-run
 
-after_success:
-  - git branch
-  - git remote set-url origin https://DannyFung97:48b5a3343ff75559980d107f1f129ca23b07576f@github.com/ucsd-cse112/thanOS.git
-  - git config --global user.email "dannyfung97@gmail.com"
-  - git config --global user.name "Danny Fung"
-  - git add -A
-  - git commit -m "Automated JSDocs [skip ci]"
-  - git branch temp-branch
-  - git checkout danny
-  - git merge temp-branch
-  - git push origin HEAD:${BRANCH}
+after_script:
+    - git branch
+    - git remote set-url origin https://DannyFung97:48b5a3343ff75559980d107f1f129ca23b07576f@github.com/ucsd-cse112/thanOS.git
+    - git config --global user.email "dannyfung97@gmail.com"
+    - git config --global user.name "Danny Fung"
+    - git add -A
+    - git commit -m "Automated JSDocs with [skip ci]"
+    - git push origin HEAD:${BRANCH}
+    - ./cc-test-reporter format-coverage -t lcov "./coverage/Chrome 62.0.3202 (Linux 0.0.0)/lcov.info"
+    - ./cc-test-reporter upload-coverage
