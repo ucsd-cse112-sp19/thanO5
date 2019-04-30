@@ -34,6 +34,6 @@ script:
   - node_modules/karma/bin/karma start karma.conf.js --single-run
 
 after_script:
-    - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+    - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
 
 
