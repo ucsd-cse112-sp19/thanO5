@@ -18,7 +18,7 @@
   "homepage": "https://github.com/ucsd-cse112/thanOS#readme",
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10",
-    "eslint": "^5.16.0",
+    "eslint": "5.16.0",
     "eslint-config-google": "^0.12.0",
     "jasmine": "^3.4.0",
     "karma": "^4.1.0",
