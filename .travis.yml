@@ -41,6 +41,7 @@ after_script:
     - git config --global user.name "Danny Fung"
     - git add -A
     - git commit -m "Automated JSDocs with [skip ci]"
+    - git pull
     - git push origin HEAD:${BRANCH}
     - ./cc-test-reporter format-coverage -t lcov "./coverage/**/lcov.info"
     - ./cc-test-reporter upload-coverage
