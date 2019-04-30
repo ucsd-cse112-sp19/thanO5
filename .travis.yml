@@ -10,7 +10,6 @@ env:
     - CC_TEST_REPORTER_ID=8a52c7f9f5cf5a0f5a87e12df01bb76055af78143883df44798132ad52975c71
 
 before_install:
-  - npm install -g codeclimate-test-reporter
   - npm install -g xmlcreate
   - npm install -g eslint eslint-config-google
   - npm install -g jsdoc
