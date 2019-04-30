@@ -40,7 +40,7 @@ module.exports = function(config) {
     coverageReporter:{
         'type': 'lcovonly',
         'dir': 'coverage/',
-        'file': 'coverage.txt',
+        'file': 'lcov.info',
     },
 
     // web server port
