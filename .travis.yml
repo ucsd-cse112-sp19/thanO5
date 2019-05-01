@@ -36,4 +36,4 @@ script:
 
 after_script:
     - chmod +x after_script.sh
-    - ./after_script.sh
+    - ./after_script.sh $TRAVIS_PULL_REQUEST
