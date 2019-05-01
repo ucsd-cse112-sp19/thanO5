@@ -1,4 +1,4 @@
-if [ "$(git log -1 --pretty=%B)" != "Automated JSDocs" ] 
+if [ "$(git log -1 --pretty=%B)" != "Automated JSDocs" ] && [ "$(git rev-parse --abbrev-ref HEAD)" != "undefined" ] 
 then
 
     git branch
