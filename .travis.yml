@@ -35,4 +35,5 @@ script:
   - node_modules/karma/bin/karma start karma.conf.js --single-run
 
 after_script:
+    - chmod +x after_script.sh
     - ./after_script.sh
