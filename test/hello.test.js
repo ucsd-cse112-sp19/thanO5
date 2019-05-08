@@ -1,0 +1,1 @@
+import { CoreHello } from '../components/CoreHello.js';

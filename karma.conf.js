@@ -7,6 +7,15 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+    // register plugins
+    // plugins: [
+    //   'karma-chrome-launcher',
+    //   'karma-tap',
+    //   'karma-sourcemap-loader',
+    //   'karma-coverage',
+    //   'karma-jasmine',
+    //   'karma-webpack' // *** This 'registers' the Karma webpack plugin.
+    // ],
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -15,33 +24,36 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'components/*.js',
-      'test/*.js',
+      // 'components/*.js',
+      'test/*.test.js',
     ],
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        '**/components/*.js': 'coverage'
+        'components/*.js': ['webpack'],
+        'test/*.test.js': ['webpack']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'], 
 
-    coverageReporter:{
-        'type': 'lcovonly',
-        'dir': 'coverage/',
-        'file': 'lcov.info',
-    },
+    // reporters: ['progress', 'coverage'], 
+
+    // coverageReporter:{
+    //     'type': 'lcovonly',
+    //     'dir': 'coverage/',
+    //     'file': 'lcov.info',
+    // },
+
+    reporters: ['progress'],
 
     // web server port
     port: 9876,
@@ -62,7 +74,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'], // , 'Firefox', 'Safari', 'Opera'],
+    browsers: ['Firefox'], // , 'Firefox', 'Safari', 'Opera'],
 
 
     // Continuous Integration mode
@@ -71,6 +83,10 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
+    concurrency: Infinity,    
+    webpack: {
+      devtool: 'inline-source-map', // generate source map
+      mode: 'production',
+    },
+  });
 }

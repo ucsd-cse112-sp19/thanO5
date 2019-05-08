@@ -20,6 +20,8 @@
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.12.0",
+    "htmllint": "^0.8.0",
+    "htmllint-cli": "0.0.7",
     "jasmine": "^3.4.0",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -28,11 +30,10 @@
     "karma-jasmine": "^2.0.1",
     "karma-opera-launcher": "^1.0.0",
     "karma-safari-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
-    "stylelint": "^10.0.1"
-  },
-  "dependencies": {
-    "htmllint": "^0.8.0",
-    "htmllint-cli": "0.0.7"
+    "karma-webpack": "^3.0.5",
+    "stylelint": "^10.0.1",
+    "webpack": "^4.30.0"
   }
 }

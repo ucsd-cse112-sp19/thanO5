@@ -72,7 +72,7 @@ const helloTranslations = {
 /**
  * A class for core-hello custom element
  */
-class CoreHello extends HTMLElement {
+export class CoreHello extends HTMLElement {
   /**
    * Constructor for this element
    */
