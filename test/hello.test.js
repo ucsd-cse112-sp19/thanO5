@@ -1,1 +1,1 @@
-import { CoreHello } from '../components/CoreHello.js';
+import '../components/CoreHello.js';
