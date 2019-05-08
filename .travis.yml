@@ -34,7 +34,7 @@ script:
   - npm test
   - npm run docs
 
-after_script:
+after_success:
   - bash scripts/updateGithubRepo.sh
   - ./cc-test-reporter format-coverage -t lcov "./coverage/Chrome 62.0.3202 (Linux 0.0.0)/lcov.info"
   - ./cc-test-reporter upload-coverage
