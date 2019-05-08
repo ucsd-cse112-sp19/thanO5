@@ -4,6 +4,8 @@ node_js:
 
 services:
   - xvfb
+addons:
+  - firefox: "66.0.0"
 
 notifications:
   slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
