@@ -28,8 +28,8 @@ describe('element integration test', () => {
 
     it('should add a slot named "name" and its content is "Default Text"',
         () => {
-      expect(name.textContent).toBe('Default Text');
-    });
+          expect(name.textContent).toBe('Default Text');
+        });
   });
 
   // check that message language can be changed through lang attribute
