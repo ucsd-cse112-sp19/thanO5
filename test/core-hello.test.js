@@ -23,13 +23,13 @@ describe('element integration test', () => {
 
     it(`should add a span element with an id hello and the content is "Hello 
         World "`, () => {
-        expect(hello.innerHTML).toBe('Hello World ');
-      });
+      expect(hello.innerHTML).toBe('Hello World ');
+    });
 
     it('should add a slot named "name" and its content is "Default Text"',
-      () => {
-        expect(name.textContent).toBe('Default Text');
-      });
+        () => {
+      expect(name.textContent).toBe('Default Text');
+    });
   });
 
   // check that message language can be changed through lang attribute
@@ -49,12 +49,12 @@ describe('element integration test', () => {
   describe('rainbow', () => {
     it(`should add or remove the rainbow effect to the message by toggling the 
     rainbow attribute`, () => {
-        element.setAttribute('rainbow', '');
-        expect(message.classList.contains('rainbow')).toBe(true);
+      element.setAttribute('rainbow', '');
+      expect(message.classList.contains('rainbow')).toBe(true);
 
-        element.removeAttribute('rainbow');
-        expect(message.classList.contains('rainbow')).toBe(false);
-      });
+      element.removeAttribute('rainbow');
+      expect(message.classList.contains('rainbow')).toBe(false);
+    });
 
     it('should not render the rainbow effect if a wrong value is given', () => {
       element.setAttribute('rainbow', 'wrong');

@@ -134,7 +134,7 @@ export class CoreHello extends HTMLElement {
     super();
 
     // Attach element template to shadow root
-    const shadowRoot = this.attachShadow({ mode: 'open' });
+    const shadowRoot = this.attachShadow({mode: 'open'});
     shadowRoot.appendChild(template.content.cloneNode(true));
 
     // Get message p element and hello span element
