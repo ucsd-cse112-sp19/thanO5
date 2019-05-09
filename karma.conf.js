@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Sun Apr 28 2019 14:00:18 GMT-0700 (Pacific Daylight Time)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -36,8 +36,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        // 'components/*.js': ['webpack'],
-        'test/*.test.js': ['webpack']
+      // 'components/*.js': ['webpack'],
+      'test/*.test.js': ['webpack']
     },
 
 
@@ -45,15 +45,13 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
 
-    // reporters: ['progress', 'coverage'], 
+    reporters: ['progress', 'coverage'],
 
-    // coverageReporter:{
-    //     'type': 'lcovonly',
-    //     'dir': 'coverage/',
-    //     'file': 'lcov.info',
-    // },
-
-    reporters: ['progress'],
+    coverageReporter: {
+      'type': 'lcovonly',
+      'subdir': '.',
+      'file': 'lcov.info',
+    },
 
     // web server port
     port: 9876,
@@ -74,7 +72,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Firefox', 'Chrome'],
+    browsers: ['Chrome', 'Firefox'],
 
 
     // Continuous Integration mode
@@ -83,7 +81,7 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,    
+    concurrency: Infinity,
     webpack: {
       devtool: 'inline-source-map', // generate source map
       mode: 'production',
