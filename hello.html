@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,54 +10,6 @@
 </head>
 
 <body>
-	<template id="core-hello">
-		<style>
-			.rainbow {
-				color: red;
-				animation: 2s colors infinite linear;
-			}
-
-			@keyframes colors {
-				15% {
-					color: orange;
-				}
-
-				30% {
-					color: yellow;
-				}
-
-				45% {
-					color: green;
-				}
-
-				60% {
-					color: teal;
-				}
-
-				75% {
-					color: blue;
-				}
-
-				90% {
-					color: purple;
-				}
-			}
-
-			#message {
-				--small-size: 2rem;
-				--big-size: 3rem;
-				font-size: var(--big-size);
-			}
-
-			#hello {
-				font-size: var(--small-size);
-			}
-		</style>
-		<p id="message"><span id="hello">Hello World </span>
-			<slot name="name">Default Text</slot>
-		</p>
-	</template>
-
 	<core-hello rainbow lang="en">
 		<span slot="name">Mark</span>
 	</core-hello>
@@ -78,7 +30,7 @@
 		<span slot="name">Mark</span>
 	</core-hello>
 
-	<script src="components/CoreHello.js"></script>
+	<script src="components/core-hello.js"></script>
 </body>
 
 </html>
