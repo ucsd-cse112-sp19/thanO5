@@ -6,7 +6,7 @@ Team 05 code repo
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/test_coverage)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/test_coverage)
 
 ## **How to test the components on your local computer**
-### Make sure you have Node Package Manager (npm) installed
+### Make sure you have Node Package Manager (npm) installed!
 - https://nodejs.org/en/download/
 ### Download all necessary dependencies locally
 - `npm install`
