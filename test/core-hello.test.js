@@ -1,4 +1,4 @@
-﻿import '../components/core-hello.js';
+﻿// import '../components/core-hello.js';
 
 describe('element integration test', () => {
   let element;

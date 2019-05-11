@@ -119,7 +119,7 @@ template.innerHTML = templateString;
 /**
  * A class for core-hello custom element
  */
-export class CoreHello extends HTMLElement {
+class CoreHello extends HTMLElement {
   /**
    * observedAttributes getter
    */
