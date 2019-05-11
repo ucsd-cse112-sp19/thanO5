@@ -1,6 +1,11 @@
 language: node_js
 node_js:
-    - 11.14.0
+  - 11.14.0
+dist: xenial
+services:
+  - xvfb
+addons:
+  firefox: "latest"
 
 notifications:
   slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
@@ -10,17 +15,14 @@ env:
     - CC_TEST_REPORTER_ID=8a52c7f9f5cf5a0f5a87e12df01bb76055af78143883df44798132ad52975c71
 
 before_install:
-  - npm install -g xmlcreate
-  - npm install -g eslint eslint-config-google
-  - npm install -g jsdoc
-  - npm install -g htmllint-cli
-  - npm install -g stylelint
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
 
+# before_script:
+#   - "export DISPLAY=:99.0"
+#   - "sh -e /etc/init.d/xvfb start"
+#   - sleep 3
 
 before_script:
   - npm install
@@ -28,12 +30,9 @@ before_script:
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
-  - jsdoc -r . -c jsdoc.json -d docs
-  - npx eslint ./**/*.js 
-  - htmllint *.html
-  - stylelint ./**/*.css
-  - node_modules/karma/bin/karma start karma.conf.js --single-run
+  - npm run lint
+  - npm test
+  - npm run docs
 
-after_script:
-    - chmod +x after_script.sh
-    - ./after_script.sh $TRAVIS_PULL_REQUEST
+after_success:
+  - bash scripts/after_script.sh $TRAVIS_PULL_REQUEST
