@@ -9,7 +9,7 @@ then
     git commit -m "Automated JSDocs"
     git pull
     git push origin HEAD:${BRANCH}
-    ./cc-test-reporter format-coverage -t lcov "./coverage/Chrome 62.0.3202 (Linux 0.0.0)/lcov.info"
+    ./cc-test-reporter format-coverage -t lcov "./coverage/lcov.info"
     ./cc-test-reporter upload-coverage
 
 fi
