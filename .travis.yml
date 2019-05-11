@@ -35,4 +35,4 @@ script:
   - npm run docs
 
 after_success:
-  - bash scripts/after_script.sh
+  - bash scripts/after_script.sh $TRAVIS_PULL_REQUEST
