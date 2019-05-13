@@ -4,40 +4,6 @@
 //   large: 'large',
 // };
 
-const templateString = `
-    <style>
-      #button {
-        text-align: center;
-        line-height: 150px;
-      }
-
-      :host([rounded]) #button{
-        border-radius:25px;
-        border: 2px solid #73AD21;
-        width: 200px;
-        height: 150px;
-      }
-
-      :host([size:"small"]) #button{
-        font-size: 10px;
-      }
-
-      :host([size:"medium"]) #button{
-        font-size: 16px;
-      }
-
-      :host([size:"large"]) #button{
-        font-size: 22px;
-      }
-    </style>
-    <div id="button">
-      <slot></slot>
-    </div>
-  `;
-
-const template = document.createElement('template');
-template.innerHTML = templateString;
-
 /**
  * Core button class.
  */
@@ -54,6 +20,16 @@ class CoreButton extends HTMLElement {
    */
   constructor() {
     super(); // HTMLElement does class definitions by calling super()
+
+    const templateString = `
+        <link rel="stylesheet" href="components/core-button/core-button.css">
+        <div id="button">
+          <slot></slot>
+        </div>
+      `;
+
+    const template = document.createElement('template');
+    template.innerHTML = templateString;
 
     const shadowRoot = this.attachShadow({mode: 'open'});
     const templateHTML = template.content.cloneNode(true);

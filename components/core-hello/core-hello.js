@@ -69,53 +69,6 @@ const helloTranslations = {
   zu: 'Sawubona Mhlab',
 };
 
-const templateString = `
-  <style>
-    .rainbow {
-      color: red;
-      animation: 2s colors infinite linear;
-    }
-
-    @keyframes colors {
-      15% {
-        color: orange;
-      }
-      30% {
-        color: yellow;
-      }
-      45% {
-        color: green;
-      }
-      60% {
-        color: teal;
-      }
-      75% {
-        color: blue;
-      }
-      90% {
-        color: purple;
-      }
-    }
-
-    #message {
-      --small-size: 2rem;
-      --big-size: 3rem;
-      font-size: var(--big-size);
-    }
-
-    #hello {
-      font-size: var(--small-size);
-    }
-  </style>
-  <p id="message">
-    <span id="hello">Hello World </span>
-    <slot name="name">Default Text</slot>
-  </p>
-`;
-
-const template = document.createElement('template');
-template.innerHTML = templateString;
-
 /**
  * A class for core-hello custom element
  */
@@ -132,6 +85,17 @@ class CoreHello extends HTMLElement {
    */
   constructor() {
     super();
+
+    const templateString = `
+      <link rel="stylesheet" href="components/core-hello/core-hello.css">
+      <p id="message">
+        <span id="hello">Hello World </span>
+        <slot name="name">Default Text</slot>
+      </p>
+    `;
+
+    const template = document.createElement('template');
+    template.innerHTML = templateString;
 
     // Attach element template to shadow root
     const shadowRoot = this.attachShadow({mode: 'open'});
