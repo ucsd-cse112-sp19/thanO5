@@ -1,8 +1,8 @@
-const coreBtnSizes = {
-  small: 'small',
-  medium: 'medium',
-  large: 'large',
-};
+// const coreBtnSizes = {
+//   small: 'small',
+//   medium: 'medium',
+//   large: 'large',
+// };
 
 const templateString = `
     <style>
@@ -11,22 +11,22 @@ const templateString = `
         line-height: 150px;
       }
 
-      .rounded{
+      :host([rounded]) #button{
         border-radius:25px;
         border: 2px solid #73AD21;
         width: 200px;
         height: 150px;
       }
 
-      .small{
+      :host([size:"small"]) #button{
         font-size: 10px;
       }
 
-      .medium{
+      :host([size:"medium"]) #button{
         font-size: 16px;
       }
 
-      .large{
+      :host([size:"large"]) #button{
         font-size: 22px;
       }
     </style>
@@ -74,7 +74,7 @@ class CoreButton extends HTMLElement {
    * size getter
    */
   get size() {
-    return this.hasAttribute('size');
+    return this.getAttribute('size');
   }
 
   /**
@@ -109,24 +109,25 @@ class CoreButton extends HTMLElement {
    * @param {*} newValue
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    switch (name) {
-      case 'rounded': {
-        if (newValue == '') {
-          this._button.classList.add('rounded');
-        } else {
-          this._button.classList.remove('rounded');
-        }
-        break;
-      }
-      case 'size': { // FIXME: how does this code know what the new size is?
-        const size = coreBtnSizes[newValue];
-        if (coreBtnSizes[newValue] != undefined) {
-          this._button.classList.add(size);
-        } else {
-          this._button.classList.remove(size);
-        }
-      }
-    }
+    // switch (name) {
+    //   case 'rounded': {
+    //     if (newValue == '') {
+    //       this.rounded = true;
+    //     } else {
+    //       this._button.classList.remove('rounded');
+    //     }
+    //     break;
+    //   }
+    //   case 'size': { // FIXME: how does this code know what the new size is?
+    //     const size = coreBtnSizes[newValue];
+    //     if (coreBtnSizes[newValue] != undefined) {
+    //       this._button.classList.add(size);
+    //     } else {
+    //       this._button.classList.remove(size);
+    //     }
+    //     break;
+    //   }
+    // }
   }
 }
 
