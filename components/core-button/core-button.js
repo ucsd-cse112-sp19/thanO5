@@ -6,6 +6,11 @@ const coreBtnSizes = {
 
 const templateString = `
     <style>
+      #button {
+        text-align: center;
+        line-height: 150px;
+      }
+
       .rounded{
         border-radius:25px;
         border: 2px solid #73AD21;
@@ -25,10 +30,10 @@ const templateString = `
         font-size: 22px;
       }
     </style>
-    <button id="core-button" type="button">
-      <slot id="btn-text"></slot>
-    </button>
-    `;
+    <div id="button">
+      <slot></slot>
+    </div>
+  `;
 
 const template = document.createElement('template');
 template.innerHTML = templateString;
@@ -50,14 +55,12 @@ class CoreButton extends HTMLElement {
   constructor() {
     super(); // HTMLElement does class definitions by calling super()
 
-    const shadowdom = this.attachShadow({mode: 'open'});
+    const shadowRoot = this.attachShadow({mode: 'open'});
     const templateHTML = template.content.cloneNode(true);
-    shadowdom.appendChild(templateHTML);
+    shadowRoot.appendChild(templateHTML);
 
     // Get message button element and message slot element
-    this._button = shadowRoot.getElementById('core-button');
-    this._message = shadowRoot.getElementById('btn-text');
-    this._message.innerHTML = 'YOYOUOUY';
+    this._button = shadowRoot.getElementById('button');
   }
 
   /**
@@ -71,7 +74,7 @@ class CoreButton extends HTMLElement {
    * size getter
    */
   get size() {
-    return this.getAttribute('size');
+    return this.hasAttribute('size');
   }
 
   /**
@@ -80,9 +83,9 @@ class CoreButton extends HTMLElement {
    */
   set rounded(val) {
     if (val) {
-      this._button.classList.add('rounded');
+      this.setAttribute('rounded', '');
     } else {
-      this._button.classList.remove('rounded');
+      this.removeAttribute('rounded');
     }
   }
 
@@ -92,7 +95,11 @@ class CoreButton extends HTMLElement {
    */
   set size(val) {
     // TODO: need to sanitize the user input here
-    this._button.classList.add(val);
+    if (val) {
+      this.setAttribute('size', val);
+    } else {
+      this.removeAttribute('size');
+    }
   }
 
   /**
@@ -105,16 +112,18 @@ class CoreButton extends HTMLElement {
     switch (name) {
       case 'rounded': {
         if (newValue == '') {
-          this.rounded = true;
+          this._button.classList.add('rounded');
         } else {
-          this.rounded = false;
+          this._button.classList.remove('rounded');
         }
         break;
       }
       case 'size': { // FIXME: how does this code know what the new size is?
-        const s = this.getAttribute('size');
-        if (coreBtnSizes[s] != undefined) {
-          this.size = s;
+        const size = coreBtnSizes[newValue];
+        if (coreBtnSizes[newValue] != undefined) {
+          this._button.classList.add(size);
+        } else {
+          this._button.classList.remove(size);
         }
       }
     }
