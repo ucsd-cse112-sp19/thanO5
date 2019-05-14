@@ -214,7 +214,7 @@ class CoreButton extends HTMLElement {
       }
       case 'size': { // FIXME: how does this code know what the new size is?
         const size = coreBtnSizes[newValue];
-        if (coreBtnSizes[newValue] != undefined) {
+        if (size != undefined) {
           this._button.classList.add(size);
         } else {
           this._button.classList.remove(size);
@@ -223,7 +223,7 @@ class CoreButton extends HTMLElement {
       }
       case 'color': { // FIXME: how does this code know what the new color is?
         const tempColor = coreColor[newValue];
-        if (coreColor[newValue] != undefined) {
+        if (tempColor != undefined) {
           this._button.classList.add(tempColor);
         } else {
           this._button.classList.remove(tempColor);
