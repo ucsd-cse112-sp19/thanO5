@@ -4,32 +4,86 @@ const coreBtnSizes = {
   large: 'large',
 };
 
+const coreColor = {
+  primary: 'primary',
+  secondary: 'secondary',
+  dark: 'dark',
+};
+
 const templateString = `
     <style>
       #button {
         text-align: center;
-        line-height: 150px;
+        border: 0.3rem solid #a5a5a5; /* default color is light grey*/
+        width: 6rem;
+        height: 3rem;
+        transition-duration:0.4s;
+        cursor: pointer;
+      }
+
+      #button:hover{
+        background-color: #a5a5a5; /* default color is light grey*/
+        color: white;
+      }
+
+      .shadow{
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
       }
 
       .rounded{
-        border-radius:25px;
-        border: 2px solid #73AD21;
-        width: 200px;
-        height: 150px;
+        border-radius: 1rem;
       }
 
-      .small{
+      #button.small{
         font-size: 10px;
+        width: 4rem;
+        height: 2rem;
+        line-height: 2rem;
       }
 
-      .medium{
+      #button.medium{
         font-size: 16px;
+        width: 7rem;
+        height: 4rem;
+        line-height: 4rem;
       }
 
-      .large{
+      #button.large{
         font-size: 22px;
+        width: 10rem;
+        height: 5rem;
+        line-height: 5rem;
       }
+
+      #button.primary{
+        border: 0.3rem solid #4286f4; /* primary color is blue*/
+      }
+
+      #button.primary:hover{
+        background-color: #4386f4; /* primary color is blue */
+        color: white;
+      }
+
+      #button.secondary{
+        border: 0.3rem solid #f44336; /* secondary color is red*/
+      }
+
+      #button.secondary:hover{
+        background-color: #f44336; /* secondary color is red */
+        color: white;
+      }
+
+      #button.dark{
+        border: 0.3rem solid #555555; /* dark color is dark grey */
+      }
+
+      #button.dark:hover{
+        background-color: #555555; /* dark color is dark grey */
+        color: white;
+      }
+
     </style>
+
     <div id="button">
       <slot></slot>
     </div>
@@ -46,7 +100,7 @@ class CoreButton extends HTMLElement {
    * observedAttributes getter
    */
   static get observedAttributes() {
-    return ['rounded', 'size'];
+    return ['rounded', 'size', 'shadow', 'color'];
   }
 
   /**
@@ -78,6 +132,20 @@ class CoreButton extends HTMLElement {
   }
 
   /**
+   * shadow getter
+   */
+  get shadow() {
+    return this.hasAttribute('shadow');
+  }
+
+  /**
+   * color getter
+   */
+  get color() {
+    return this.hasAttribute('color');
+  }
+
+  /**
    * rounded setter
    * @param {boolean} val
    */
@@ -103,6 +171,30 @@ class CoreButton extends HTMLElement {
   }
 
   /**
+   * shadow setter
+   * @param {string} val
+   */
+  set shadow(val) {
+    if (val) {
+      this.setAttribute('shadow', val);
+    } else {
+      this.removeAttribute('shadow');
+    }
+  }
+
+  /**
+   * color setter
+   * @param {string} val
+   */
+  set color(val) {
+    if (val) {
+      this.setAttribute('color', val);
+    } else {
+      this.removeAttribute('color');
+    }
+  }
+
+  /**
    * attribute change event handler
    * @param {string} name
    * @param {*} oldValue
@@ -124,6 +216,22 @@ class CoreButton extends HTMLElement {
           this._button.classList.add(size);
         } else {
           this._button.classList.remove(size);
+        }
+      }
+      case 'shadow': {
+        if (newValue == '') {
+          this._button.classList.add('shadow');
+        } else {
+          this._button.classList.remove('shadow');
+        }
+        break;
+      }
+      case 'color': { // FIXME: how does this code know what the new color is?
+        const tempColor = coreColor[newValue];
+        if (coreColor[newValue] != undefined) {
+          this._button.classList.add(tempColor);
+        } else {
+          this._button.classList.remove(tempColor);
         }
       }
     }
