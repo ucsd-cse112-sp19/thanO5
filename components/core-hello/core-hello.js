@@ -149,11 +149,7 @@ class CoreHello extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'rainbow': {
-        if (newValue == '') {
-          this.rainbow = true;
-        } else {
-          this.rainbow = false;
-        }
+        this.rainbow = newValue == '';
         break;
       }
       case 'lang': {
