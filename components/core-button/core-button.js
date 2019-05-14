@@ -202,11 +202,13 @@ class CoreButton extends HTMLElement {
    */
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
-      case 'rounded': {
+      case 'rounded':
+      case 'shadow':
+      {
         if (newValue == '') {
-          this._button.classList.add('rounded');
+          this._button.classList.add(name);
         } else {
-          this._button.classList.remove('rounded');
+          this._button.classList.remove(name);
         }
         break;
       }
@@ -217,13 +219,6 @@ class CoreButton extends HTMLElement {
         } else {
           this._button.classList.remove(size);
         }
-      }
-      case 'shadow': {
-        if (newValue == '') {
-          this._button.classList.add('shadow');
-        } else {
-          this._button.classList.remove('shadow');
-        }
         break;
       }
       case 'color': { // FIXME: how does this code know what the new color is?
@@ -233,6 +228,7 @@ class CoreButton extends HTMLElement {
         } else {
           this._button.classList.remove(tempColor);
         }
+        break;
       }
     }
   }
