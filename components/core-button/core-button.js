@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-// const coreBtnSizes = {
-//   small: 'small',
-//   medium: 'medium',
-//   large: 'large',
-// };
-=======
 const coreBtnSizes = {
   small: 'small',
   medium: 'medium',
@@ -98,7 +91,6 @@ const templateString = `
 
 const template = document.createElement('template');
 template.innerHTML = templateString;
->>>>>>> dev-button-hotfix
 
 /**
  * Core button class.
@@ -116,16 +108,6 @@ class CoreButton extends HTMLElement {
    */
   constructor() {
     super(); // HTMLElement does class definitions by calling super()
-
-    const templateString = `
-        <link rel="stylesheet" href="components/core-button/core-button.css">
-        <div id="button">
-          <slot></slot>
-        </div>
-      `;
-
-    const template = document.createElement('template');
-    template.innerHTML = templateString;
 
     const shadowRoot = this.attachShadow({mode: 'open'});
     const templateHTML = template.content.cloneNode(true);
@@ -146,9 +128,7 @@ class CoreButton extends HTMLElement {
    * size getter
    */
   get size() {
-    return this.getAttribute('size');
-<<<<<<< HEAD
-=======
+    return this.hasAttribute('size');
   }
 
   /**
@@ -163,7 +143,6 @@ class CoreButton extends HTMLElement {
    */
   get color() {
     return this.hasAttribute('color');
->>>>>>> dev-button-hotfix
   }
 
   /**
@@ -222,9 +201,6 @@ class CoreButton extends HTMLElement {
    * @param {*} newValue
    */
   attributeChangedCallback(name, oldValue, newValue) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     switch (name) {
       case 'rounded': {
         if (newValue == '') {
@@ -259,31 +235,6 @@ class CoreButton extends HTMLElement {
         }
       }
     }
-=======
->>>>>>> dev-button-hotfix
-    // switch (name) {
-    //   case 'rounded': {
-    //     if (newValue == '') {
-    //       this.rounded = true;
-    //     } else {
-    //       this._button.classList.remove('rounded');
-    //     }
-    //     break;
-    //   }
-    //   case 'size': { // FIXME: how does this code know what the new size is?
-    //     const size = coreBtnSizes[newValue];
-    //     if (coreBtnSizes[newValue] != undefined) {
-    //       this._button.classList.add(size);
-    //     } else {
-    //       this._button.classList.remove(size);
-    //     }
-    //     break;
-    //   }
-    // }
-<<<<<<< HEAD
-=======
->>>>>>> dev-button
->>>>>>> dev-button-hotfix
   }
 }
 
