@@ -13,7 +13,7 @@ const coreColor = {
 const templateString = `
     <link rel="stylesheet" href="core-button.css">
     <div id="button">
-      <slot></slot>
+      <span><slot></slot></span>
     </div>
   `;
 
@@ -28,7 +28,7 @@ class CoreButton extends HTMLElement {
    * observedAttributes getter
    */
   static get observedAttributes() {
-    return ['rounded', 'size', 'shadow', 'color'];
+    return ['rounded', 'size', 'shadow', 'color', 'animated', 'circle'];
   }
 
   /**
@@ -71,6 +71,20 @@ class CoreButton extends HTMLElement {
    */
   get color() {
     return this.hasAttribute('color');
+  }
+
+  /**
+   * animated value getter
+   */
+  get animated() {
+    return this.hasAttribute('animated');
+  }
+
+  /**
+   * circle attribute getter
+   */
+  get circle() {
+    return this.hasAttribute('circle');
   }
 
   /**
@@ -123,6 +137,30 @@ class CoreButton extends HTMLElement {
   }
 
   /**
+   * animated setter
+   * @param {string} val
+   */
+  set animated(val) {
+    if (val) {
+      this.setAttribute('aimated', val);
+    } else {
+      this.removeAttribute('animated');
+    }
+  }
+
+  /**
+   * circle attribute setter
+   * @param {string} val
+   */
+  set circle(val) {
+    if (val) {
+      this.setAttribute('circle', val);
+    } else {
+      this.removeAttribute('circle');
+    }
+  }
+
+  /**
    * attribute change event handler
    * @param {string} name
    * @param {*} oldValue
@@ -131,7 +169,9 @@ class CoreButton extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'rounded':
-      case 'shadow': {
+      case 'shadow':
+      case 'animated':
+      case 'circle': {
         const toAdd = newValue == '';
         this.addToClassList(name, toAdd);
         break;

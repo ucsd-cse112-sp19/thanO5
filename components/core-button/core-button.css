@@ -3,6 +3,7 @@
 	border: 0.3rem solid #a5a5a5; /* default color is light grey*/
 	width: 6rem;
 	height: 3rem;
+	line-height: 3rem;
 	
 	/* transition-duration:0.4s; */
 	cursor: pointer;
@@ -21,6 +22,37 @@
 	border-radius: 1rem;
 }
 
+/* rules for default size circle */
+#button.circle{
+	border-radius: 50%;
+	overflow: hidden;
+	width: 4rem;
+	height: 4rem;
+	line-height: 4rem;
+}
+
+/* rules for small size circle */
+#button.small.circle{
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+}
+
+/* rules for medium size circle */
+#button.medium.circle{
+	width: 5rem;
+	height: 5rem;
+	line-height: 5rem;
+}
+
+/* rules for large size circle */
+#button.large.circle{
+	width: 6rem;
+	height: 6rem;
+	line-height: 6rem;
+}
+
+/* rules for small size button */
 #button.small{
 	font-size: 10px;
 	width: 4rem;
@@ -28,6 +60,7 @@
 	line-height: 2rem;
 }
 
+/* rules for medium size button */
 #button.medium{
 	font-size: 16px;
 	width: 7rem;
@@ -35,6 +68,7 @@
 	line-height: 4rem;
 }
 
+/* rules for large size button */
 #button.large{
 	font-size: 22px;
 	width: 10rem;
@@ -67,4 +101,34 @@
 #button.dark:hover{
 	background-color: #555555; /* dark color is dark grey */
 	color: white;
+}
+
+/* this rule adds the animation of moving the button text 
+   to the left smoothly*/
+#button.animated span{
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+/* this rule adds the ">>" to the button text */
+#button.animated span:after{
+	content: '\00bb';
+	position: absolute;
+	right: -20px;
+	transition: 0.5s;
+	opacity: 0;
+	top: 0;
+}
+
+/* this rule moves the button text over to make room for ">>" */
+#button.animated:hover span{
+	padding-right: 25px;
+}
+
+/* this rule makes the ">>" visible when button is hovered on*/
+#button.animated:hover span:after{
+	opacity: 1;
+	right: 0;
 }
