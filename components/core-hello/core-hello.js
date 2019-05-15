@@ -87,7 +87,7 @@ class CoreHello extends HTMLElement {
     super();
 
     const templateString = `
-      <link rel="stylesheet" href="components/core-hello/core-hello.css">
+      <link rel="stylesheet" href="../core-hello/core-hello.css">
       <p id="message">
         <span id="hello">Hello World </span>
         <slot name="name">Default Text</slot>
