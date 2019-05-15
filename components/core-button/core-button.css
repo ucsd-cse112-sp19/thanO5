@@ -21,6 +21,37 @@
 	border-radius: 1rem;
 }
 
+/* rules for default size circle */
+#button.circle{
+	border-radius: 50%;
+	overflow: hidden;
+	width: 4rem;
+	height: 4rem;
+	line-height: 4rem;
+}
+
+/* rules for small size circle */
+#button.small.circle{
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+}
+
+/* rules for medium size circle */
+#button.medium.circle{
+	width: 5rem;
+	height: 5rem;
+	line-height: 5rem;
+}
+
+/* rules for large size circle */
+#button.large.circle{
+	width: 6rem;
+	height: 6rem;
+	line-height: 6rem;
+}
+
+/* rules for small size button */
 #button.small{
 	font-size: 10px;
 	width: 4rem;
@@ -28,6 +59,7 @@
 	line-height: 2rem;
 }
 
+/* rules for medium size button */
 #button.medium{
 	font-size: 16px;
 	width: 7rem;
@@ -35,6 +67,7 @@
 	line-height: 4rem;
 }
 
+/* rules for large size button */
 #button.large{
 	font-size: 22px;
 	width: 10rem;

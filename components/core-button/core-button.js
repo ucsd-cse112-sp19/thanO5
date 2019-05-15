@@ -28,7 +28,7 @@ class CoreButton extends HTMLElement {
    * observedAttributes getter
    */
   static get observedAttributes() {
-    return ['rounded', 'size', 'shadow', 'color', 'animated'];
+    return ['rounded', 'size', 'shadow', 'color', 'animated', 'circle'];
   }
 
   /**
@@ -78,6 +78,13 @@ class CoreButton extends HTMLElement {
    */
   get animated() {
     return this.hasAttribute('animated');
+  }
+
+  /**
+   * circle attribute getter
+   */
+  get circle() {
+    return this.hasAttribute('circle');
   }
 
   /**
@@ -142,6 +149,18 @@ class CoreButton extends HTMLElement {
   }
 
   /**
+   * circle attribute setter
+   * @param {string} val
+   */
+  set circle(val) {
+    if (val) {
+      this.setAttribute('circle', val);
+    } else {
+      this.removeAttribute('circle');
+    }
+  }
+
+  /**
    * attribute change event handler
    * @param {string} name
    * @param {*} oldValue
@@ -151,7 +170,8 @@ class CoreButton extends HTMLElement {
     switch (name) {
       case 'rounded':
       case 'shadow':
-      case 'animated': {
+      case 'animated':
+      case 'circle': {
         const toAdd = newValue == '';
         this.addToClassList(name, toAdd);
         break;
