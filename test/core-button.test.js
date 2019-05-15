@@ -118,16 +118,16 @@ describe('CoreButton Unit Tests', () => {
   describe('color setters/getters', () => {
     it('should change the color attribute', () => {
       element.color = 'primary';
-      expect(element.color).toBe('primary')
-      //expect(button.classList.contains('color')).toBe('true');
+      expect(element.color).toBe('primary');
+      // expect(button.classList.contains('color')).toBe('true');
 
       element.color = 'secondary';
-      expect(element.color).toBe('secondary')
-      //expect(button.classList.contains('color')).toBe('true');
+      expect(element.color).toBe('secondary');
+      // expect(button.classList.contains('color')).toBe('true');
 
       element.color = 'dark';
-      expect(element.color).toBe('dark')
-      //expect(button.classList.contains('color')).toBe('true');
+      expect(element.color).toBe('dark');
+      // expect(button.classList.contains('color')).toBe('true');
 
       // element should not have color attribute
       // need to invoke setter's remove, not just call removeAttribute
@@ -139,7 +139,7 @@ describe('CoreButton Unit Tests', () => {
     it('should not change color if wrong value given', () => {
       element.color = 'wrong';
       expect(element.color).toBe('wrong');
-      //expect(button.classList.contains('color')).toBe(false);
+      // expect(button.classList.contains('color')).toBe(false);
     });
   });
 
