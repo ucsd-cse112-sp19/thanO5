@@ -1,7 +1,5 @@
 // const uuid = require('uuid/v1');
 
-// Create an ES6 Class for the custom element that extends the base class
-// HTMLElement.
 /**
  * ImageSlider Class
  */
@@ -122,8 +120,6 @@ class coreSlider extends HTMLElement {
     }
   }
 
-  // Listen for changes to the dom attributes. When one of these attrs changes
-  // on the host element, it will trigger attrubuteChangedCallback
   /**
    * observedAttributes getter
    */
@@ -133,8 +129,6 @@ class coreSlider extends HTMLElement {
     ];
   }
 
-  // -------------------------------------------------------------- Life-cycle
-  // When the host element is inserted into the DOM, start the sliding
   /**
    * connectedCallback
    */
@@ -142,9 +136,6 @@ class coreSlider extends HTMLElement {
     this.tick();
   }
 
-  // This function is automatically triggered every time an attribute on the
-  // element changes (NOTE: This does not trigger for properties, only
-  // attributes)
   /**
    * attributeChangedCallback
    * @param {*} attr
@@ -158,9 +149,6 @@ class coreSlider extends HTMLElement {
     }
   }
 
-  // -------------------------------------------------------------- Properties
-  // Get and set the time for fading and how long on each image
-  // When it's updated, the inline styling for transition-duration is set
   /**
    * time getter
    */
@@ -177,7 +165,6 @@ class coreSlider extends HTMLElement {
     this.slider.style.transitionDuration = v;
   }
 
-  // Internal property for looping over the images
   /**
    * index getter
    */
@@ -196,8 +183,6 @@ class coreSlider extends HTMLElement {
     if (this._index < 0) this.index = this.imageChildCount - 1;
   }
 
-  // ----------------------------------------------------------------- Methods
-  // Tick the slider over
   /**
    * tick function
    */
@@ -209,10 +194,4 @@ class coreSlider extends HTMLElement {
   }
 }
 
-
-/* Register the class as a custom element on the dom.
- * This element can then be used in html.
- * EG:
- *  <image-slider />
- */
 window.customElements.define('core-slider', coreSlider);
