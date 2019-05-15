@@ -22,11 +22,11 @@ describe('CoreButton Unit Tests', () => {
 
     it('getters: should not have rounded, size, shadow, or color attribute',
         () => {
-      expect(element.rounded).toBe(false);
-      expect(element.size).toBe(false);
-      expect(element.shadow).toBe(false);
-      expect(element.color).toBe(false);
-    });
+          expect(element.rounded).toBe(false);
+          expect(element.size).toBe(false);
+          expect(element.shadow).toBe(false);
+          expect(element.color).toBe(false);
+        });
   });
 
   // test for text content
@@ -66,24 +66,24 @@ describe('CoreButton Unit Tests', () => {
   describe('size', () => {
     it('should change the size of the button by toggling the size attribute',
         () => {
-      element.setAttribute('size', 'small');
-      expect(element.getAttribute('size')).toBe('small');
+          element.setAttribute('size', 'small');
+          expect(element.getAttribute('size')).toBe('small');
 
-      element.setAttribute('size', 'medium');
-      expect(element.getAttribute('size')).toBe('medium');
+          element.setAttribute('size', 'medium');
+          expect(element.getAttribute('size')).toBe('medium');
 
-      element.setAttribute('size', 'large');
-      expect(element.getAttribute('size')).toBe('large');
+          element.setAttribute('size', 'large');
+          expect(element.getAttribute('size')).toBe('large');
 
-      // element should have size attribute
-      expect(element.size).toBe(true);
+          // element should have size attribute
+          expect(element.size).toBe(true);
 
-      // element should not have size attribute
-      element.removeAttribute('size');
-      expect(element.size).toBe(false);
-    });
+          // element should not have size attribute
+          element.removeAttribute('size');
+          expect(element.size).toBe(false);
+        });
 
-    // TODO - huge is not sanitized and will set it to huge which we don't have
+    // TODO - huge is not sanitized and will set it to huge
     it('should not change the size attribute if wrong input', () => {
       element.setAttribute('size', 'huge');
       expect(element.getAttribute('size')).toBe('huge');
