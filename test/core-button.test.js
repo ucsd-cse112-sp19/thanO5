@@ -20,14 +20,15 @@ describe('CoreButton Unit Tests', () => {
       expect(element.innerHTML).toBe('');
     });
 
-    it('should not have rounded, size, shadow, or color attribute',
-        () => {
-          // using the getters
-          expect(element.rounded).toBe(false);
-          expect(element.size).toBe(false);
-          expect(element.shadow).toBe(false);
-          expect(element.color).toBe(false);
-        });
+    it('should not have any attributes', () => {
+      // using the getters
+      expect(element.rounded).toBe(false);
+      expect(element.size).toBeNull();
+      expect(element.shadow).toBe(false);
+      expect(element.color).toBeNull();
+      expect(element.animated).toBe(false);
+      expect(element.circle).toBe(false);
+    });
   });
 
   // test for text content
@@ -83,21 +84,11 @@ describe('CoreButton Unit Tests', () => {
 
           element.size = 'large';
           expect(element.size).toBe('large');
-          /*element.setAttribute('size', 'small');
-          expect(element.getAttribute('size')).toBe('small');
-
-          element.setAttribute('size', 'medium');
-          expect(element.getAttribute('size')).toBe('medium');
-
-          element.setAttribute('size', 'large');
-          expect(element.getAttribute('size')).toBe('large');
-
-          // element should have size attribute
-          expect(element.size).toBe(true);
 
           // element should not have size attribute
+          // need to invoke setter's remove, not just call removeAttribute
           element.removeAttribute('size');
-          expect(element.size).toBe(false);*/
+          expect(element.size).toBeNull();
         });
 
     // TODO - huge is not sanitized and will set it to huge
@@ -108,42 +99,80 @@ describe('CoreButton Unit Tests', () => {
   });
 
   // test for shadow attribute
-  describe('shadow', () => {
+  describe('shadow setters/getters', () => {
     it('should change the shadow attribute', () => {
-      element.setAttribute('shadow', 'what?');
-      expect(element.getAttribute('shadow')).toBe('what?');
-
-      // element should have shadow attribute
+      element.shadow = true;
       expect(element.shadow).toBe(true);
 
-      // element should not have shadow attribute
+      element.shadow = false;
+      expect(element.shadow).toBe(false);
+
+      // TODO element should not have shadow attribute
+      // need to invoke setter's remove, not just call removeAttribute
       element.removeAttribute('shadow');
       expect(element.shadow).toBe(false);
     });
   });
 
   // test for color attribute
-  describe('color', () => {
+  describe('color setters/getters', () => {
     it('should change the color attribute', () => {
-      element.setAttribute('color', 'primary');
-      expect(element.getAttribute('color')).toBe('primary');
-      // expect(button.classList.contains('color')).toBe(true);
-      // element.color = true;
-      element.setAttribute('color', 'secondary');
-      expect(element.getAttribute('color')).toBe('secondary');
+      element.color = 'primary';
+      expect(element.color).toBe('primary')
+      //expect(button.classList.contains('color')).toBe('true');
 
-      element.setAttribute('color', 'dark');
-      expect(element.getAttribute('color')).toBe('dark');
+      element.color = 'secondary';
+      expect(element.color).toBe('secondary')
+      //expect(button.classList.contains('color')).toBe('true');
 
-      // element should have color attribute
-      expect(element.color).toBe(true);
+      element.color = 'dark';
+      expect(element.color).toBe('dark')
+      //expect(button.classList.contains('color')).toBe('true');
 
       // element should not have color attribute
-      element.removeAttribute('shadow');
-      expect(element.shadow).toBe(false);
+      // need to invoke setter's remove, not just call removeAttribute
+      element.removeAttribute('color');
+      expect(element.color).toBeNull();
     });
 
-    // TODO - need test for wrong input
+    // TODO - need test for wrong input, input not sanitized
+    it('should not change color if wrong value given', () => {
+      element.color = 'wrong';
+      expect(element.color).toBe('wrong');
+      //expect(button.classList.contains('color')).toBe(false);
+    });
+  });
+
+  // test for animated attribute
+  describe('animated setters/getters', () => {
+    it('should change the animated attribute', () => {
+      element.animated = true;
+      expect(element.animated).toBe(true);
+
+      element.animated = false;
+      expect(element.animated).toBe(false);
+
+      // TODO element should not have animated attribute
+      // need to invoke setter's remove, not just call removeAttribute
+      element.removeAttribute('animated');
+      expect(element.animated).toBe(false);
+    });
+  });
+
+  // test for circle attribute
+  describe('circle setters/getters', () => {
+    it('should change the circle attribute', () => {
+      element.circle = true;
+      expect(element.circle).toBe(true);
+
+      element.circle = false;
+      expect(element.circle).toBe(false);
+
+      // TODO element should not have circle attribute
+      // need to invoke setter's remove, not just call removeAttribute
+      element.removeAttribute('circle');
+      expect(element.circle).toBe(false);
+    });
   });
 
   afterEach(() => {
