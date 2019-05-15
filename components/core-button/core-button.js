@@ -56,7 +56,7 @@ class CoreButton extends HTMLElement {
    * size getter
    */
   get size() {
-    return this.hasAttribute('size');
+    return this.getAttribute('size');
   }
 
   /**
@@ -70,7 +70,7 @@ class CoreButton extends HTMLElement {
    * color getter
    */
   get color() {
-    return this.hasAttribute('color');
+    return this.getAttribute('color');
   }
 
   /**
