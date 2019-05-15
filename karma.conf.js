@@ -29,6 +29,11 @@ module.exports = function (config) {
     ],
 
 
+    exclude: [
+    //  'test/core-hello.test.js',
+    ],
+
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
@@ -68,7 +73,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome', 'Firefox', 'Opera', 'Safari', 'Edge'],
 
 
     // Continuous Integration mode
