@@ -68,3 +68,33 @@
 	background-color: #555555; /* dark color is dark grey */
 	color: white;
 }
+
+/* this rule adds the animation of moving the button text 
+   to the left smoothly*/
+#button.animated span{
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+/* this rule adds the ">>" to the button text */
+#button.animated span:after{
+	content: '\00bb';
+	position: absolute;
+	right: -20px;
+	transition: 0.5s;
+	opacity: 0;
+	top: 0;
+}
+
+/* this rule moves the button text over to make room for ">>" */
+#button.animated:hover span{
+	padding-right: 25px;
+}
+
+/* this rule makes the ">>" visible when button is hovered on*/
+#button.animated:hover span:after{
+	opacity: 1;
+	right: 0;
+}
