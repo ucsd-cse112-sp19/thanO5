@@ -65,8 +65,8 @@ describe('CoreButton Unit Tests', () => {
       element.setAttribute('rounded', 'wrong');
       expect(button.classList.contains('rounded')).toBe(false);
 
-      // TODO - wrong input but element still has rounded effect?? 
-      // This expect passes, but should it? 
+      // TODO - wrong input but element still has rounded effect??
+      // This expect passes, but should it?
       // expect(element.rounded).toBe(true);
     });
   });
