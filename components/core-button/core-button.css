@@ -3,6 +3,7 @@
 	border: 0.3rem solid #a5a5a5; /* default color is light grey*/
 	width: 6rem;
 	height: 3rem;
+	line-height: 3rem;
 	
 	/* transition-duration:0.4s; */
 	cursor: pointer;
