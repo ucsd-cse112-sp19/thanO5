@@ -75,7 +75,15 @@ describe('CoreButton Unit Tests', () => {
   describe('size setters/getters', () => {
     it('should change the size of the button by toggling the size attribute',
         () => {
-          element.setAttribute('size', 'small');
+          element.size = 'small';
+          expect(element.size).toBe('small');
+
+          element.size = 'medium';
+          expect(element.size).toBe('medium');
+
+          element.size = 'large';
+          expect(element.size).toBe('large');
+          /*element.setAttribute('size', 'small');
           expect(element.getAttribute('size')).toBe('small');
 
           element.setAttribute('size', 'medium');
@@ -89,7 +97,7 @@ describe('CoreButton Unit Tests', () => {
 
           // element should not have size attribute
           element.removeAttribute('size');
-          expect(element.size).toBe(false);
+          expect(element.size).toBe(false);*/
         });
 
     // TODO - huge is not sanitized and will set it to huge
