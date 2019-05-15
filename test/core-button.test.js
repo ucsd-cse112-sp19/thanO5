@@ -1,5 +1,5 @@
 describe('CoreButton Unit Tests', () => {
-  console.log('***STARTING CORE-BUTTON TESTS***');
+  // before each spec, set up the core-button element
   let element;
   let shadowRoot;
   let button;
@@ -20,8 +20,9 @@ describe('CoreButton Unit Tests', () => {
       expect(element.innerHTML).toBe('');
     });
 
-    it('getters: should not have rounded, size, shadow, or color attribute',
+    it('should not have rounded, size, shadow, or color attribute',
         () => {
+          // using the getters
           expect(element.rounded).toBe(false);
           expect(element.size).toBe(false);
           expect(element.shadow).toBe(false);
@@ -31,6 +32,7 @@ describe('CoreButton Unit Tests', () => {
 
   // test for text content
   describe('text content', () => {
+    // insert html text into a sample button
     const textButton = `<core-button id='textButton'>Large</core-button>`;
     document.body.insertAdjacentHTML('afterbegin', textButton);
     const textElement = document.getElementById('textButton');
@@ -42,28 +44,35 @@ describe('CoreButton Unit Tests', () => {
   });
 
   // test for rounded attribute
-  describe('rounded', () => {
-    it('should add or remove the rounded effect to the button', () => {
-      element.setAttribute('rounded', '');
-      expect(button.classList.contains('rounded')).toBe(true);
-      expect(element.rounded).toBe(true);
-
-      element.removeAttribute('rounded');
+  describe('rounded setters/getters', () => {
+    it('should add the rounded effect to the button', () => {
       expect(button.classList.contains('rounded')).toBe(false);
       expect(element.rounded).toBe(false);
+      element.rounded = true;
+      expect(element.rounded).toBe(true);
+      expect(button.classList.contains('rounded')).toBe(true);
     });
 
-    it('should not have a rounded effect if a wrong value is given', () => {
+    it('should remove the rounded effect from the button', () => {
+      element.rounded = true;
+      expect(button.classList.contains('rounded')).toBe(true);
+      element.rounded = false;
+      expect(element.rounded).toBe(false);
+      expect(button.classList.contains('rounded')).toBe(false);
+    });
+
+    it('should not render the rounded effect if wrong value given', () => {
       element.setAttribute('rounded', 'wrong');
       expect(button.classList.contains('rounded')).toBe(false);
-      // TODO - if user input isn't sanitized, classList will be false but
-      // the element will have the rounded attribute still
-      // expect(element.rounded).toBe(false);
+
+      // TODO - wrong input but element still has rounded effect?? 
+      // This expect passes, but should it? 
+      // expect(element.rounded).toBe(true);
     });
   });
 
   // test for size attribute
-  describe('size', () => {
+  describe('size setters/getters', () => {
     it('should change the size of the button by toggling the size attribute',
         () => {
           element.setAttribute('size', 'small');
