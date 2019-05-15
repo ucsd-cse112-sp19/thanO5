@@ -11,7 +11,7 @@ const coreColor = {
 };
 
 const templateString = `
-    <link rel="stylesheet" href="core-button.css">
+    <link rel="stylesheet" href="../core-button/core-button.css">
     <div id="button">
       <span><slot></slot></span>
     </div>
