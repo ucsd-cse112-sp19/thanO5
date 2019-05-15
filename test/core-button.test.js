@@ -1,5 +1,5 @@
 describe('CoreButton Unit Tests', () => {
-  console.log('***STARTING CORE-BUTTON TESTS***')
+  console.log('***STARTING CORE-BUTTON TESTS***');
   let element;
   let shadowRoot;
   let button;
@@ -20,7 +20,8 @@ describe('CoreButton Unit Tests', () => {
       expect(element.innerHTML).toBe('');
     });
 
-    it('getters: should not have rounded, size, shadow, or color attribute', () => {
+    it('getters: should not have rounded, size, shadow, or color attribute',
+        () => {
       expect(element.rounded).toBe(false);
       expect(element.size).toBe(false);
       expect(element.shadow).toBe(false);
@@ -30,10 +31,10 @@ describe('CoreButton Unit Tests', () => {
 
   // test for text content
   describe('text content', () => {
-    let textButton = `<core-button id='textButton'>Large</core-button>`;
+    const textButton = `<core-button id='textButton'>Large</core-button>`;
     document.body.insertAdjacentHTML('afterbegin', textButton);
-    let textElement = document.getElementById('textButton');
-    let text = textElement.innerHTML;
+    const textElement = document.getElementById('textButton');
+    const text = textElement.innerHTML;
 
     it('should say Large', () => {
       expect(text).toBe('Large');
@@ -56,14 +57,15 @@ describe('CoreButton Unit Tests', () => {
       element.setAttribute('rounded', 'wrong');
       expect(button.classList.contains('rounded')).toBe(false);
       // TODO - if user input isn't sanitized, classList will be false but
-      //        the element will have the rounded attribute still
-      //expect(element.rounded).toBe(false);
+      // the element will have the rounded attribute still
+      // expect(element.rounded).toBe(false);
     });
   });
 
   // test for size attribute
   describe('size', () => {
-    it('should change the size of the button by toggling the size attribute', () => {
+    it('should change the size of the button by toggling the size attribute',
+        () => {
       element.setAttribute('size', 'small');
       expect(element.getAttribute('size')).toBe('small');
 
@@ -108,8 +110,8 @@ describe('CoreButton Unit Tests', () => {
     it('should change the color attribute', () => {
       element.setAttribute('color', 'primary');
       expect(element.getAttribute('color')).toBe('primary');
-      //expect(button.classList.contains('color')).toBe(true);
-      //element.color = true;
+      // expect(button.classList.contains('color')).toBe(true);
+      // element.color = true;
       element.setAttribute('color', 'secondary');
       expect(element.getAttribute('color')).toBe('secondary');
 

@@ -1,5 +1,5 @@
 ﻿describe('CoreHello Unit Tests', () => {
-  console.log('***STARTING CORE-HELLO TESTS***')
+  console.log('***STARTING CORE-HELLO TESTS***');
   let element;
   let shadowRoot;
   let message;
