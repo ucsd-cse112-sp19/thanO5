@@ -30,7 +30,7 @@ class coreSlider extends HTMLElement {
     // Store element links
     if (this.getAttribute('text') === '') {
       this.slider = this.shadow.getElementById('slider');
-      this.title = this.querySelector('[slot="title"]');
+      this.titleVal = this.querySelector('[slot="title"]');
       this.content = this.querySelector('[slot="content"]');
     }
 
@@ -94,7 +94,7 @@ class coreSlider extends HTMLElement {
    */
   _hideContent() {
     const content = this.content.innerHTML;
-    const title = this.title.innerHTML;
+    const titleVal = this.titleVal.innerHTML;
     const size = this.getAttribute('size');
     const theme = this.getAttribute('theme');
     const themeScale = theme === 'circle' ? 0.5 : 1;
@@ -162,7 +162,7 @@ class coreSlider extends HTMLElement {
       const modal = document.createElement('core-modal');
       modal.setAttribute('name', id);
       modal.innerHTML = `
-        <h1 slot="header">${title}</h1>
+        <h1 slot="header">${titleVal}</h1>
         <p>${content}</p>
       `;
       document.body.appendChild(modal);
