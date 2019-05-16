@@ -2,7 +2,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/maintainability)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/test_coverage)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/test_coverage)
 
-# core-button
+#  core-button
 
 core-button is a Web Component providing an accessible and customizable button, part of the ThanOS components.
 
