@@ -21,8 +21,9 @@ module.exports = function (config) {
 
 
     exclude: [
-      'test/core-hello.test.js',
-      'test/core-button.test.js',
+      // 'test/core-hello.test.js',
+      // 'test/core-button.test.js',
+      'test/core-slider.test.js',
     ],
 
 
