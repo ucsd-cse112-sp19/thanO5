@@ -14,7 +14,7 @@ describe('CoreSlider Unit Tests', () => {
     title = shadowRoot.querySelector('slot[name="title"] span');
     content = shadowRoot.querySelector('slot[name="content"] p');
     document.body.append(element);
-   });
+  });
 
   // test for default slider with no attributes
   describe('default', () => {
@@ -27,12 +27,12 @@ describe('CoreSlider Unit Tests', () => {
       console.log('content = ', content);
       expect(true).toBe(true);
     });
-  // it('should add a div element with an id slider', () => {
+    // it('should add a div element with an id slider', () => {
     //   expect(slider.innerHTML).toBeTruthy();
     // });
 
     // it(`should add a div element with an id description`), () => {
-     // expect(description).toBeTruthy();
+    // expect(description).toBeTruthy();
     // });
   /*
   it(`should add a slot element with name content and the content is "Description
@@ -44,8 +44,8 @@ describe('CoreSlider Unit Tests', () => {
       expect(title.innerHTML).toBe('Title');
   }); */
   });
-    
- 
+
+
   /*
   describe('size', () => {
       it('should change the size of the slider element by toggling the size attribute',
@@ -147,7 +147,7 @@ describe('CoreSlider Unit Tests', () => {
       });
   }); */
 
- /* afterEach(() => {
+  /* afterEach(() => {
     document.body.removeChild(element);
   }); */
 });
