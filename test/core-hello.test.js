@@ -1,6 +1,5 @@
-﻿// import '../components/core-hello.js';
-
-describe('element integration test', () => {
+﻿describe('CoreHello Unit Tests', () => {
+  console.log('***STARTING CORE-HELLO TESTS***');
   let element;
   let shadowRoot;
   let message;
