@@ -7,15 +7,6 @@ module.exports = function (config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-    // register plugins
-    // plugins: [
-    //   'karma-chrome-launcher',
-    //   'karma-tap',
-    //   'karma-sourcemap-loader',
-    //   'karma-coverage',
-    //   'karma-jasmine',
-    //   'karma-webpack' // *** This 'registers' the Karma webpack plugin.
-    // ],
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -30,7 +21,8 @@ module.exports = function (config) {
 
 
     exclude: [
-    //  'test/core-hello.test.js',
+      'test/core-hello.test.js',
+      'test/core-button.test.js',
     ],
 
 
