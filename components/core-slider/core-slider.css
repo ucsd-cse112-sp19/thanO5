@@ -134,7 +134,7 @@ p, ::slotted(p) {
 	top: 0;
 	left: 0;
 	opacity: 1;
-	transition: inherit;
+	transition: 0.5s ease-in-out;
 	width: 100%;
 	height: 100%;
 }
