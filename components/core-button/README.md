@@ -2,7 +2,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/maintainability)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/test_coverage)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/test_coverage)
 
-# &lt;core-button&gt
+# core-button
 
 core-button is a Web Component providing an accessible and customizable button, part of the ThanOS components.
 
@@ -57,7 +57,7 @@ The core-button web component can include an attribute tag to add a shadow below
 <core-button color="dark" size="large" shadow>Large</core-button>
 ```
 
-![](https://photos.app.goo.gl/rvKjrL3GTwdJjTiw7)
+![](https://media.giphy.com/media/8BkMenwYFshncAKkh0/giphy.gif)
 
 # core-button rounded attribute
 
@@ -70,7 +70,7 @@ The core-button web component can include an attribute tag to add rounded corner
 <core-button color="dark" size="large" rounded>Large</core-button>
 ```
 
-![](https://photos.app.goo.gl/h5emJCzLKoiN2Ct26)
+![](https://media.giphy.com/media/pOOnt4GLuq7NIV1d3m/giphy.gif)
 
 # core-button circle attribute
 
@@ -83,7 +83,7 @@ The core-button web component can include an attribute tag to make circular butt
 <core-button color="dark" size="large" circle>Large</core-button>
 ```
 
-![](https://photos.app.goo.gl/8xhCenvrQ38wuJoA9)
+![](https://media.giphy.com/media/KVGmuhmrMptuDdq9QO/giphy.gif)
 
 
 
