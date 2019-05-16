@@ -64,7 +64,6 @@ p {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 5;
 	align-items: center;
 	justify-content: center;
 	display: flex;
@@ -80,12 +79,36 @@ p {
 	border: 2px white solid;
 	background-color: transparent;
 	margin: 0px 10px;
+	cursor: pointer;
 }
 
 #menu .menu-item[selected] {
 	width: 1.1em;
 	height: 1.1em;
 	background-color: white;
+}
+
+.arrow {
+	border: solid white;
+	border-width: 0 5px 5px 0;
+	display: inline-block;
+	padding: 6px;
+	position: absolute;
+	cursor: pointer
+}
+
+#left-arrow {
+	left: 2%;
+	top: 50%;
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg) translate(-50%, -50%);
+}
+
+#right-arrow {
+	right: 2%;
+	top: 50%;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg) translate(-50%, -50%);
 }
 
 :host([theme="rounded"]) #slider {

@@ -40,6 +40,7 @@ class coreSlider extends HTMLElement {
 
     // Set up control
     if (this.getAttribute('control') === '') {
+      // Set up control menu
       let menuHTML = '';
 
       for (let i = 0; i < this.imageChildCount; i ++) {
@@ -59,6 +60,29 @@ class coreSlider extends HTMLElement {
       });
 
       this.menuItems = Array.from(menu.children);
+
+      // Set up control arrows
+      const leftArrow = document.createElement('div');
+      const rightArrow = document.createElement('div');
+
+      leftArrow.setAttribute('id', 'left-arrow');
+      leftArrow.classList.add('arrow');
+
+      rightArrow.setAttribute('id', 'right-arrow');
+      rightArrow.classList.add('arrow');
+
+      this.slider.appendChild(leftArrow);
+      this.slider.appendChild(rightArrow);
+
+      leftArrow.addEventListener('click', () => {
+        this.index -= 1;
+        this.start(this.index);
+      });
+
+      rightArrow.addEventListener('click', () => {
+        this.index += 1;
+        this.start(this.index);
+      });
     }
 
     // Hide part of the description content
@@ -90,7 +114,7 @@ class coreSlider extends HTMLElement {
       }
 
       case 'medium': {
-        const limit = 100;
+        const limit = 80;
         buttonSize = 'small';
         if (content.length > limit * themeScale) {
           this.content.innerHTML = content.substring(0, limit) + '...';
