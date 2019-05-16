@@ -11,7 +11,6 @@ class coreSlider extends HTMLElement {
     super();
     // Set the default prop values
     this._index = 0;
-    this._time = '0.5s';
 
     // Create template prototype
     const template = document.createElement('template');
@@ -182,7 +181,107 @@ class coreSlider extends HTMLElement {
   static get observedAttributes() {
     return [
       'time',
+      'size',
+      'theme',
+      'shadow',
+      'text',
+      'control',
     ];
+  }
+
+  /**
+   * size setter
+   * @param {*} val
+   */
+  set size(val) {
+    if (val) {
+      this.setAttribute('size', val);
+    } else {
+      this.removeAttribute('size');
+    }
+  }
+
+  /**
+   * theme setter
+   * @param {*} val
+   */
+  set theme(val) {
+    if (val) {
+      this.setAttribute('theme', '');
+    } else {
+      this.removeAttribute('theme');
+    }
+  }
+
+  /**
+   * shadow setter
+   * @param {*} val
+   */
+  set shadow(val) {
+    if (val) {
+      this.setAttribute('shadow', '');
+    } else {
+      this.removeAttribute('shadow');
+    }
+  }
+
+  /**
+   * text setter
+   * @param {*} val
+   */
+  set text(val) {
+    if (val) {
+      this.setAttribute('text', '');
+    } else {
+      this.removeAttribute('text');
+    }
+  }
+
+  /**
+   * control setter
+   * @param {*} val
+   */
+  set control(val) {
+    if (val) {
+      this.setAttribute('control', '');
+    } else {
+      this.removeAttribute('control');
+    }
+  }
+
+  /**
+   * size getter
+   */
+  get size() {
+    return this.getAttribute('size');
+  }
+
+  /**
+   * theme getter
+   */
+  get theme() {
+    return this.getAttribute('theme');
+  }
+
+  /**
+   * shadow getter
+   */
+  get shadow() {
+    return this.getAttribute('shadow');
+  }
+
+  /**
+   * text getter
+   */
+  get text() {
+    return this.getAttribute('text');
+  }
+
+  /**
+   * control getter
+   */
+  get control() {
+    return this.getAttribute('control');
   }
 
   /**
@@ -201,8 +300,12 @@ class coreSlider extends HTMLElement {
    */
   attributeChangedCallback(attr, oldV, newV) {
     switch (attr) {
-      case 'time':
-        this.time = newV;
+      case 'time': {
+        this._slider.style.transitionDuration = newV;
+        break;
+      }
+
+      default: break;
     }
   }
 
@@ -210,16 +313,19 @@ class coreSlider extends HTMLElement {
    * time getter
    */
   get time() {
-    return this._time;
+    return this.getAttribute('time') || '2s';
   }
 
   /**
    * time setter
-   * @param {*} v
+   * @param {*} val
    */
-  set time(v) {
-    this._time = v;
-    this._slider.style.transitionDuration = v;
+  set time(val) {
+    if (val) {
+      this.setAttribute('time', val);
+    } else {
+      this.setAttribute('time', '2s');
+    }
   }
 
   /**
