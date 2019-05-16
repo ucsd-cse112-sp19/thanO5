@@ -13,9 +13,9 @@ class coreSlider extends HTMLElement {
     this._index = 0;
     this._time = '0.5s';
 
-    // Create the shadow dom
-    this.shadow = this.attachShadow({mode: 'closed'});
-    this.shadow.innerHTML = `
+    // Create template prototype
+    const template = document.createElement('template');
+    template.innerHTML = `
       <link rel="stylesheet" href="../core-slider/core-slider.css">
       <div id="slider">
         <!-- This allows us to place children into the element -->
@@ -27,23 +27,33 @@ class coreSlider extends HTMLElement {
       </div>
     `;
 
-    // Store element links
+    // Create the shadow dom
+    const shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.appendChild(template.content);
+
+    // Store slider link
+    this._slider = this.shadowRoot.getElementById('slider');
+
+    // Set up text;
     if (this.getAttribute('text') === '') {
-      this.slider = this.shadow.getElementById('slider');
-      this.title = this.querySelector('[slot="title"]');
-      this.content = this.querySelector('[slot="content"]');
+      this._title = this.querySelector('[slot="title"]');
+      this._content = this.querySelector('[slot="content"]');
+
+      if (this._title !== null && this._content !== null) {
+        this._hideContent();
+      }
     }
 
     // Find all image children
-    this.imageChildren = this.getElementsByTagName('img');
-    this.imageChildCount = this.imageChildren.length;
+    this._imageChildren = this.getElementsByTagName('img');
+    this._imageChildCount = this._imageChildren.length;
 
     // Set up control
     if (this.getAttribute('control') === '') {
       // Set up control menu
       let menuHTML = '';
 
-      for (let i = 0; i < this.imageChildCount; i ++) {
+      for (let i = 0; i < this._imageChildCount; i ++) {
         menuHTML += `<div index=${i} class="menu-item"></div>`;
       }
 
@@ -51,15 +61,15 @@ class coreSlider extends HTMLElement {
       menu.setAttribute('id', 'menu');
       menu.innerHTML = menuHTML;
 
-      this.slider.appendChild(menu);
+      this._slider.appendChild(menu);
 
       Array.from(menu.children).forEach((child) => {
         child.addEventListener('click', () => {
-          this.start(child.getAttribute('index'));
+          this._start(child.getAttribute('index'));
         });
       });
 
-      this.menuItems = Array.from(menu.children);
+      this._menuItems = Array.from(menu.children);
 
       // Set up control arrows
       const leftArrow = document.createElement('div');
@@ -71,30 +81,27 @@ class coreSlider extends HTMLElement {
       rightArrow.setAttribute('id', 'right-arrow');
       rightArrow.classList.add('arrow');
 
-      this.slider.appendChild(leftArrow);
-      this.slider.appendChild(rightArrow);
+      this._slider.appendChild(leftArrow);
+      this._slider.appendChild(rightArrow);
 
       leftArrow.addEventListener('click', () => {
         this.index -= 1;
-        this.start(this.index);
+        this._start(this.index);
       });
 
       rightArrow.addEventListener('click', () => {
         this.index += 1;
-        this.start(this.index);
+        this._start(this.index);
       });
     }
-
-    // Hide part of the description content
-    this._hideContent();
   }
 
   /**
    * _hideContent
    */
   _hideContent() {
-    const content = this.content.innerHTML;
-    const title = this.title.innerHTML;
+    const content = this._content.innerHTML;
+    const title = this._title.innerHTML;
     const size = this.getAttribute('size');
     const theme = this.getAttribute('theme');
     const themeScale = theme === 'circle' ? 0.5 : 1;
@@ -107,7 +114,7 @@ class coreSlider extends HTMLElement {
         const limit = 30;
         buttonSize = 'tiny';
         if (content.length > limit * themeScale) {
-          this.content.innerHTML = content.substring(0, limit) + '...';
+          this._content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
         }
         break;
@@ -117,7 +124,7 @@ class coreSlider extends HTMLElement {
         const limit = 80;
         buttonSize = theme === 'circle' ? 'tiny' : 'xsmall';
         if (content.length > limit * themeScale) {
-          this.content.innerHTML = content.substring(0, limit) + '...';
+          this._content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
         }
         break;
@@ -127,7 +134,7 @@ class coreSlider extends HTMLElement {
         const limit = 200;
         buttonSize = theme === 'circle' ? 'xsmall' : 'small';
         if (content.length > limit * themeScale) {
-          this.content.innerHTML = content.substring(0, limit) + '...';
+          this._content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
         }
         break;
@@ -152,11 +159,11 @@ class coreSlider extends HTMLElement {
         button.setAttribute('style', 'float: right; margin: 10px 20px;');
       } else {
         button.setAttribute('style', 'margin: 20px 20px;');
-        this.content.style['align-items'] = 'center';
+        this._content.style['align-items'] = 'center';
       }
 
       button.innerHTML = 'Read more';
-      this.content.appendChild(button);
+      this._content.appendChild(button);
 
       // create a modal to show all description
       const modal = document.createElement('core-modal');
@@ -183,7 +190,7 @@ class coreSlider extends HTMLElement {
    */
   connectedCallback() {
     // change to setInterval to avoid recursion
-    this.start(0);
+    this._start(0);
   }
 
   /**
@@ -212,7 +219,7 @@ class coreSlider extends HTMLElement {
    */
   set time(v) {
     this._time = v;
-    this.slider.style.transitionDuration = v;
+    this._slider.style.transitionDuration = v;
   }
 
   /**
@@ -229,47 +236,47 @@ class coreSlider extends HTMLElement {
   set index(v) {
     this._index = v;
     // For looping
-    if (this._index >= this.imageChildCount) this.index = 0;
-    if (this._index < 0) this.index = Number(this.imageChildCount) - 1;
+    if (this._index >= this._imageChildCount) this.index = 0;
+    if (this._index < 0) this.index = Number(this._imageChildCount) - 1;
   }
 
   /**
    * start from a specific picture
    * @param {Number} index
    */
-  start(index) {
+  _start(index) {
     if (this._interval !== undefined) {
       clearInterval(this._interval);
     }
 
-    this.reRender(index);
+    this._reRender(index);
 
     this.index = index;
-    this._interval = setInterval(this.tick.bind(this), parseFloat(this.time) * 1000);
+    this._interval = setInterval(this._tick.bind(this), parseFloat(this.time) * 1000);
   }
 
   /**
    * tick function
    */
-  tick() {
+  _tick() {
     this.index = Number(this.index) + 1;
-    this.reRender(this.index);
+    this._reRender(this.index);
   }
 
   /**
    * @param {Number} index
    */
-  reRender(index) {
-    Array.from(this.imageChildren).forEach((i) => {
-      i.classList.add('hide');
+  _reRender(index) {
+    Array.from(this._imageChildren).forEach((child) => {
+      child.classList.add('hide');
     });
-    this.imageChildren[index].classList.remove('hide');
+    this._imageChildren[index].classList.remove('hide');
 
     if (this.getAttribute('control') === '') {
-      this.menuItems.forEach((i) => {
-        i.removeAttribute('selected', '');
+      this._menuItems.forEach((item) => {
+        item.removeAttribute('selected', '');
       });
-      this.menuItems[index].setAttribute('selected', '');
+      this._menuItems[index].setAttribute('selected', '');
     }
   }
 }
