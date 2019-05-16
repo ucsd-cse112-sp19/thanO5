@@ -60,6 +60,34 @@ p {
 	width: var(--initial-width);
 }
 
+#menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	width: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+}
+
+#menu .menu-item {
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	border: 2px white solid;
+	background-color: transparent;
+	margin: 0px 10px;
+}
+
+#menu .menu-item[selected] {
+	width: 1.1em;
+	height: 1.1em;
+	background-color: white;
+}
+
 :host([theme="rounded"]) #slider {
 	border-radius: calc(var(--initial-width) * 1 / 10);
 }
