@@ -1,7 +1,7 @@
 #button {
 	text-align: center;
 	border: 0.3rem solid #a5a5a5; /* default color is light grey*/
-	width: 6rem;
+	padding: 0 5px;
 	height: 3rem;
 	line-height: 3rem;
 	display: inline-block;

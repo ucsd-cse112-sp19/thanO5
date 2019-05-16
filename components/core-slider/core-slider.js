@@ -115,7 +115,7 @@ class coreSlider extends HTMLElement {
 
       case 'medium': {
         const limit = 80;
-        buttonSize = 'xsmall';
+        buttonSize = theme === 'circle' ? 'tiny' : 'xsmall';
         if (content.length > limit * themeScale) {
           this.content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
@@ -125,7 +125,7 @@ class coreSlider extends HTMLElement {
 
       case 'large': {
         const limit = 200;
-        buttonSize = 'small';
+        buttonSize = theme === 'circle' ? 'xsmall' : 'small';
         if (content.length > limit * themeScale) {
           this.content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
@@ -151,7 +151,7 @@ class coreSlider extends HTMLElement {
       if (theme !== 'circle') {
         button.setAttribute('style', 'float: right; margin: 10px 20px;');
       } else {
-        button.setAttribute('style', 'margin: 10px 20px;');
+        button.setAttribute('style', 'margin: 20px 20px;');
         this.content.style['align-items'] = 'center';
       }
 
