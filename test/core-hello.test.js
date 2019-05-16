@@ -1,6 +1,5 @@
-﻿// import '../components/core-hello.js';
-
-describe('element integration test', () => {
+﻿describe('CoreHello Unit Tests', () => {
+  console.log('***STARTING CORE-HELLO TESTS***');
   let element;
   let shadowRoot;
   let message;
@@ -30,6 +29,11 @@ describe('element integration test', () => {
         () => {
           expect(name.textContent).toBe('Default Text');
         });
+
+    it('should not have any attributes', () => {
+      expect(element.lang).toBeNull();
+      expect(element.rainbow).toBe(false);
+    });
   });
 
   // check that message language can be changed through lang attribute

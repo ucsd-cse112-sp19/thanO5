@@ -7,15 +7,6 @@ module.exports = function (config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-    // register plugins
-    // plugins: [
-    //   'karma-chrome-launcher',
-    //   'karma-tap',
-    //   'karma-sourcemap-loader',
-    //   'karma-coverage',
-    //   'karma-jasmine',
-    //   'karma-webpack' // *** This 'registers' the Karma webpack plugin.
-    // ],
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -24,16 +15,23 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'components/*.js',
+      'components/**/*.js',
       'test/*.test.js',
+    ],
+
+
+    exclude: [
+      // 'test/core-hello.test.js',
+      // 'test/core-button.test.js',
+      'test/core-slider.test.js',
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/components/*.js': ['webpack', 'coverage'],
-      'test/*.test.js': ['webpack', 'coverage']
+      '**/components/**/*.js': ['coverage'],
+      'test/*.test.js': [],//: ['webpack']
     },
 
 
@@ -44,7 +42,7 @@ module.exports = function (config) {
     reporters: ['progress', 'coverage'],
 
     coverageReporter: {
-      'type': 'lcovonly',
+      'type': 'lcov',
       'subdir': '.',
       'file': 'lcov.info',
     },

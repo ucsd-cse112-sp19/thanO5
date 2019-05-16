@@ -1,0 +1,144 @@
+:host {
+	--initial-width: 400px;
+	display: inline-block;
+}
+
+:host([size="small"]) {
+	--initial-width: 280px;
+	--title-size: 25px;
+	--description-size: 15px;
+}
+
+:host([size="medium"]) {
+	--initial-width: 400px;
+	--title-size: 32px;
+	--description-size: 17px;
+}
+
+:host([size="large"]) {
+	--initial-width: 600px;
+	--title-size: 38px;
+	--description-size: 20px;
+}
+
+p, ::slotted(p) {
+	margin: 10px;
+}
+
+#description {
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	color: white;
+	z-index: 1;
+	height: 40%;
+	box-sizing: border-box;
+	padding: calc(var(--initial-width) * 0.03) calc(var(--initial-width) * 0.05);
+	transform: translate(0, calc(var(--initial-width) * 0.6));
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+:host([text]) #description {
+	opacity: 1;
+}
+
+:host([theme="circle"]) #description {
+	text-align: center;
+	padding: calc(var(--initial-width) * 0.03) calc(var(--initial-width) * 0.15);
+}
+
+#slider {
+	transition-property: opacity;
+	transition-duration: 1s;
+	overflow: hidden;
+	position: relative;
+	height: var(--initial-width);
+	width: var(--initial-width);
+}
+
+#menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	width: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+}
+
+#menu .menu-item {
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	border: 2px white solid;
+	background-color: transparent;
+	margin: 0px 10px;
+	cursor: pointer;
+}
+
+#menu .menu-item[selected] {
+	width: 1.1em;
+	height: 1.1em;
+	background-color: white;
+}
+
+.arrow {
+	border: solid white;
+	border-width: 0 5px 5px 0;
+	display: inline-block;
+	padding: 6px;
+	position: absolute;
+	cursor: pointer
+}
+
+#left-arrow {
+	left: 2%;
+	top: 50%;
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg) translate(-50%, -50%);
+}
+
+#right-arrow {
+	right: 2%;
+	top: 50%;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg) translate(-50%, -50%);
+}
+
+:host([theme="rounded"]) #slider {
+	border-radius: calc(var(--initial-width) * 1 / 10);
+}
+
+:host([theme="circle"]) #slider {
+	border-radius: calc(var(--initial-width) / 2);
+}
+
+:host([shadow]) #slider {
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.32), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#description span,
+::slotted([slot="title"]) {
+	font-size: var(--title-size);
+}
+
+#description p,
+::slotted([slot="content"]) {
+	font-size: var(--description-size);
+}
+
+::slotted(img) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	transition: 0.5s ease-in-out;
+	width: 100%;
+	height: 100%;
+}
+
+::slotted(img.hide) {
+	opacity: 0;
+}
