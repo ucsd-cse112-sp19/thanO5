@@ -29,6 +29,11 @@
         () => {
           expect(name.textContent).toBe('Default Text');
         });
+
+    it('should not have any attributes', () => {
+      expect(element.lang).toBeNull();
+      expect(element.rainbow).toBe(false);
+    });
   });
 
   // check that message language can be changed through lang attribute
