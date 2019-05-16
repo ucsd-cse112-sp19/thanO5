@@ -105,7 +105,7 @@ class coreSlider extends HTMLElement {
     switch (size) {
       case 'small': {
         const limit = 30;
-        buttonSize = 'small';
+        buttonSize = 'tiny';
         if (content.length > limit * themeScale) {
           this.content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
@@ -115,7 +115,7 @@ class coreSlider extends HTMLElement {
 
       case 'medium': {
         const limit = 80;
-        buttonSize = 'small';
+        buttonSize = 'xsmall';
         if (content.length > limit * themeScale) {
           this.content.innerHTML = content.substring(0, limit) + '...';
           needHide = true;
