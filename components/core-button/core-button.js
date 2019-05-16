@@ -142,7 +142,7 @@ class CoreButton extends HTMLElement {
    */
   set animated(val) {
     if (val) {
-      this.setAttribute('aimated', val);
+      this.setAttribute('animated', val);
     } else {
       this.removeAttribute('animated');
     }
