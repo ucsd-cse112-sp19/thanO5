@@ -1,7 +1,7 @@
 #button {
 	text-align: center;
 	border: 0.3rem solid #a5a5a5; /* default color is light grey*/
-	width: 6rem;
+	padding: 0 5px;
 	height: 3rem;
 	line-height: 3rem;
 	display: inline-block;
@@ -53,9 +53,23 @@
 	line-height: 6rem;
 }
 
+/* rules for tiny size button */
+#button.tiny {
+	font-size: 10px;
+	height: 1.2rem;
+	line-height: 1.2rem;
+}
+
+/* rules for extra small size button */
+#button.xsmall {
+	font-size: 12px;
+	height: 1.5rem;
+	line-height: 1.5rem;
+}
+
 /* rules for small size button */
 #button.small{
-	font-size: 10px;
+	font-size: 14px;
 	width: 4rem;
 	height: 2rem;
 	line-height: 2rem;

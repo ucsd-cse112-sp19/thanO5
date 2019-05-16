@@ -21,11 +21,7 @@
 	--description-size: 20px;
 }
 
-p {
-	margin: 0;
-}
-
-::slotted(p) {
+p, ::slotted(p) {
 	margin: 10px;
 }
 
@@ -60,6 +56,57 @@ p {
 	width: var(--initial-width);
 }
 
+#menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	width: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+}
+
+#menu .menu-item {
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	border: 2px white solid;
+	background-color: transparent;
+	margin: 0px 10px;
+	cursor: pointer;
+}
+
+#menu .menu-item[selected] {
+	width: 1.1em;
+	height: 1.1em;
+	background-color: white;
+}
+
+.arrow {
+	border: solid white;
+	border-width: 0 5px 5px 0;
+	display: inline-block;
+	padding: 6px;
+	position: absolute;
+	cursor: pointer
+}
+
+#left-arrow {
+	left: 2%;
+	top: 50%;
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg) translate(-50%, -50%);
+}
+
+#right-arrow {
+	right: 2%;
+	top: 50%;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg) translate(-50%, -50%);
+}
+
 :host([theme="rounded"]) #slider {
 	border-radius: calc(var(--initial-width) * 1 / 10);
 }
@@ -72,10 +119,12 @@ p {
 	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.32), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#description span,
 ::slotted([slot="title"]) {
 	font-size: var(--title-size);
 }
 
+#description p,
 ::slotted([slot="content"]) {
 	font-size: var(--description-size);
 }
@@ -85,7 +134,7 @@ p {
 	top: 0;
 	left: 0;
 	opacity: 1;
-	transition: inherit;
+	transition: 0.5s ease-in-out;
 	width: 100%;
 	height: 100%;
 }
