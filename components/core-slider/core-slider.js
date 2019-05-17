@@ -11,6 +11,8 @@ class coreSlider extends HTMLElement {
     super();
     // Set the default prop values
     this._index = 0;
+    this._control = false;
+    this._controlInitialized = false;
 
     // Create template prototype
     const template = document.createElement('template');
@@ -32,67 +34,6 @@ class coreSlider extends HTMLElement {
 
     // Store slider link
     this._slider = this.shadowRoot.getElementById('slider');
-
-    // Set up text;
-    if (this.getAttribute('text') === '') {
-      this._title = this.querySelector('[slot="title"]');
-      this._content = this.querySelector('[slot="content"]');
-
-      if (this._title !== null && this._content !== null) {
-        this._hideContent();
-      }
-    }
-
-    // Find all image children
-    this._imageChildren = this.getElementsByTagName('img');
-    this._imageChildCount = this._imageChildren.length;
-
-    // Set up control
-    if (this.getAttribute('control') === '') {
-      // Set up control menu
-      let menuHTML = '';
-
-      for (let i = 0; i < this._imageChildCount; i ++) {
-        menuHTML += `<div index=${i} class="menu-item"></div>`;
-      }
-
-      const menu = document.createElement('div');
-      menu.setAttribute('id', 'menu');
-      menu.innerHTML = menuHTML;
-
-      this._slider.appendChild(menu);
-
-      Array.from(menu.children).forEach((child) => {
-        child.addEventListener('click', () => {
-          this._start(child.getAttribute('index'));
-        });
-      });
-
-      this._menuItems = Array.from(menu.children);
-
-      // Set up control arrows
-      const leftArrow = document.createElement('div');
-      const rightArrow = document.createElement('div');
-
-      leftArrow.setAttribute('id', 'left-arrow');
-      leftArrow.classList.add('arrow');
-
-      rightArrow.setAttribute('id', 'right-arrow');
-      rightArrow.classList.add('arrow');
-
-      this._slider.appendChild(leftArrow);
-      this._slider.appendChild(rightArrow);
-
-      leftArrow.addEventListener('click', () => {
-        this.index -= 1;
-        this._start(this.index);
-      });
-
-      rightArrow.addEventListener('click', () => {
-        this.index += 1;
-        this._start(this.index);
-      });
-    }
   }
 
   /**
@@ -207,7 +148,7 @@ class coreSlider extends HTMLElement {
    */
   set theme(val) {
     if (val) {
-      this.setAttribute('theme', '');
+      this.setAttribute('theme', val);
     } else {
       this.removeAttribute('theme');
     }
@@ -218,7 +159,7 @@ class coreSlider extends HTMLElement {
    * @param {*} val
    */
   set shadow(val) {
-    if (val) {
+    if (val === true) {
       this.setAttribute('shadow', '');
     } else {
       this.removeAttribute('shadow');
@@ -230,7 +171,7 @@ class coreSlider extends HTMLElement {
    * @param {*} val
    */
   set text(val) {
-    if (val) {
+    if (val === true) {
       this.setAttribute('text', '');
     } else {
       this.removeAttribute('text');
@@ -242,7 +183,7 @@ class coreSlider extends HTMLElement {
    * @param {*} val
    */
   set control(val) {
-    if (val) {
+    if (val === true) {
       this.setAttribute('control', '');
     } else {
       this.removeAttribute('control');
@@ -267,29 +208,85 @@ class coreSlider extends HTMLElement {
    * shadow getter
    */
   get shadow() {
-    return this.getAttribute('shadow');
+    return this.getAttribute('shadow') === '';
   }
 
   /**
    * text getter
    */
   get text() {
-    return this.getAttribute('text');
+    return this.getAttribute('text') === '';
   }
 
   /**
    * control getter
    */
   get control() {
-    return this.getAttribute('control');
+    return this.getAttribute('control') === '';
   }
 
   /**
    * connectedCallback
    */
   connectedCallback() {
+    // Find all image children
+    this._imageChildren = this.getElementsByTagName('img');
+    this._imageChildCount = this._imageChildren.length;
+
     // change to setInterval to avoid recursion
     this._start(0);
+  }
+
+  /**
+   * Initialize control
+   */
+  _initControl() {
+    // Find all image children
+    this._imageChildren = this.getElementsByTagName('img');
+    this._imageChildCount = this._imageChildren.length;
+
+    // Set up control menu
+    let menuHTML = '';
+
+    for (let i = 0; i < this._imageChildCount; i ++) {
+      menuHTML += `<div index=${i} class="menu-item"></div>`;
+    }
+
+    const menu = document.createElement('div');
+    menu.setAttribute('id', 'menu');
+    menu.innerHTML = menuHTML;
+
+    Array.from(menu.children).forEach((child) => {
+      child.addEventListener('click', () => {
+        this._start(child.getAttribute('index'));
+      });
+    });
+
+    this._menuItems = Array.from(menu.children);
+
+    // Set up control arrows
+    const leftArrow = document.createElement('div');
+    const rightArrow = document.createElement('div');
+
+    leftArrow.setAttribute('id', 'left-arrow');
+    leftArrow.classList.add('arrow');
+
+    rightArrow.setAttribute('id', 'right-arrow');
+    rightArrow.classList.add('arrow');
+
+    leftArrow.addEventListener('click', () => {
+      this.index -= 1;
+      this._start(this.index);
+    });
+
+    rightArrow.addEventListener('click', () => {
+      this.index += 1;
+      this._start(this.index);
+    });
+
+    this._menu = menu;
+    this._leftArrow = leftArrow;
+    this._rightArrow = rightArrow;
   }
 
   /**
@@ -303,6 +300,40 @@ class coreSlider extends HTMLElement {
       case 'time': {
         this._slider.style.transitionDuration = newV;
         break;
+      }
+
+      case 'control': {
+        // Set up control
+        if (!this._controlInitialized) {
+          this._initControl();
+          this._controlInitialized = false;
+        }
+
+        if (this.control) {
+          this._control = true;
+
+          this._slider.appendChild(this._menu);
+          this._slider.appendChild(this._leftArrow);
+          this._slider.appendChild(this._rightArrow);
+        } else if (this._control === true) {
+          this._control = false;
+
+          this._slider.removeChild(this._slider.querySelector('#menu'));
+          this._slider.removeChild(this._slider.querySelector('#left-arrow'));
+          this._slider.removeChild(this._slider.querySelector('#right-arrow'));
+        }
+      }
+
+      case 'text': {
+        // Set up read more button;
+        if (this.text && this._title === undefined && this._content === undefined) {
+          this._title = this.querySelector('[slot="title"]');
+          this._content = this.querySelector('[slot="content"]');
+
+          if (this.text && this._title !== null && this._content !== null) {
+            this._hideContent();
+          }
+        }
       }
 
       default: break;
@@ -378,7 +409,7 @@ class coreSlider extends HTMLElement {
     });
     this._imageChildren[index].classList.remove('hide');
 
-    if (this.getAttribute('control') === '') {
+    if (this.control && this._menuItems !== null) {
       this._menuItems.forEach((item) => {
         item.removeAttribute('selected', '');
       });
