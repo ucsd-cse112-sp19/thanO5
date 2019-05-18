@@ -10,7 +10,7 @@ Team 05 code repo
 - https://nodejs.org/en/download/
 ### Download all necessary dependencies locally
 - `npm install`
-### To run all tests
+### To run all unit tests
 - `npm test` `npm run test` or `karma start`
 
 ### A more detailed guide and explanation to testing can be found at:
