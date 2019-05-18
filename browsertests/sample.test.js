@@ -1,8 +1,9 @@
-import { Selector } from 'testcafe';
+import {Selector} from 'testcafe';
 
 fixture`Getting Started`
-  .page`http://devexpress.github.io/testcafe/example`;
+    .page`http://devexpress.github.io/testcafe/example`;
 
-test('My first test', async t => {
+test('My first test', async (t) => {
   // Test code
+  Selector('.core-hello.css');
 });
