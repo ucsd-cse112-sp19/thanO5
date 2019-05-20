@@ -5,7 +5,7 @@ then
     git config --global user.email "rbarrow@ucsd.edu"
     git config --global user.name "Rachel Barrow"
     git add -A
-    git commit -m "Automated JSDoc"
+    git commit -m "Automated JSDocs"
     git pull
     git push origin HEAD:${BRANCH}
 
