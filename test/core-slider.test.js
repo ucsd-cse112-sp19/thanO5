@@ -39,7 +39,7 @@ describe('CoreSlider Unit Tests', () => {
   // test for default slider with no attributes
   describe('default', () => {
     it('should add a div element with an id slider', () => {
-      expect(slider.innerHTML).toBeTruthy();
+      expect(slider).toBeTruthy();
     });
 
     it(`should add a div element with an id description`, () => {
@@ -136,22 +136,98 @@ describe('CoreSlider Unit Tests', () => {
     });
   });
 
-  describe('control', () => {
-    it('should give control menu and control arrows for changing pictures', () => {
-      expect(slider.querySelector('#menu')).toBeNull();
-      expect(element.control).toBe(false);
-      element.control = true;
-      expect(element.control).toBe(true);
-      expect(slider.querySelector('#menu')).toBeTruthy();
-    });
+  // describe('control', () => {
+  //   const hasControl = () => {
 
-    it('should remove control menu and control arrows for changing pictures', () => {
-      element.control = true;
-      expect(slider.querySelector('#menu')).toBeTruthy();
-      element.control = false;
-      expect(slider.querySelector('#menu')).toBeNull();
-    });
-  });
+  //   };
+
+  //   it('should not give control menu and control arrows without control attribute', () => {
+
+  //   });
+
+  //   it('should give control menu and control arrows with the control attribute', () => {
+  //     expect(slider.querySelector('#menu')).toBeNull();
+  //     expect(element.control).toBe(false);
+  //     element.control = true;
+  //     expect(element.control).toBe(true);
+  //     expect(slider.querySelector('#menu')).toBeTruthy();
+  //   });
+
+  //   it('should not give control menu and control arrows when the control attribute is given an illegal value', () => {
+
+  //   });
+
+  //   it('should remove control menu and control arrows when the control attribute is removed', () => {
+  //     element.control = true;
+  //     expect(slider.querySelector('#menu')).toBeTruthy();
+  //     element.control = false;
+  //     expect(slider.querySelector('#menu')).toBeNull();
+  //   });
+
+  //   it('should remove control menu and control arrows when the control attribute is changed to an illegal value', () => {
+
+  //   });
+
+  //   describe('tests for control ability', () => {
+  //     it('should display the corresponding image when a control menu item is clicked', () => {
+
+  //     });
+
+  //     it('should display next image when right arrow is clicked', () => {
+
+  //     });
+
+  //     it('should display last image when left arrow is clicked', () => {
+
+  //     });
+
+  //     it('should display the image after next one when right arrow is clicked twice', () => {
+
+  //     });
+
+  //     it('should display the image before last one when left arrow is clicked twice', () => {
+
+  //     });
+  //   });
+
+  //   afterEach(() => {
+  //     element.control = false;
+  //   });
+  // });
+
+  // describe('text', () => {
+  //   it('should not render description given without text attribute', () => {
+
+  //   });
+
+  //   it('should not render text given when wrong text value is given', () => {
+
+  //   });
+
+  //   it('should render description when the text is given a legal value', () => {
+
+  //   });
+
+  //   describe('tests for text attribute with a legal value', () => {
+  //     it('should render the whole description when its length is within the limit', () => {
+
+  //     });
+
+  //     it('should hide only show a specific numbe of characters and give a core-button when the description is too long', () => {
+
+  //     });
+
+  //     describe('tests for too long description', () => {
+  //       it('should open a core-modal with all description including the title when the core-button is clicked', () => {
+
+  //       });
+
+  //       it('should close the core-modal when the core-bugtton is clicked', () => {
+
+  //       });
+  //     });
+  //   });
+  // });
 
   afterEach(() => {
     document.body.removeChild(element);

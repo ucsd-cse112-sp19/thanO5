@@ -11,7 +11,6 @@ class coreSlider extends HTMLElement {
     super();
     // Set the default prop values
     this._index = 0;
-    this._control = false;
     this._controlInitialized = false;
 
     // Create template prototype
@@ -296,6 +295,7 @@ class coreSlider extends HTMLElement {
    * @param {*} newV
    */
   attributeChangedCallback(attr, oldV, newV) {
+    console.log(oldV);
     switch (attr) {
       case 'time': {
         this._slider.style.transitionDuration = newV;
@@ -310,14 +310,10 @@ class coreSlider extends HTMLElement {
         }
 
         if (this.control) {
-          this._control = true;
-
           this._slider.appendChild(this._menu);
           this._slider.appendChild(this._leftArrow);
           this._slider.appendChild(this._rightArrow);
-        } else if (this._control === true) {
-          this._control = false;
-
+        } else if (oldV === '') {
           this._slider.removeChild(this._slider.querySelector('#menu'));
           this._slider.removeChild(this._slider.querySelector('#left-arrow'));
           this._slider.removeChild(this._slider.querySelector('#right-arrow'));
