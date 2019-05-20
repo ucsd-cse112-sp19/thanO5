@@ -1,4 +1,5 @@
 describe('CoreButton Unit Tests', () => {
+  console.log('***STARTING CORE-BUTTON TESTS***');
   // before each spec, set up the core-button element
   let element;
   let shadowRoot;
