@@ -66,10 +66,6 @@ describe('CoreButton Unit Tests', () => {
     it('should not render the rounded effect if wrong value given', () => {
       element.setAttribute('rounded', 'wrong');
       expect(button.classList.contains('rounded')).toBe(false);
-
-      // TODO - wrong input but element still has rounded effect??
-      // This expect passes, but should it?
-      // expect(element.rounded).toBe(true);
     });
   });
 
@@ -86,16 +82,15 @@ describe('CoreButton Unit Tests', () => {
           element.size = 'large';
           expect(element.size).toBe('large');
 
-          // element should not have size attribute
-          // need to invoke setter's remove, not just call removeAttribute
-          element.removeAttribute('size');
+          element.size = false;
           expect(element.size).toBeNull();
         });
 
-    // TODO - huge is not sanitized and will set it to huge
+    // TODO - huge is not sanitized and will set it to huge or is this fine
     it('should not change the size attribute if wrong input', () => {
       element.setAttribute('size', 'huge');
-      expect(element.getAttribute('size')).toBe('huge');
+      // expect(element.getAttribute('size')).toBe('huge');
+      expect(button.classList.contains('size')).toBe(false);
     });
   });
 
@@ -106,11 +101,6 @@ describe('CoreButton Unit Tests', () => {
       expect(element.shadow).toBe(true);
 
       element.shadow = false;
-      expect(element.shadow).toBe(false);
-
-      // TODO element should not have shadow attribute
-      // need to invoke setter's remove, not just call removeAttribute
-      element.removeAttribute('shadow');
       expect(element.shadow).toBe(false);
     });
   });
@@ -130,9 +120,7 @@ describe('CoreButton Unit Tests', () => {
       expect(element.color).toBe('dark');
       // expect(button.classList.contains('color')).toBe('true');
 
-      // element should not have color attribute
-      // need to invoke setter's remove, not just call removeAttribute
-      element.removeAttribute('color');
+      element.color = false;
       expect(element.color).toBeNull();
     });
 
@@ -152,11 +140,6 @@ describe('CoreButton Unit Tests', () => {
 
       element.animated = false;
       expect(element.animated).toBe(false);
-
-      // TODO element should not have animated attribute
-      // need to invoke setter's remove, not just call removeAttribute
-      element.removeAttribute('animated');
-      expect(element.animated).toBe(false);
     });
   });
 
@@ -167,11 +150,6 @@ describe('CoreButton Unit Tests', () => {
       expect(element.circle).toBe(true);
 
       element.circle = false;
-      expect(element.circle).toBe(false);
-
-      // TODO element should not have circle attribute
-      // need to invoke setter's remove, not just call removeAttribute
-      element.removeAttribute('circle');
       expect(element.circle).toBe(false);
     });
   });

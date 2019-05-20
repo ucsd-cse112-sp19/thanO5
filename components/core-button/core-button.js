@@ -116,7 +116,7 @@ class CoreButton extends HTMLElement {
 
   /**
    * shadow setter
-   * @param {string} val
+   * @param {boolean} val
    */
   set shadow(val) {
     if (val) {
@@ -140,7 +140,7 @@ class CoreButton extends HTMLElement {
 
   /**
    * animated setter
-   * @param {string} val
+   * @param {boolean} val
    */
   set animated(val) {
     if (val) {
@@ -152,7 +152,7 @@ class CoreButton extends HTMLElement {
 
   /**
    * circle attribute setter
-   * @param {string} val
+   * @param {boolean} val
    */
   set circle(val) {
     if (val) {

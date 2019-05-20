@@ -47,6 +47,12 @@
       element.setAttribute('lang', 'hi');
       expect(hello.innerHTML).toBe('नमस्ते दुनिया ');
     });
+
+    it('should not translate the hello message', () => {
+      console.log(hello.innerHTML);
+      element.setAttribute('lang', 'undefined_letters');
+      expect(hello.innerHTML).toBe('Hello World ');
+    });
   });
 
   // check that rainbow effect works via rainbow attribute
