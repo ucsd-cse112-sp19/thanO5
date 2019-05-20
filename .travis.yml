@@ -32,7 +32,7 @@ script:
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
   - npm run lint
   - npm test
-	- npm run browsertest
+  - npm run browsertest
   - npm run docs
 
 after_success:
