@@ -211,9 +211,9 @@ describe('CoreSlider Unit Tests', () => {
         expect(content.innerHTML).toBe('Description of these pictures.');
       });
 
-    //  it('should hide only show a specific number of characters and give a core-button when the description is too long', () => {
-    //
-    //  });
+      //  it('should hide only show a specific number of characters and give a core-button when the description is too long', () => {
+      //
+      //  });
 
       it('should show a small number of characters', () => {
         element.size = 'small';
