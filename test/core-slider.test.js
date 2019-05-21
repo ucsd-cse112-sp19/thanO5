@@ -52,23 +52,31 @@ describe('CoreSlider Unit Tests', () => {
       expect(content.innerHTML).toBe('Description of these pictures.');
     });
 
-    it(`should add a span element with name title and the content is "Title"`, () => {
-      expect(title.innerHTML).toBe('Title');
-    });
+    it(`should add a span element with name title and the content is "Title"`,
+      () => {
+        expect(title.innerHTML).toBe('Title');
+      });
   });
 
   // test for time setters/getters
   describe('time', () => {
-    it('should change the update time for each picture in the slider element', () => {
-      element.time = '4s';
-      expect(element.time).toBe('4s');
+    it('should change the update time for each picture to 4s',
+      () => {
+        element.time = '4s';
+        expect(element.time).toBe('4s');
+      });
 
-      element.time = '0s';
-      expect(element.time).toBe('0s');
+    it('should change the update time for each picture to 0s',
+      () => {
+        element.time = '0s';
+        expect(element.time).toBe('0s');
+      });
 
-      element.time = '9s';
-      expect(element.time).toBe('9s');
-    });
+    it('should change the update time for each picture to 9s',
+      () => {
+        element.time = '9s';
+        expect(element.time).toBe('9s');
+      });
 
     it('should default to 2s', () => {
       element.time = false;
@@ -78,24 +86,32 @@ describe('CoreSlider Unit Tests', () => {
 
   // test for size setters/getters
   describe('size', () => {
-    it('should change size of slider element by toggling size attribute', () => {
+    it('should change size of slider element to tiny', () => {
       element.size = 'tiny';
       expect(element.size).toBe('tiny');
+    });
 
+    it('should change size of slider element to xsmall', () => {
       element.size = 'xsmall';
       expect(element.size).toBe('xsmall');
+    });
 
+    it('should change size of slider element to small', () => {
       element.size = 'small';
       expect(element.size).toBe('small');
+    });
 
+    it('should change size of slider element to medium', () => {
       element.size = 'medium';
       expect(element.size).toBe('medium');
+    });
 
+    it('should change size of slider element to large', () => {
       element.size = 'large';
       expect(element.size).toBe('large');
     });
 
-    it('should not have size attribute', () => {
+    it('should remove the size attribute when false', () => {
       element.size = false;
       expect(element.size).toBeNull();
     });
@@ -103,15 +119,17 @@ describe('CoreSlider Unit Tests', () => {
 
   // test for theme setters/getters
   describe('theme', () => {
-    it('should change theme of slider element by toggling theme attribute', () => {
+    it('should change theme of slider element to rounded', () => {
       element.theme = 'rounded';
       expect(element.theme).toBe('rounded');
+    });
 
+    it('should change theme of slider element to circle', () => {
       element.theme = 'circle';
       expect(element.theme).toBe('circle');
     });
 
-    it('should not have theme attribute', () => {
+    it('should remove the theme attribute when false', () => {
       element.theme = false;
       expect(element.theme).toBeNull();
     });
@@ -119,10 +137,12 @@ describe('CoreSlider Unit Tests', () => {
 
   // test for shadow setters/getters
   describe('shadow', () => {
-    it('should add or remove the shadowy effect on the slider element', () => {
+    it('should add the shadowy effect on the slider element', () => {
       element.shadow = true;
       expect(element.shadow).toBe(true);
+    });
 
+    it('should remove the shadowy effect on the slider element', () => {
       element.shadow = false;
       expect(element.shadow).toBe(false);
     });
@@ -133,60 +153,71 @@ describe('CoreSlider Unit Tests', () => {
 
     // };
 
-    // it('should not give control menu and control arrows without control attribute', () => {
-
-    //  });
-
-    it('should give control menu and control arrows with the control attribute', () => {
+    it('initially should not give control menu', () => {
       expect(slider.querySelector('#menu')).toBeNull();
+    });
+
+    it('initially should not give control arrows', () => {
       expect(element.control).toBe(false);
+    });
+
+    it('should give control menu with the control attribute', () => {
+      element.control = true;
+      expect(slider.querySelector('#menu')).toBeTruthy();
+    });
+
+    it('should give control arrows with the control attribute', () => {
       element.control = true;
       expect(element.control).toBe(true);
-      expect(slider.querySelector('#menu')).toBeTruthy();
     });
 
-    //   it('should not give control menu and control arrows when the control attribute is given an illegal value', () => {
+    it('should remove control menu when the control attribute is removed',
+      () => {
+        element.control = true;
+        expect(slider.querySelector('#menu')).toBeTruthy();
+        element.control = false;
+        expect(slider.querySelector('#menu')).toBeNull();
+      });
 
-    //   });
+    it('should remove control arrows when the control attribute is removed',
+      () => {
+        element.control = false;
+        expect(element.control).toBe(false);
+      });
 
-    it('should remove control menu and control arrows when the control attribute is removed', () => {
-      element.control = true;
-      expect(slider.querySelector('#menu')).toBeTruthy();
-      element.control = false;
-      expect(slider.querySelector('#menu')).toBeNull();
-    });
-  });
+  //  it('should not give control menu and control arrows when the control attribute is given an illegal value', () => {
 
-  //   it('should remove control menu and control arrows when the control attribute is changed to an illegal value', () => {
+  //  });
 
-  //   });
+  //  it('should remove control menu and control arrows when the control attribute is changed to an illegal value', () => {
 
-  //   describe('tests for control ability', () => {
-  //     it('should display the corresponding image when a control menu item is clicked', () => {
+  //  });
 
-  //     });
+  //  it('should display the corresponding image when a control menu item is clicked', () => {
 
-  //     it('should display next image when right arrow is clicked', () => {
+  //  });
 
-  //     });
+  //  it('should display next image when right arrow is clicked', () => {
 
-  //     it('should display last image when left arrow is clicked', () => {
+  //  });
 
-  //     });
+  //  it('should display last image when left arrow is clicked', () => {
 
-  //     it('should display the image after next one when right arrow is clicked twice', () => {
+  //  });
 
-  //     });
+  //  it('should display the image after next one when right arrow is clicked twice', () => {
 
-  //     it('should display the image before last one when left arrow is clicked twice', () => {
+  //  });
 
-  //     });
-  //   });
+  //  it('should display the image before last one when left arrow is clicked twice', () => {
 
-  //   afterEach(() => {
-  //     element.control = false;
-  //   });
+  //  });
+
+  // afterEach(() => {
+  //   element.control = false;
   // });
+  // });
+  });
 
   describe('text', () => {
   //  it('should not render description given without text attribute', () => {

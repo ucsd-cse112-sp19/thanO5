@@ -30,8 +30,11 @@
           expect(name.textContent).toBe('Default Text');
         });
 
-    it('should not have any attributes', () => {
+    it('language attribute should be null', () => {
       expect(element.lang).toBeNull();
+    });
+
+    it('rainbow attribute should be false', () => {
       expect(element.rainbow).toBe(false);
     });
   });
@@ -57,11 +60,15 @@
 
   // check that rainbow effect works via rainbow attribute
   describe('rainbow', () => {
-    it(`should add or remove the rainbow effect to the message by toggling the 
+    it(`should add the rainbow effect to the message by toggling the 
     rainbow attribute`, () => {
       element.setAttribute('rainbow', '');
       expect(message.classList.contains('rainbow')).toBe(true);
+    });
 
+    it('should remove the rainbow effect', () => {
+      element.setAttribute('rainbow', '');
+      console.log('Rainbow effect:', message.classList.contains('rainbow'));
       element.removeAttribute('rainbow');
       expect(message.classList.contains('rainbow')).toBe(false);
     });

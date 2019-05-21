@@ -15,6 +15,7 @@ module.exports = function (config) {
       // 'test/core-hello.test.js',
       // 'test/core-button.test.js',
       // 'test/core-slider.test.js',
+      'components/core-modal/core-modal.js',
     ],
 
     preprocessors: {

@@ -21,13 +21,27 @@ describe('CoreButton Unit Tests', () => {
       expect(element.innerHTML).toBe('');
     });
 
-    it('should not have any attributes', () => {
-      // using the getters
+    it('rounded attribute should be false', () => {
       expect(element.rounded).toBe(false);
+    });
+
+    it('size attribute should be null', () => {
       expect(element.size).toBeNull();
+    });
+
+    it('shadow attribute should be false', () => {
       expect(element.shadow).toBe(false);
+    });
+
+    it('color attribute should be null', () => {
       expect(element.color).toBeNull();
+    });
+
+    it('animated attribute should be false', () => {
       expect(element.animated).toBe(false);
+    });
+
+    it('circle attribute should be false', () => {
       expect(element.circle).toBe(false);
     });
   });
@@ -47,19 +61,27 @@ describe('CoreButton Unit Tests', () => {
 
   // test for rounded attribute
   describe('rounded setters/getters', () => {
-    it('should add the rounded effect to the button', () => {
-      expect(button.classList.contains('rounded')).toBe(false);
-      expect(element.rounded).toBe(false);
+    it('should add the rounded effect to the button element', () => {
       element.rounded = true;
       expect(element.rounded).toBe(true);
+    });
+
+    it('should add the rounded effect to the button classlist', () => {
+      element.rounded = true;
       expect(button.classList.contains('rounded')).toBe(true);
     });
 
-    it('should remove the rounded effect from the button', () => {
+    it('should remove the rounded effect from the button element', () => {
       element.rounded = true;
-      expect(button.classList.contains('rounded')).toBe(true);
+      console.log('Button attribute: ', button.classList.contains('rounded'));
       element.rounded = false;
       expect(element.rounded).toBe(false);
+    });
+
+    it('should remove the rounded effect from the button classlist', () => {
+      element.rounded = true;
+      console.log('Button attribute: ', button.classList.contains('rounded'));
+      element.rounded = false;
       expect(button.classList.contains('rounded')).toBe(false);
     });
 
@@ -71,20 +93,25 @@ describe('CoreButton Unit Tests', () => {
 
   // test for size attribute
   describe('size setters/getters', () => {
-    it('should change the size of the button by toggling the size attribute',
-        () => {
-          element.size = 'small';
-          expect(element.size).toBe('small');
+    it('should change the size of the button to small', () => {
+      element.size = 'small';
+      expect(element.size).toBe('small');
+    });
 
-          element.size = 'medium';
-          expect(element.size).toBe('medium');
+    it('should change the size of the button to medium', () => {
+      element.size = 'medium';
+      expect(element.size).toBe('medium');
+    });
 
-          element.size = 'large';
-          expect(element.size).toBe('large');
+    it('should change the size of the button to large', () => {
+      element.size = 'large';
+      expect(element.size).toBe('large');
+    });
 
-          element.size = false;
-          expect(element.size).toBeNull();
-        });
+    it('should remove the size attribute when set to false', () => {
+      element.size = false;
+      expect(element.size).toBeNull();
+    });
 
     // TODO - huge is not sanitized and will set it to huge or is this fine
     it('should not change the size attribute if wrong input', () => {
@@ -96,10 +123,12 @@ describe('CoreButton Unit Tests', () => {
 
   // test for shadow attribute
   describe('shadow setters/getters', () => {
-    it('should change the shadow attribute', () => {
+    it('should add the shadow effect', () => {
       element.shadow = true;
       expect(element.shadow).toBe(true);
+    });
 
+    it('should remove the shadow effect', () => {
       element.shadow = false;
       expect(element.shadow).toBe(false);
     });
@@ -107,19 +136,25 @@ describe('CoreButton Unit Tests', () => {
 
   // test for color attribute
   describe('color setters/getters', () => {
-    it('should change the color attribute', () => {
+    it('should change the color attribute to the primary color', () => {
       element.color = 'primary';
       expect(element.color).toBe('primary');
       // expect(button.classList.contains('color')).toBe('true');
+    });
 
+    it('should change the color attribute to the secondary color', () => {
       element.color = 'secondary';
       expect(element.color).toBe('secondary');
       // expect(button.classList.contains('color')).toBe('true');
+    });
 
+    it('should change the color attribute to the dark color', () => {
       element.color = 'dark';
       expect(element.color).toBe('dark');
       // expect(button.classList.contains('color')).toBe('true');
+    });
 
+    it('should remove the color attribute when set to false', () => {
       element.color = false;
       expect(element.color).toBeNull();
     });
@@ -134,10 +169,12 @@ describe('CoreButton Unit Tests', () => {
 
   // test for animated attribute
   describe('animated setters/getters', () => {
-    it('should change the animated attribute', () => {
+    it('should add the animated effect when true', () => {
       element.animated = true;
       expect(element.animated).toBe(true);
+    });
 
+    it('should remove the animated effect when false', () => {
       element.animated = false;
       expect(element.animated).toBe(false);
     });
@@ -145,10 +182,12 @@ describe('CoreButton Unit Tests', () => {
 
   // test for circle attribute
   describe('circle setters/getters', () => {
-    it('should change the circle attribute', () => {
+    it('should add the circle effect when true', () => {
       element.circle = true;
       expect(element.circle).toBe(true);
+    });
 
+    it('should remove the circle effect when false', () => {
       element.circle = false;
       expect(element.circle).toBe(false);
     });
