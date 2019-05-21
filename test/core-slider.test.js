@@ -53,30 +53,27 @@ describe('CoreSlider Unit Tests', () => {
     });
 
     it(`should add a span element with name title and the content is "Title"`,
-      () => {
-        expect(title.innerHTML).toBe('Title');
-      });
+        () => {
+          expect(title.innerHTML).toBe('Title');
+        });
   });
 
   // test for time setters/getters
   describe('time', () => {
-    it('should change the update time for each picture to 4s',
-      () => {
-        element.time = '4s';
-        expect(element.time).toBe('4s');
-      });
+    it('should change the update time for each picture to 4s', () => {
+      element.time = '4s';
+      expect(element.time).toBe('4s');
+    });
 
-    it('should change the update time for each picture to 0s',
-      () => {
-        element.time = '0s';
-        expect(element.time).toBe('0s');
-      });
+    it('should change the update time for each picture to 0s', () => {
+      element.time = '0s';
+      expect(element.time).toBe('0s');
+    });
 
-    it('should change the update time for each picture to 9s',
-      () => {
-        element.time = '9s';
-        expect(element.time).toBe('9s');
-      });
+    it('should change the update time for each picture to 9s', () => {
+      element.time = '9s';
+      expect(element.time).toBe('9s');
+    });
 
     it('should default to 2s', () => {
       element.time = false;
@@ -172,46 +169,46 @@ describe('CoreSlider Unit Tests', () => {
     });
 
     it('should remove control menu when the control attribute is removed',
-      () => {
-        element.control = true;
-        expect(slider.querySelector('#menu')).toBeTruthy();
-        element.control = false;
-        expect(slider.querySelector('#menu')).toBeNull();
-      });
+        () => {
+          element.control = true;
+          expect(slider.querySelector('#menu')).toBeTruthy();
+          element.control = false;
+          expect(slider.querySelector('#menu')).toBeNull();
+        });
 
     it('should remove control arrows when the control attribute is removed',
-      () => {
-        element.control = false;
-        expect(element.control).toBe(false);
-      });
+        () => {
+          element.control = false;
+          expect(element.control).toBe(false);
+        });
 
-  //  it('should not give control menu and control arrows when the control attribute is given an illegal value', () => {
+    //  it('should not give control menu and control arrows when the control attribute is given an illegal value', () => {
 
-  //  });
+    //  });
 
-  //  it('should remove control menu and control arrows when the control attribute is changed to an illegal value', () => {
+    //  it('should remove control menu and control arrows when the control attribute is changed to an illegal value', () => {
 
-  //  });
+    //  });
 
-  //  it('should display the corresponding image when a control menu item is clicked', () => {
+    //  it('should display the corresponding image when a control menu item is clicked', () => {
 
-  //  });
+    //  });
 
-  //  it('should display next image when right arrow is clicked', () => {
+    //  it('should display next image when right arrow is clicked', () => {
 
-  //  });
+    //  });
 
-  //  it('should display last image when left arrow is clicked', () => {
+    //  it('should display last image when left arrow is clicked', () => {
 
-  //  });
+    //  });
 
-  //  it('should display the image after next one when right arrow is clicked twice', () => {
+    //  it('should display the image after next one when right arrow is clicked twice', () => {
 
-  //  });
+    //  });
 
-  //  it('should display the image before last one when left arrow is clicked twice', () => {
+    //  it('should display the image before last one when left arrow is clicked twice', () => {
 
-  //  });
+    //  });
 
   // afterEach(() => {
   //   element.control = false;
