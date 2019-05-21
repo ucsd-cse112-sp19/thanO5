@@ -41,14 +41,6 @@ class coreModal extends HTMLElement {
     // Setup the template
     shadowRoot.appendChild(template.content.cloneNode(true));
 
-    // Get modal name
-    const name = this.getAttribute('name');
-
-    // Store elements
-    this._modal = this.shadowRoot.querySelector('.modal');
-    this._button = document.querySelector(`[modal="${name}"]`);
-    this._close = this.shadowRoot.querySelector('.close');
-
     // This won't work beacuse I set overflow to hidden
     // $(this._modal).css('left', \
     // window.innerWidth / 2 - $(this._modal).offset().left);
@@ -60,8 +52,14 @@ class coreModal extends HTMLElement {
    * connectedCallback
    */
   connectedCallback() {
-    this._button.addEventListener('click', this._showModal.bind(this));
+    // Store elements
+    this._modal = this.shadowRoot.querySelector('.modal');
+    this._close = this.shadowRoot.querySelector('.close');
+    this._button = document.querySelector(`[modal="${this.getAttribute('name')}"]`);
+
+    // Add Listeners
     this._close.addEventListener('click', this._hideModal.bind(this));
+    this._button.addEventListener('click', this._showModal.bind(this));
 
     // Attach the modal to body
     // This won't work because you only attach the template content to body
@@ -99,9 +97,7 @@ class coreModal extends HTMLElement {
    * @param {*} oldValue
    * @param {*} newValue
    */
-  attributeChangedCallback(name, oldValue, newValue) {
-
-  }
+  attributeChangedCallback(name, oldValue, newValue) {}
 }
 
 // define the beast-tooltip element

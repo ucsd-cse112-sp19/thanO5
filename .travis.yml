@@ -1,38 +1,34 @@
 language: node_js
 node_js:
-  - 11.14.0
+- 11.14.0
 dist: xenial
 services:
-  - xvfb
+- xvfb
 addons:
-  firefox: "latest"
-
+  firefox: latest
 notifications:
-  slack: cse112-sp19-team5:cT0qoRmCjVBz1I7ogt2dGG39
-
+  slack:
+    rooms:
+      secure: YhDYGbt9t4zumk2jVgUQacFLY/WwHGb/ZR8d2x1WdirQ2kVxlRyH1rqzmsyEbuOjSTKLTIL+F1xP5Yl6811/OWB4Z+0grI5v0mhYTqrTEEyAX0FstWVATsiydvXzCxTyAHeYPQ/LkbsOKR2NbYA6vXXl4U9bpQQHfaTubfikmgT501NeIIsIIBz1miUHX7sDLb9+91zaJmeP3o5OALwS8QNNa2D40najZaYGMqWicpAKrfa/iIEZN1LIiE4LgZzzVHeKmr9fCrQEX2Ru5UDOYwCtnAPPyuYlxk9uG1YWfrXd/JJMUnqsrL8kc5RCz7JSue3i78c4eooqTIzrI/cYk8fDkS+Jgh7ncqVGz501yZBwtnJl7l1GIGKfy/NIvPD42SzH93uOY0lXRKcFTxEuSVYDrZevGYmlndx7cSIJyKQA4YWEw5MZNA1LcCB9Ek/NMqFLQnliUvglHIfnf/+Kgk4jKJG2pJfteproTVzFSuXLqAbmbR/hXTVpptbUt4kL/HSv/oUtLJ5Xf1/QDIzoISvYe6oJqKdoPQa+tmV/sDHy08S4ae6HBV4z7yMjG5hHu/TMmg6LmLsUX53aTF4LoQl103v6MtYxINiQN4iJpnqcjztJkjhMb5GJoju0kdlb1i7KFNkGQYujrHFl2Dj3uxELSzPSM/qssfEocBdM5zQ=
 env:
   global:
-    - CC_TEST_REPORTER_ID=8a52c7f9f5cf5a0f5a87e12df01bb76055af78143883df44798132ad52975c71
-
+  - secure: RqBH4dKxTX3L7trDYc+e1CHsSNDU90lVAz95rR4jW0Y38pH1zWWYvgheq7Z9dSOD7sJEPx8dKVxx5MHl1yTx28OSqkK+AipNc2yC94jRMSefVgIbTVDjizGhLe1pToy2RzBGqpPmpEvUfEASiZ/43eO/qKvCJMNefUHYrU2MUc1iCMEgk0R0Kll0uv/26FuQ4y7CKAGztSeuezX+79fClkdYdkEFpkJ5jl/vJcz1PVgnMXFK5V1KsH874hQuG8Oe1qzBgMpZNzUsrUfEPuACEw3fjZ4MQnb5aqOZN71RwbIfgKEwn8vhMnq1nAsc6G3lbhrAZBDbYXDIzov+5U4RhMwQR8zzuyvDi9qOs3eGzBkjIfmPWyyAFPZnJ07GxHQW/EgnmY+05uWx3/Qj41+jeVAmGbI426h//0765szadWoJYjh/8B/M8KQDSItR2qPFloHuQgqnxwmtblRcDtYUHUtg2KEeiOzJbROr8/jeisrgPfIhEkA7i1B4t9fTtjMcOPw5QahgmsYxmJxWQim2BvtI2dBDE4etMLAewhFZZzLDV9plPyfo+thjuOebDPCUlqGEXic/bS+xAIISo2zhIAWhdh2ILsPBBV8IFn0du6mcr7sDBcqlakrX2wY6IkYmKeFkHxYnmZSGSptpfvutom/AOMd4azNEJ73ZnrSHT2Y=
 before_install:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-
-# before_script:
-#   - "export DISPLAY=:99.0"
-#   - "sh -e /etc/init.d/xvfb start"
-#   - sleep 3
-
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 before_script:
-  - npm install
-
+- npm install
 script:
-  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
-  - npm run lint
-  - npm test
-  - npm run docs
-
+- export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH;
+  else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+- echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
+- npm run lint
+- npm test
+- npm run browsertest
+- npm run docs
 after_success:
-  - bash scripts/after_script.sh $TRAVIS_PULL_REQUEST
+- bash scripts/after_script.sh $TRAVIS_PULL_REQUEST
+- ./cc-test-reporter format-coverage -t lcov "./coverage/lcov.info"
+- ./cc-test-reporter upload-coverage
