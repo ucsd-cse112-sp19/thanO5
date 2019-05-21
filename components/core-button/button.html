@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>core-button</title>
 	<link rel="stylesheet" href="button.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <h1 id="documentHeader">Example Usage of "core-button"</h1>
@@ -40,6 +41,40 @@
 		</div>
 		<div class ="btn_container">
 			<core-button color="dark">
+				Dark
+			</core-button>
+		</div>
+	</div>
+
+	<!-- first row is displaying options for "color" attribute with bootstrap classes-->
+	<!-- button_row is used to hold a row of buttons -->
+	<div class="button_row"> 
+		<h2>core-button color attribute with bootstrap</h2>
+		<p>
+			The core-button web component can include an attribute tag to control the color of the button.
+			The color can be specified in the core-button tag as follows: <code>color="primary"</code>. The possible
+			color attribute values are <code>primary</code>, <code>secondary</code>, and <code>dark</code>. If no <code>color</code>
+			attribute is specified a default color will be applied.
+		</p>
+
+		<!-- btn_containers are used to put all buttons on same row -->
+		<div class ="btn_container"> 
+			<core-button class="text-secondary">
+				Default
+			</core-button>
+		</div>
+		<div class ="btn_container">
+			<core-button class="text-primary" color="primary">
+				Primary
+			</core-button>
+		</div>
+		<div class ="btn_container">
+			<core-button class="text-danger" color="secondary">
+				Secondary
+			</core-button>
+		</div>
+		<div class ="btn_container">
+			<core-button class="text-dark" color="dark">
 				Dark
 			</core-button>
 		</div>
