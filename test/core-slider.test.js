@@ -1,6 +1,7 @@
+import '../components/core-slider/core-slider';
+
 describe('CoreSlider Unit Tests', () => {
-  console.log('***STARTING CORE-SLIDER TESTS***');
-  // before each spec, set up the core-slider element
+  // console.log('***STARTING CORE-SLIDER TESTS***');
   let element;
   let shadowRoot;
   let slider;
@@ -234,7 +235,7 @@ describe('CoreSlider Unit Tests', () => {
     describe('tests for text attribute with a legal value', () => {
       it('should render the whole description when its length is within the limit', () => {
         element.text = true;
-        console.log('Description: ', description);
+        // console.log('Description: ', description);
         expect(title.innerHTML).toBe('Title');
         expect(content.innerHTML).toBe('Description of these pictures.');
       });

@@ -1,5 +1,7 @@
-﻿describe('CoreHello Unit Tests', () => {
-  console.log('***STARTING CORE-HELLO TESTS***');
+﻿import '../components/core-hello/core-hello.js';
+
+describe('CoreHello Unit Tests', () => {
+  // console.log('***STARTING CORE-HELLO TESTS***');
   let element;
   let shadowRoot;
   let message;
@@ -52,7 +54,7 @@
     });
 
     it('should not translate the hello message', () => {
-      console.log(hello.innerHTML);
+      // console.log(hello.innerHTML);
       element.setAttribute('lang', 'undefined_letters');
       expect(hello.innerHTML).toBe('Hello World ');
     });
@@ -68,7 +70,7 @@
 
     it('should remove the rainbow effect', () => {
       element.setAttribute('rainbow', '');
-      console.log('Rainbow effect:', message.classList.contains('rainbow'));
+      // console.log('Rainbow effect:', message.classList.contains('rainbow'));
       element.removeAttribute('rainbow');
       expect(message.classList.contains('rainbow')).toBe(false);
     });

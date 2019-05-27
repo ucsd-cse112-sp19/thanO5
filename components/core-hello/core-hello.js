@@ -1,3 +1,6 @@
+import templateString from './core-hello.html';
+import styleString from './core-hello.css';
+
 const helloTranslations = {
   af: 'Hello Wêreld',
   sq: 'Përshendetje Botë',
@@ -69,6 +72,14 @@ const helloTranslations = {
   zu: 'Sawubona Mhlab',
 };
 
+// Create template element
+const template = document.createElement('template');
+template.innerHTML = templateString;
+
+// Create style element
+const style = document.createElement('style');
+style.innerHTML = styleString;
+
 /**
  * A class for core-hello custom element
  */
@@ -86,20 +97,10 @@ class CoreHello extends HTMLElement {
   constructor() {
     super();
 
-    const templateString = `
-      <link rel="stylesheet" href="../core-hello/core-hello.css">
-      <p id="message">
-        <span id="hello">Hello World </span>
-        <slot name="name">Default Text</slot>
-      </p>
-    `;
-
-    const template = document.createElement('template');
-    template.innerHTML = templateString;
-
     // Attach element template to shadow root
     const shadowRoot = this.attachShadow({mode: 'open'});
     shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(style.cloneNode(true));
 
     // Get message p element and hello span element
     this._message = shadowRoot.getElementById('message');
@@ -163,4 +164,6 @@ class CoreHello extends HTMLElement {
 }
 
 // Define core-hello element
-customElements.define('core-hello', CoreHello);
+if (!customElements.get('core-hello')) {
+  customElements.define('core-hello', CoreHello);
+}
