@@ -10,4 +10,5 @@ then
     git push origin HEAD:${BRANCH}
     ./cc-test-reporter format-coverage -t lcov "./coverage/lcov.info"
     ./cc-test-reporter upload-coverage
+    
 fi
