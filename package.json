@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ucsd-cse112/thanOS.git"
+    "url": "git+https://github.com/ucsd-cse112/thanO5.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ucsd-cse112/thanOS/issues"
+    "url": "https://github.com/ucsd-cse112/thanO5/issues"
   },
-  "homepage": "https://github.com/ucsd-cse112/thanOS#readme",
+  "homepage": "https://github.com/ucsd-cse112/thanO5#readme",
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "clean-webpack-plugin": "^2.0.1",
