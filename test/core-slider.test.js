@@ -191,17 +191,64 @@ describe('CoreSlider Unit Tests', () => {
 
     //  });
 
-    //  it('should display the corresponding image when a control menu item is clicked', () => {
+    it('should change to the corresponding index when a control menu item is clicked', () => {
+      element.control = true;
+      const testIdx = 2;
+      const menu = element._menuItems;
+      const retImgIdx = parseInt(menu[testIdx].getAttribute('index'));
+      expect(retImgIdx).toBe(testIdx);
+    });
 
-    //  });
+    it('should display the corresponding image when a control menu item is clicked', () => {
+      element.control = true;
+      const testIdx = 2;
+      const menu = element._menuItems;
+      const imgChildren = element._imageChildren;
+      menu[testIdx].click();
+      expect(imgChildren[testIdx].classList.contains('hide')).toBe(false);
+      expect(menu[testIdx].getAttribute('selected')).toBe('');
+    });
 
-    //  it('should display next image when right arrow is clicked', () => {
+    it('should display next image when right arrow is clicked', () => {
+      const numImg = element._imageChildCount;
+      const startIdx = element.index;
+      element.control = true;
+      element._rightArrow.click();
+      expect(element.index).toBe((startIdx + 1) % numImg);
+      // console.log(Object.keys(element).toString());
+    });
 
-    //  });
+    it('should display last image when left arrow is clicked', () => {
+      const numImg = element._imageChildCount;
+      const startIdx = element.index;
+      element.control = true;
+      element._leftArrow.click();
+      expect(element.index).toBe((((startIdx - 1) % numImg) + numImg) % numImg); // Modulo with negatives just subtracts
+    });
 
-    //  it('should display last image when left arrow is clicked', () => {
+    it('should display the first image when the right arrow is clicked on the last image', () => {
+      const numImg = element._imageChildCount;
+      const startIdx = element.index;
+      element.control = true;
 
-    //  });
+      for (let i = 0; i < numImg - startIdx; ++i) {
+        element._rightArrow.click();
+      }
+
+      expect(element.index).toBe(0);
+    });
+
+    it('should display the last image when the left arrow is clicked on the first image', () => {
+      const numImg = element._imageChildCount;
+      const startIdx = element.index;
+      element.control = true;
+
+      for (let i = 0; i <= startIdx; ++i) {
+        element._leftArrow.click();
+      }
+
+      expect(element.index).toBe(numImg - 1);
+    });
 
     //  it('should display the image after next one when right arrow is clicked twice', () => {
 
