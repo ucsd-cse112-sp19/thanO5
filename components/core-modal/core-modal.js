@@ -1,5 +1,13 @@
-// import $ from '../../utils/jquery.module.js';
-// import $ from '../../../vendor/jquery-3.3.1.min';
+import templateString from './core-modal.html';
+import styleString from './core-modal.css';
+
+// Create template element
+const template = document.createElement('template');
+template.innerHTML = templateString;
+
+// Create style element
+const style = document.createElement('style');
+style.innerHTML = styleString;
 
 /**
  * beastTooltip custom element
@@ -18,34 +26,17 @@ class coreModal extends HTMLElement {
   constructor() {
     super();
 
-    // create template prototype
-    const template = document.createElement('template');
-    template.innerHTML = `
-      <link rel="stylesheet" href="../core-modal/core-modal.css">
-      <div class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span class="close">&times;</span>
-            <slot name="header"><h1>Default text</h1></slot>
-          </div>
-          <div class="modal-body">
-            <slot></slot>
-          </div>
-        </div>
-      </div>
-    `;
-
     // create shadowroot
     const shadowRoot = this.attachShadow({mode: 'open'});
-
-    // Setup the template
-    shadowRoot.appendChild(template.content.cloneNode(true));
 
     // This won't work beacuse I set overflow to hidden
     // $(this._modal).css('left', \
     // window.innerWidth / 2 - $(this._modal).offset().left);
     // $(this._modal).css('top', \
     // window.innerHeight / 2 - $(this._modal).offset().top);
+
+    shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(style.cloneNode(true));
   }
 
   /**
@@ -101,4 +92,7 @@ class coreModal extends HTMLElement {
 }
 
 // define the beast-tooltip element
-customElements.define('core-modal', coreModal);
+if (!customElements.get('core-modal')) {
+  customElements.define('core-modal', coreModal);
+}
+
