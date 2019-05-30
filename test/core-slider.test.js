@@ -291,23 +291,77 @@ describe('CoreSlider Unit Tests', () => {
       //
       //  });
 
-      it('should show a small number of characters', () => {
+            it('should show a small number of characters', () => {
+        // ASSUMES THEME IS NOT CIRCLE
         element.size = 'small';
+        const spanNode = document.createElement('span');
+        const spanText = document.createTextNode('ThanO5');
+        spanNode.appendChild(spanText);
+        spanNode.setAttribute('slot', 'title');
+        element.appendChild(spanNode);
+
+        const pNode = document.createElement('p');
+        const text = 'Lorem ipsum dolor sit amet, consectetur ' +
+                     'adipiscing elit, sed do eiusmod tempor ' +
+                     'incididunt ut labore et dolore magna aliqua. ' +
+                     'Ut enim ad minim veniam, quis nostrud ' +
+                     'exercitation ullamco laboris nisi ut aliquip ' +
+                     'ex ea commodo consequat.';
+        const pText = document.createTextNode(text);
+        pNode.appendChild(pText);
+        pNode.setAttribute('slot', 'content');
+        element.appendChild(pNode);
+
+        console.log("ASDASDADSASDASDAS");
+        console.log(element.text);
+        console.log(element._title === undefined);
+
+
+        if (element._title === undefined && element._content === undefined) {
+          console.log("PLEASE HELP ME");
+        }
+
+        console.log(element.getAttribute('size'));
+
         element.text = true;
-        // TODO run some expects
+
+        if (element.text && element._title !== null && element._content !== null) {
+          console.log("PLEASE HELP ME2asdASDASDs");
+        }
+        const smallLen = 33; // 33 because 30 + '...'
+
+        expect(element._content.innerHTML.length).toBe(smallLen);
       });
 
-      it('should show a medium number of characters', () => {
-        element.size = 'medium';
-        element.text = true;
-        // TODO run some expects
-      });
+      // it('should show a medium number of characters', () => {
+      //   element.size = 'medium';
+      //   title.innerHTML = 'ThanO5';
+      //   content.innerHTML = 'Lorem ipsum dolor sit amet, consectetur ' +
+      //                       'adipiscing elit, sed do eiusmod tempor ' +
+      //                       'incididunt ut labore et dolore magna aliqua. ' +
+      //                       'Ut enim ad minim veniam, quis nostrud ' +
+      //                       'exercitation ullamco laboris nisi ut aliquip ' +
+      //                       'ex ea commodo consequat.';
+      //   const mediumLen = 83; // 83 because 80 + '...'
+      //   element.text = true;
 
-      it('should show a large number of characters', () => {
-        element.size = 'large';
-        element.text = true;
-        // TODO run some expects
-      });
+      //   expect(element._content.innerHTML.length).toBe(mediumLen);
+      // });
+
+      // it('should show a large number of characters', () => {
+      //   element.size = 'large';
+      //   title.innerHTML = 'ThanO5';
+      //   content.innerHTML = 'Lorem ipsum dolor sit amet, consectetur ' +
+      //                       'adipiscing elit, sed do eiusmod tempor ' +
+      //                       'incididunt ut labore et dolore magna aliqua. ' +
+      //                       'Ut enim ad minim veniam, quis nostrud ' +
+      //                       'exercitation ullamco laboris nisi ut aliquip ' +
+      //                       'ex ea commodo consequat.';
+      //   const largeLen = 203; // 203 because 200 + '...'
+      //   element.text = true;
+
+      //   expect(element._content.innerHTML.length).toBe(largeLen);
+      // });
     });
 
   /*  describe('tests for too long description', () => {
