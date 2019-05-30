@@ -3,5 +3,6 @@
 /test/utils/**
 /config/**
 /dist/**
+/element-helpers/**
 /coverage/**
 /*.js
