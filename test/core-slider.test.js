@@ -291,7 +291,7 @@ describe('CoreSlider Unit Tests', () => {
       //
       //  });
 
-            it('should show a small number of characters', () => {
+      it('should show a small number of characters', () => {
         // ASSUMES THEME IS NOT CIRCLE
         element.size = 'small';
         const spanNode = document.createElement('span');
