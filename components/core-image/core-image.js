@@ -4,12 +4,12 @@ import {isString, isHtmlElement} from '../../element-helpers/utils/types';
 import {throttle} from 'throttle-debounce';
 // import templateString from './element-image.html';
 // import styleString from '../styles/index.scss';
-import styleString from './element-image.scss';
+import styleString from './core-image.scss';
 
 // create template element
 // const template = document.createElement('template');
 // template.innerHTML = templateString;
-const template = document.createElement('template');
+// const template = document.createElement('template');
 
 // create style element
 const style = document.createElement('style');
@@ -27,39 +27,104 @@ const ObjectFit = {
 /**
  * <element-image> component
  */
-export default class ElementImage extends HTMLElement {
+export default class CoreImage extends HTMLElement {
   /**
    * constructor
    */
   constructor() {
     super();
 
-    this.src = '';
-    this.fit = '';
-    this.lazy = false;
+    this._src = this.getAttribute('src') || undefined;
+    this._fit = this.getAttribute('fit') || undefined;
+    this._lazy = this.hasAttribute('lazy') || false;
 
     this._loading = true;
     this._error = false;
 
-    this.attachShadow({mode: 'open'});
-    this.updateTemplate();
+    this._show = !this._lazy;
+    this._imageWidth = 0;
+    this._imageHeight = 0;
+    this._scrollContainer = {};
+    this._isServer = !(typeof window != 'undefined' && window.document);
 
-    this.isServer = !(typeof window != 'undefined' && window.document);
+    this._template = document.createElement('template');
+    this.attachShadow({mode: 'open'});
+    this._updateTemplate();
+  }
+
+  /**
+   * src getter
+   */
+  get src() {
+    return this._src;
+  }
+
+  /**
+   * src setter
+   * @param {String} val
+   */
+  set src(val) {
+    if (typeof val === 'string') {
+      this._src = val;
+      this.setAttribute('src', val);
+    } else {
+      this._src = undefined;
+      this.removeAttribute('src');
+    }
+
+    this._show && this._loadImage();
+  }
+
+  /**
+   * fit getter
+   */
+  get fit() {
+    return this._fit;
+  }
+
+  /**
+   * fit setter
+   * @param {String} val
+   */
+  set fit(val) {
+    if (['fill', 'contain', 'cover', 'none', 'scale-down'].indexOf(val) > -1) {
+      this._fit = val;
+      this.setAttribute('fit', val);
+    } else {
+      this._fit = undefined;
+      this.removeAttribute('fit');
+    }
+  }
+
+  /**
+   * lazy getter
+   */
+  get lazy() {
+    return this._lazy;
+  }
+
+  /**
+   * lazy setter
+   * @param {Boolean} val
+   */
+  set lazy(val) {
+    if (val === true) {
+      this._lazy = true;
+      this.setAttribute('lazy', '');
+    } else {
+      this._lazy = false;
+      this.removeAttribute('lazy');
+    }
   }
 
   /**
    * connectedCallback
    */
   connectedCallback() {
-    this.show = !this.lazy;
-    this.imageWidth = 0;
-    this.imageHeight = 0;
-    this.scrollContainer = {};
-
     if (this.lazy) {
-      this.addLazyLoadListener();
+      this._addLazyLoadListener();
     } else {
-      this.loadImage();
+      this._loadImage();
     }
   }
 
@@ -67,54 +132,18 @@ export default class ElementImage extends HTMLElement {
    * disconnectedCallback
    */
   disconnectedCallback() {
-    this.lazy && this.removeLazyLoadListener();
-  }
-
-  /**
-   * observedAttributes getter
-   */
-  static get observedAttributes() {
-    return [
-      'src',
-      'fit',
-      'lazy',
-    ];
-  }
-
-  /**
-   * attributeChangedCallback()
-   * @param {*} name
-   * @param {*} oldVal
-   * @param {*} newVal
-   */
-  attributeChangedCallback(name, oldVal, newVal) {
-    switch (name) {
-      case 'src': {
-        this.src = this.getAttribute('src');
-        this.show && this.loadImage();
-      }
-
-      case 'fit': {
-        this.fit = this.getAttribute('fit');
-      }
-
-      case 'lazy': {
-        this.lazy = this.hasAttribute('lazy');
-        // this.show = !this.lazy;
-      }
-    }
+    this.lazy && this._removeLazyLoadListener();
   }
 
   /**
    * imageStyle getter
    */
   get imageStyle() {
-    const {fit} = this;
-    if (!this.isServer && fit) {
+    if (!this._isServer && this.fit) {
       if (isSupportObjectFit()) {
-        return `object-fit:${fit}`;
+        return `object-fit:${this.fit}`;
       } else {
-        const _imageStyle = this.getImageStyle(fit);
+        const _imageStyle = this._getImageStyle(this.fit);
         return _imageStyle.substr(1, _imageStyle.length - 2);
       }
     }
@@ -124,7 +153,7 @@ export default class ElementImage extends HTMLElement {
   /**
    * loadTemplate
    */
-  updateTemplate() {
+  _updateTemplate() {
     let templateString;
     if (this.loading) {
       templateString = `
@@ -161,9 +190,10 @@ export default class ElementImage extends HTMLElement {
           ${classAttr}>
       `;
     }
-    template.innerHTML = templateString;
+
+    this._template.innerHTML = templateString;
     this.shadowRoot.innerHTML = '';
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.appendChild(this._template.content);
     this.shadowRoot.appendChild(style.cloneNode(true));
   }
 
@@ -203,20 +233,21 @@ export default class ElementImage extends HTMLElement {
    * alignCenter getter
    */
   get alignCenter() {
-    return !this.isServer && !isSupportObjectFit() && this.fit !== ObjectFit.FILL;
+    return !this._isServer && !isSupportObjectFit() && this.fit !== ObjectFit.FILL;
   }
 
   /**
    * loadImage()
    */
-  loadImage() {
-    if (this.isServer) return;
+  _loadImage() {
+    if (this._isServer) return;
     // reset status
     this.loading = true;
     this.error = false;
     const img = new Image();
-    img.onload = (e) => this.handleLoad(e, img);
-    img.onerror = this.handleError.bind(this);
+    img.onload = (e) => this._handleLoad(e, img);
+    // img.onerror = this._handleError.bind(this);
+    img.onerror = (e) => this._handleError(e);
 
     img.src = this.src;
   }
@@ -226,40 +257,40 @@ export default class ElementImage extends HTMLElement {
    * @param {*} e
    * @param {*} img
    */
-  handleLoad(e, img) {
+  _handleLoad(e, img) {
     this.imageWidth = img.width;
     this.imageHeight = img.height;
     this.loading = false;
-    this.updateTemplate();
+    this._updateTemplate();
   }
 
   /**
    * handleError()
    * @param {*} e
    */
-  handleError(e) {
+  _handleError(e) {
     this.loading = false;
     this.error = true;
-    this.updateTemplate();
+    this._updateTemplate();
     // this.$emit('error', e);
   }
 
   /**
    * handleLazyLoad()
    */
-  handleLazyLoad() {
+  _handleLazyLoad() {
     if (isInContainer(this, this._scrollContainer)) {
       this.show = true;
-      this.loadImage();
-      this.removeLazyLoadListener();
+      this._loadImage();
+      this._removeLazyLoadListener();
     }
   }
 
   /**
    * addLazyLoadListener()
    */
-  addLazyLoadListener() {
-    if (this.isServer) return;
+  _addLazyLoadListener() {
+    if (this._isServer) return;
     const {scrollContainer} = this;
     let _scrollContainer = null;
     if (isHtmlElement(scrollContainer)) {
@@ -271,18 +302,18 @@ export default class ElementImage extends HTMLElement {
     }
     if (_scrollContainer) {
       this._scrollContainer = _scrollContainer;
-      this._lazyLoadHandler = throttle(250, this.handleLazyLoad.bind(this));
+      this._lazyLoadHandler = throttle(250, this._handleLazyLoad.bind(this));
       on(_scrollContainer, 'scroll', this._lazyLoadHandler);
-      this.handleLazyLoad();
+      this._handleLazyLoad();
     }
   }
 
   /**
    * removeLazyLoadListener()
    */
-  removeLazyLoadListener() {
+  _removeLazyLoadListener() {
     const {_scrollContainer, _lazyLoadHandler} = this;
-    if (this.isServer || !_scrollContainer || !_lazyLoadHandler) return;
+    if (this._isServer || !_scrollContainer || !_lazyLoadHandler) return;
     off(_scrollContainer, 'scroll', _lazyLoadHandler);
     this._scrollContainer = null;
     this._lazyLoadHandler = null;
@@ -293,8 +324,8 @@ export default class ElementImage extends HTMLElement {
    * @param {*} fit
    * @return {*}
    */
-  getImageStyle(fit) {
-    const {imageWidth, imageHeight} = this;
+  _getImageStyle(fit) {
+    const {_imageWidth, _imageHeight} = this;
     const {
       clientWidth: containerWidth,
       clientHeight: containerHeight,
@@ -318,6 +349,6 @@ export default class ElementImage extends HTMLElement {
   }
 }
 
-if (!customElements.get('element-image')) {
-  customElements.define('element-image', ElementImage);
+if (!customElements.get('core-image')) {
+  customElements.define('core-image', CoreImage);
 }

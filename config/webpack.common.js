@@ -9,7 +9,7 @@ const components = [
     "core-badge", 
     "core-button-filled",
     "core-progress",
-    "element-image",
+    "core-image",
 ];
 const componentsEntries = {};
 
