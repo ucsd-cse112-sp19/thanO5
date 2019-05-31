@@ -29,20 +29,20 @@
 **To run all the unit tests:**
 - `npm test` or `npm run test`
 
-A much more detailed guide and explanation to Unit Testing can be found [here]([https://docs.google.com/document/d/1N5Mdvw3mUZzqnDy4j3Zy-UZNi_xN5Kv3ctdWr3Vi5T4/edit](https://docs.google.com/document/d/1N5Mdvw3mUZzqnDy4j3Zy-UZNi_xN5Kv3ctdWr3Vi5T4/edit))
+A much more detailed guide and explanation to Unit Testing can be found [here](https://docs.google.com/document/d/1N5Mdvw3mUZzqnDy4j3Zy-UZNi_xN5Kv3ctdWr3Vi5T4/edit)
 
 ## Integration Testing
 **To run all the integration tests:**
 - `npm run integrationtest`
 
-A much more detailed guide and explanation to Integration Testing can be found [here]([https://docs.google.com/document/d/1ZXp29jMGDu2BMSO8LRCvTIIiLbpRYNt_g1ojZT9xwA0/edit](https://docs.google.com/document/d/1ZXp29jMGDu2BMSO8LRCvTIIiLbpRYNt_g1ojZT9xwA0/edit))
+A much more detailed guide and explanation to Integration Testing can be found [here](https://docs.google.com/document/d/1ZXp29jMGDu2BMSO8LRCvTIIiLbpRYNt_g1ojZT9xwA0/edit)
 
 ## Browser Testing
 **To run all the browser tests:**
 - `npm run browsertest`
 - You may need to set up the SauceLabs access key and username environment variables locally.
 
-A much more detailed guide and explanation to Browser Testing and how to set up the variables can be found [here]([https://docs.google.com/document/d/1RcgaIx0Ty2WkElnowXgwl0UY5Z8WI2w-KNIHo9UeGPA/edit#](https://docs.google.com/document/d/1RcgaIx0Ty2WkElnowXgwl0UY5Z8WI2w-KNIHo9UeGPA/edit#))
+A much more detailed guide and explanation to Browser Testing and how to set up the variables can be found [here](https://docs.google.com/document/d/1RcgaIx0Ty2WkElnowXgwl0UY5Z8WI2w-KNIHo9UeGPA/edit#)
 
 ## Acknowledgement
-We would like to thank [SauceLabs]([https://saucelabs.com/](https://saucelabs.com/)) for supporting open source projects like ours.
+We would like to thank [SauceLabs](https://saucelabs.com/) for supporting open source projects like ours.
