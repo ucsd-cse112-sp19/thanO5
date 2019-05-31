@@ -17,8 +17,8 @@ export default class CoreBadge extends HTMLElement {
   constructor() {
     super();
 
-    this._value = this.getAttribute('value') || 0;
-    this._max = this.getAttribute('max') || 100;
+    this._value = this.getAttribute('value') || undefined;
+    this._max = this.getAttribute('max') || undefined;
     this._isDot = this.hasAttribute('is-dot') || false;
     this._hidden = this.hasAttribute('hidden') || false;
     this._type = this.getAttribute('type') || undefined;
@@ -28,8 +28,14 @@ export default class CoreBadge extends HTMLElement {
         return this._max;
       },
       set(val) {
-        this._max = val;
-        this.setAttribute('max', val);
+        if (typeof val === 'string' || typeof val === 'number') {
+          this._max = val;
+          this.setAttribute('max', val);
+        } else {
+          this._max = undefined;
+          this.removeAttribute('max');
+        }
+
         this._updateTemplate();
       },
     });
@@ -73,8 +79,14 @@ export default class CoreBadge extends HTMLElement {
         return this._value;
       },
       set(val) {
-        this._value = val;
-        this.setAttribute('value', val);
+        if (typeof val === 'string' || typeof val === 'number') {
+          this._value = val;
+          this.setAttribute('value', val);
+        } else {
+          this._value = undefined;
+          this.removeAttribute('value');
+        }
+
         this._updateTemplate();
       },
     });
@@ -106,35 +118,6 @@ export default class CoreBadge extends HTMLElement {
     this.addEventListener('change', this._updateTemplate.bind(this));
 
     this._updateTemplate();
-  }
-
-  /**
-   * observedAttributes getter
-   */
-  static get observedAttributes() {
-    return [
-      'value',
-      'max',
-      'is-dot',
-      'hidden',
-      'type',
-    ];
-  }
-
-  /**
-   * connectedCallback
-   */
-  connectedCallback() {
-    // this._updateTemplate();
-  }
-
-  /**
-   * attributeChangedCallback
-   * @param {*} attr
-   * @param {*} oldV
-   * @param {*} newV
-   */
-  attributeChangedCallback(attr, oldV, newV) {
   }
 
   /**

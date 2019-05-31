@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="../../node_modules/element-theme-chalk/lib/index.css" rel="stylesheet">
+</head>
+<body>
+  <div style="display: flex; justify-content: center;">
+    <div style="margin: 10px; border: 1px solid #000; height: 100px; width: 100px;">
+      <element-image style="width: 100%; height: 100%;"
+        src="https://images.unsplash.com/photo-1558945657-484aa38065ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"
+        fit="cover">
+      </element-image>
+    </div>
+  
+    <div style="margin: 10px; border: 1px solid #000; height: 100px; width: 100px;">
+      <element-image style="width: 100%; height: 100%;">
+        <div slot="error" style="display: flex; text-align: center; align-items: center; justify-content: center; width: 100%; height: 100%;">
+          <i class="el-icon-picture-outline"></i>
+        </div>
+      </element-image>
+    </div>
+
+    <div style="margin: 10px; border: 1px solid #000; height: 100px; width: 100px;">
+      <element-image style="width: 100%; height: 100%;"
+        src="https://images.unsplash.com/photo-1558945657-484aa38065ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"
+        fit="contain">
+        <div slot="placeholder" style="display: flex; text-align: center; align-items: center; justify-content: center; width: 100%; height: 100%;">
+          Loading<span class="dot">...</span>
+        </div>
+      </element-image>
+    </div>
+  </div>
+
+  <div style="width: 400px; height: 600px; overflow-y: auto;">
+      <element-image style="display: block; min-height: 200px; margin-bottom: 10px;" lazy src="https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg"></element-image>
+      <element-image style="display: block; min-height: 200px; margin-bottom: 10px;" lazy src="https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg"></element-image>
+      <element-image style="display: block; min-height: 200px; margin-bottom: 10px;" lazy src="https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg"></element-image>
+      <element-image style="display: block; min-height: 200px; margin-bottom: 10px;" lazy src="https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg"></element-image>
+      <element-image style="display: block; min-height: 200px; margin-bottom: 10px;" lazy src="https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg"></element-image>
+  </div>
+
+  <script src="../../dist/lib/element-image/index.js"></script>
+</body>
+</html>
