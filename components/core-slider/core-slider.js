@@ -15,7 +15,7 @@ style.innerHTML = styleString;
 /**
  * ImageSlider Class
  */
-class coreSlider extends HTMLElement {
+coreSlider extends HTMLElement {
   /**
    * constructor
    */
