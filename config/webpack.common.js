@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const components = ["core-button", "core-hello", "core-modal", "core-slider", "core-badge"];
+const components = ["core-button", "core-hello", "core-modal", "core-slider", "core-badge", "core-button-filled"];
 const componentsEntries = {};
 
 components.forEach((component) => {

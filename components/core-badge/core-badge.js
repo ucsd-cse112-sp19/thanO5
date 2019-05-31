@@ -1,4 +1,8 @@
+import HTMLString from './core-badge.html';
 import styleString from './core-badge.scss';
+
+const template = document.createElement('template');
+template.innerHTML = HTMLString;
 
 const style = document.createElement('style');
 style.innerHTML = styleString;
@@ -19,6 +23,7 @@ export default class CoreBadge extends HTMLElement {
       },
       set(val) {
         this.setAttribute('max', val);
+        this._updateTemplate();
       },
     });
 
@@ -32,6 +37,8 @@ export default class CoreBadge extends HTMLElement {
         } else {
           this.removeAttribute('is-dot');
         }
+
+        this._updateTemplate();
       },
     });
 
@@ -45,6 +52,8 @@ export default class CoreBadge extends HTMLElement {
         } else {
           this.removeAttribute('hidden');
         }
+
+        this._updateTemplate();
       },
     });
 
@@ -54,6 +63,7 @@ export default class CoreBadge extends HTMLElement {
       },
       set(val) {
         this.setAttribute('value', val);
+        this._updateTemplate();
       },
     });
 
@@ -67,10 +77,21 @@ export default class CoreBadge extends HTMLElement {
         } else {
           this.removeAttribute('type');
         }
+
+        this._updateTemplate();
       },
     });
 
     this.attachShadow({mode: 'open'});
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.appendChild(style.cloneNode(true));
+
+    const config = {attributes: false, childList: true, subtree: true};
+    const observer = new MutationObserver(this._updateTemplate.bind(this));
+    observer.observe(this, config);
+    this.addEventListener('change', this._updateTemplate.bind(this));
+
+    this._updateTemplate();
   }
 
   /**
@@ -90,7 +111,7 @@ export default class CoreBadge extends HTMLElement {
    * connectedCallback
    */
   connectedCallback() {
-    this._updateTemplate();
+    // this._updateTemplate();
   }
 
   /**
@@ -100,14 +121,13 @@ export default class CoreBadge extends HTMLElement {
    * @param {*} newV
    */
   attributeChangedCallback(attr, oldV, newV) {
-
   }
 
   /**
    * content getter
    */
   get content() {
-    if (this.isDot) return;
+    if (this.isDot) return '';
     const value = this.value;
     const max = this.max;
     if (typeof value === 'number' && typeof max === 'number') {
@@ -120,25 +140,13 @@ export default class CoreBadge extends HTMLElement {
    * updateTemplate
    */
   _updateTemplate() {
-    const template = document.createElement('template');
-    template.innerHTML = `
-      <div class="el-badge">
-        <slot></slot>
-        <transition name="el-zoom-in-center">
-        </transition>
-      </div>
-    `;
-
-    this.shadowRoot.appendChild(template.content);
-    this.shadowRoot.appendChild(style.cloneNode(true));
-
-    const content = !this.hidden && (this.content || this.content === 0 || this.isDot) ? `
-      <sup class="el-badge__content ${'el-badge__content--' + this.type} ${this.innerHTML ? 'is-fixed' : ''} ${this.isDot ? 'is-dot' : ''}">
+    const update = !this.hidden && (this.content || this.content === 0 || this.isDot) ? `
+      <sup class="el-badge__content ${'el-badge__content--' + (this.type === null ? undefined : this.type)} ${this.innerHTML ? 'is-fixed' : ''} ${this.isDot ? 'is-dot' : ''}">
         ${this.content}
       </sup>
     ` : '';
 
-    this.shadowRoot.querySelector('transition').innerHTML = content;
+    this.shadowRoot.querySelector('transition').innerHTML = update;
   }
 };
 

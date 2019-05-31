@@ -1,39 +1,39 @@
 /*
 this rule styles text placed in a code tag such that it is distinguishable
-from text in a p element. 
+from text in a p element.
 */
 code {
-	background-color: #eee;
-	border-radius: 3px;
-	font-family: courier, monospace;
-	padding: 0 3px;
+  background-color: #eee;
+  border-radius: 3px;
+  font-family: courier, monospace;
+  padding: 0 3px;
 }
 
 /*
 button_row is a div that will display four core-buttons horizontally
 */
-.button_row{
-	width: 50%;
-	margin: 0 auto;
+.button_row {
+  width: 50%;
+  margin: 0 auto;
 }
 
-.button_size core-button{
-	display: inline-block;
+.button_size core-button {
+  display: inline-block;
 }
 
-/* 
+/*
 btn_container holds a single core-button element and is used as a column to
 equally space four buttons in a row
 */
-.btn_container{
-	width: 20%;
-	display: inline-block;
-	margin-left: 3%;
+.btn_container {
+  width: 20%;
+  display: inline-block;
+  margin-left: 3%;
 }
 
-/* rule to center the h1 tag horizontally*/
-h1{
-	display: block;
-	width: 50%;
-	margin: 2rem auto;
+/* rule to center the h1 tag horizontally */
+h1 {
+  display: block;
+  width: 50%;
+  margin: 2rem auto;
 }
