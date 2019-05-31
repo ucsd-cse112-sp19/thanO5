@@ -17,11 +17,18 @@ export default class CoreBadge extends HTMLElement {
   constructor() {
     super();
 
+    this._value = this.getAttribute('value') || 0;
+    this._max = this.getAttribute('max') || 100;
+    this._isDot = this.hasAttribute('is-dot') || false;
+    this._hidden = this.hasAttribute('hidden') || false;
+    this._type = this.getAttribute('type') || undefined;
+
     Object.defineProperty(this, 'max', {
       get() {
-        return this.getAttribute('max');
+        return this._max;
       },
       set(val) {
+        this._max = val;
         this.setAttribute('max', val);
         this._updateTemplate();
       },
@@ -29,12 +36,14 @@ export default class CoreBadge extends HTMLElement {
 
     Object.defineProperty(this, 'isDot', {
       get() {
-        return this.hasAttribute('is-dot');
+        return this._isDot;
       },
       set(val) {
-        if (val) {
-          this.setAttribute('is-dot', false);
+        if (val === true) {
+          this._isDot = true;
+          this.setAttribute('is-dot', '');
         } else {
+          this._isDot = false;
           this.removeAttribute('is-dot');
         }
 
@@ -44,12 +53,14 @@ export default class CoreBadge extends HTMLElement {
 
     Object.defineProperty(this, 'hidden', {
       get() {
-        return this.hasAttribute('hidden');
+        return this._hidden;
       },
       set(val) {
-        if (val) {
-          this.setAttribute('hidden', false);
+        if (val === true) {
+          this._hidden = true;
+          this.setAttribute('hidden', '');
         } else {
+          this._hidden = false;
           this.removeAttribute('hidden');
         }
 
@@ -59,9 +70,10 @@ export default class CoreBadge extends HTMLElement {
 
     Object.defineProperty(this, 'value', {
       get() {
-        return this.getAttribute('value');
+        return this._value;
       },
       set(val) {
+        this._value = val;
         this.setAttribute('value', val);
         this._updateTemplate();
       },
@@ -69,12 +81,14 @@ export default class CoreBadge extends HTMLElement {
 
     Object.defineProperty(this, 'type', {
       get() {
-        return this.getAttribute('type');
+        return this._type;
       },
       set(val) {
         if (['primary', 'success', 'warning', 'info', 'danger'].indexOf(val) > -1) {
+          this._type = val;
           this.setAttribute('type', val);
         } else {
+          this._tpye = undefined;
           this.removeAttribute('type');
         }
 
