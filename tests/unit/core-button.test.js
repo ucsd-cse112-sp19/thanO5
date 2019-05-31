@@ -1,4 +1,4 @@
-import '../components/core-button/core-button';
+import '../../components/core-button/core-button';
 
 describe('CoreButton Unit Tests', () => {
   // console.log('***STARTING CORE-BUTTON TESTS***');
