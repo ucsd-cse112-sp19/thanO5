@@ -15,7 +15,7 @@
 	--description-size: 17px;
 }
 
-:host([size="large"]) {
+:host([size="big"]) {
 	--initial-width: 600px;
 	--title-size: 38px;
 	--description-size: 20px;

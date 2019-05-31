@@ -15,7 +15,7 @@ style.innerHTML = styleString;
 /**
  * ImageSlider Class
  */
-coreSlider extends HTMLElement {
+class coreSlider extends HTMLElement {
   /**
    * constructor
    */
@@ -68,7 +68,7 @@ coreSlider extends HTMLElement {
         break;
       }
 
-      case 'large': {
+      case 'big': {
         const limit = 200;
         buttonSize = theme === 'circle' ? 'xsmall' : 'small';
         if (content.length > limit * themeScale) {
