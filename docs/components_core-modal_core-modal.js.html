@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/core-modal/core-modal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,149 +17,116 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/core-modal/core-modal.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import templateString from './core-modal.html';
+import styleString from './core-modal.css';
 
+// Create template element
+const template = document.createElement('template');
+template.innerHTML = templateString;
 
-    <h3> </h3>
+// Create style element
+const style = document.createElement('style');
+style.innerHTML = styleString;
 
+/**
+ * beastTooltip custom element
+ */
+class coreModal extends HTMLElement {
+  /**
+   * observedAttributes getter
+   */
+  static get observedAttributes() {
+    return [];
+  }
 
+  /**
+   * constructor
+   */
+  constructor() {
+    super();
 
+    // create shadowroot
+    const shadowRoot = this.attachShadow({mode: 'open'});
 
+    // This won't work beacuse I set overflow to hidden
+    // $(this._modal).css('left', \
+    // window.innerWidth / 2 - $(this._modal).offset().left);
+    // $(this._modal).css('top', \
+    // window.innerHeight / 2 - $(this._modal).offset().top);
 
+    shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(style.cloneNode(true));
+  }
 
+  /**
+   * connectedCallback
+   */
+  connectedCallback() {
+    // Store elements
+    this._modal = this.shadowRoot.querySelector('.modal');
+    this._close = this.shadowRoot.querySelector('.close');
+    this._button = document.querySelector(`[modal="${this.getAttribute('name')}"]`);
 
+    // Add Listeners
+    this._close.addEventListener('click', this._hideModal.bind(this));
+    this._button.addEventListener('click', this._showModal.bind(this));
 
+    // Attach the modal to body
+    // This won't work because you only attach the template content to body
+    // document.body.appendChild(this._modal);
+    // document.body.appendChild(this.style);
+  }
 
+  /**
+   * disconnectedCallback
+   */
+  disconnectedCallback() {
+    this._button.removeEventListener('click', this._showModal.bind(this));
+    this._close.removeEventListener('click', this._hideModal.bind(this));
+  }
 
-    
+  /**
+   * showModal function
+   */
+  _showModal() {
+    this._modalVisible = true;
+    this._modal.style.display = 'block';
+  }
 
+  /**
+   * hideModal function
+   */
+  _hideModal() {
+    this._modalVisible = false;
+    this._modal.style.display = 'none';
+  }
 
+  /**
+   * attribute change event handler
+   * @param {*} name
+   * @param {*} oldValue
+   * @param {*} newValue
+   */
+  attributeChangedCallback(name, oldValue, newValue) {}
+}
 
+// define the beast-tooltip element
+if (!customElements.get('core-modal')) {
+  customElements.define('core-modal', coreModal);
+}
 
-
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>element-helpers/utils/popper.js</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Kickass library to create and place poppers near their reference elements.</div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>{{version}}</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-license">License:</dt>
-    <dd class="tag-license"><ul class="dummy"><li>Copyright (c) 2016 Federico Zivolo and contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="element-helpers_utils_popper.js.html">element-helpers/utils/popper.js</a>, <a href="element-helpers_utils_popper.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+</code></pre>
+        </article>
+    </section>
 
 
 

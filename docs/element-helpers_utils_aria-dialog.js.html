@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: element-helpers/utils/aria-dialog.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,149 +17,108 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: element-helpers/utils/aria-dialog.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Utils from './aria-utils';
 
+/**
+ * @constructor
+ * @desc Dialog object providing modal focus management.
+ *
+ * Assumptions: The element serving as the dialog container is present in the
+ * DOM and hidden. The dialog container has role='dialog'.
+ *
+ * @param dialogId
+ *          The ID of the element serving as the dialog container.
+ * @param focusAfterClosed
+ *          Either the DOM node or the ID of the DOM node to focus when the
+ *          dialog closes.
+ * @param focusFirst
+ *          Optional parameter containing either the DOM node or the ID of the
+ *          DOM node to focus when the dialog opens. If not specified, the
+ *          first focusable element in the dialog will receive focus.
+ */
+var aria = aria || {};
+var tabEvent;
 
-    <h3> </h3>
+aria.Dialog = function(dialog, focusAfterClosed, focusFirst) {
+  this.dialogNode = dialog;
+  if (this.dialogNode === null || this.dialogNode.getAttribute('role') !== 'dialog') {
+    throw new Error('Dialog() requires a DOM element with ARIA role of dialog.');
+  }
 
+  if (typeof focusAfterClosed === 'string') {
+    this.focusAfterClosed = document.getElementById(focusAfterClosed);
+  } else if (typeof focusAfterClosed === 'object') {
+    this.focusAfterClosed = focusAfterClosed;
+  } else {
+    this.focusAfterClosed = null;
+  }
 
+  if (typeof focusFirst === 'string') {
+    this.focusFirst = document.getElementById(focusFirst);
+  } else if (typeof focusFirst === 'object') {
+    this.focusFirst = focusFirst;
+  } else {
+    this.focusFirst = null;
+  }
 
+  if (this.focusFirst) {
+    this.focusFirst.focus();
+  } else {
+    Utils.focusFirstDescendant(this.dialogNode);
+  }
 
+  this.lastFocus = document.activeElement;
+  tabEvent = (e) => {
+    this.trapFocus(e);
+  };
+  this.addListeners();
+};
 
+aria.Dialog.prototype.addListeners = function() {
+  document.addEventListener('focus', tabEvent, true);
+};
 
+aria.Dialog.prototype.removeListeners = function() {
+  document.removeEventListener('focus', tabEvent, true);
+};
 
+aria.Dialog.prototype.closeDialog = function() {
+  this.removeListeners();
+  if (this.focusAfterClosed) {
+    setTimeout(() => {
+      this.focusAfterClosed.focus();
+    });
+  }
+};
 
+aria.Dialog.prototype.trapFocus = function(event) {
+  if (Utils.IgnoreUtilFocusChanges) {
+    return;
+  }
+  if (this.dialogNode.contains(event.target)) {
+    this.lastFocus = event.target;
+  } else {
+    Utils.focusFirstDescendant(this.dialogNode);
+    if (this.lastFocus === document.activeElement) {
+      Utils.focusLastDescendant(this.dialogNode);
+    }
+    this.lastFocus = document.activeElement;
+  }
+};
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>element-helpers/utils/popper.js</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Kickass library to create and place poppers near their reference elements.</div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>{{version}}</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-license">License:</dt>
-    <dd class="tag-license"><ul class="dummy"><li>Copyright (c) 2016 Federico Zivolo and contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="element-helpers_utils_popper.js.html">element-helpers/utils/popper.js</a>, <a href="element-helpers_utils_popper.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export default aria.Dialog;
+</code></pre>
+        </article>
+    </section>
 
 
 
