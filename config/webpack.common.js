@@ -7,7 +7,6 @@ const components = [
     "core-modal", 
     "core-slider", 
     "core-badge", 
-    "core-button-filled",
     "core-progress",
     "core-image",
 ];
