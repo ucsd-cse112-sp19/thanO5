@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="../../node_modules/element-theme-chalk/lib/index.css" rel="stylesheet">
+</head>
+<body>
+  <style>
+    core-progress {
+      margin: 10px;
+    }
+  </style>
+
+  <div style="display: flex;">
+    <div style="width: 200px; margin-left: 30px;">
+      <core-progress percentage="0"></core-progress>
+      <core-progress percentage="70"></core-progress>
+      <core-progress percentage="80" color="#8e71c7"></core-progress>
+      <core-progress percentage="100" status="success"></core-progress>
+      <core-progress percentage="50" status="exception"></core-progress>
+    </div>
+  
+    <div style="width: 200px; margin-left: 200px;">
+      <core-progress text-inside stroke-width="18" percentage="0"></core-progress>
+      <core-progress text-inside stroke-width="18" percentage="70"></core-progress>
+      <core-progress text-inside stroke-width="18" percentage="80" color="rgba(142, 113, 199, 0.7)"></core-progress>
+      <core-progress text-inside stroke-width="18" percentage="100" status="success"></core-progress>
+      <core-progress text-inside stroke-width="18" percentage="50" status="exception"></core-progress>
+    </div>
+  </div>
+
+  <div style="display: flex;">
+    <core-progress type="circle" percentage="0"></core-progress>
+    <core-progress type="circle" percentage="25"></core-progress>
+    <core-progress type="circle" percentage="80" color="#8e71c7"></core-progress>
+    <core-progress type="circle" percentage="100" status="success"></core-progress>
+    <core-progress type="circle" percentage="50" status="exception"></core-progress>
+    <core-progress type="circle" percentage="100" status="text">Done</core-progress>
+  </div>
+  <script src="../../dist/lib/core-progress/index.js"></script>
+</body>
+</html>
