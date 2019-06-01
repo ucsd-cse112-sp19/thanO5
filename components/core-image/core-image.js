@@ -53,6 +53,24 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
+   * connectedCallback
+   */
+  connectedCallback() {
+    if (this.lazy) {
+      this._addLazyLoadListener();
+    } else {
+      this._loadImage();
+    }
+  }
+
+  /**
+   * disconnectedCallback
+   */
+  disconnectedCallback() {
+    this.lazy && this._removeLazyLoadListener();
+  }
+
+  /**
    * src getter
    */
   get src() {
@@ -72,6 +90,7 @@ export default class CoreImage extends HTMLElement {
       this.removeAttribute('src');
     }
 
+    this._updateTemplate();
     this._show && this._loadImage();
   }
 
@@ -94,6 +113,8 @@ export default class CoreImage extends HTMLElement {
       this._fit = undefined;
       this.removeAttribute('fit');
     }
+
+    this._updateTemplate();
   }
 
   /**
@@ -118,21 +139,35 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * connectedCallback
+   * loading getter
+   * @return {*}
    */
-  connectedCallback() {
-    if (this.lazy) {
-      this._addLazyLoadListener();
-    } else {
-      this._loadImage();
-    }
+  get loading() {
+    return this._loading;
   }
 
   /**
-   * disconnectedCallback
+   * loading setter
+   * @param {*} val
    */
-  disconnectedCallback() {
-    this.lazy && this._removeLazyLoadListener();
+  set loading(val) {
+    this._loading = val;
+  }
+
+  /**
+   * error getter
+   * @return {*}
+  */
+  get error() {
+    return this._error;
+  }
+
+  /**
+   * error setter
+   * @param {*} val
+   */
+  set error(val) {
+    this._error = val;
   }
 
   /**
@@ -148,6 +183,13 @@ export default class CoreImage extends HTMLElement {
       }
     }
     return '';
+  }
+
+  /**
+   * alignCenter getter
+   */
+  get alignCenter() {
+    return !this._isServer && !isSupportObjectFit() && this.fit !== ObjectFit.FILL;
   }
 
   /**
@@ -198,45 +240,6 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * loading getter
-   * @return {*}
-   */
-  get loading() {
-    return this._loading;
-  }
-
-  /**
-   * loading setter
-   * @param {*} val
-   */
-  set loading(val) {
-    this._loading = val;
-  }
-
-  /**
-   * error getter
-   * @return {*}
-  */
-  get error() {
-    return this._error;
-  }
-
-  /**
-   * error setter
-   * @param {*} val
-   */
-  set error(val) {
-    this._error = val;
-  }
-
-  /**
-   * alignCenter getter
-   */
-  get alignCenter() {
-    return !this._isServer && !isSupportObjectFit() && this.fit !== ObjectFit.FILL;
-  }
-
-  /**
    * loadImage()
    */
   _loadImage() {
@@ -246,8 +249,8 @@ export default class CoreImage extends HTMLElement {
     this.error = false;
     const img = new Image();
     img.onload = (e) => this._handleLoad(e, img);
-    // img.onerror = this._handleError.bind(this);
-    img.onerror = (e) => this._handleError(e);
+    img.onerror = this._handleError.bind(this);
+    // If no src specified, an error appears in the console (this is the expected behavior)
 
     img.src = this.src;
   }
@@ -325,7 +328,7 @@ export default class CoreImage extends HTMLElement {
    * @return {*}
    */
   _getImageStyle(fit) {
-    const {_imageWidth, _imageHeight} = this;
+    // const {_imageWidth, _imageHeight} = this;
     const {
       clientWidth: containerWidth,
       clientHeight: containerHeight,
