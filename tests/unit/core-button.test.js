@@ -1,5 +1,7 @@
+import '../../components/core-button/core-button';
+
 describe('CoreButton Unit Tests', () => {
-  console.log('***STARTING CORE-BUTTON TESTS***');
+  // console.log('***STARTING CORE-BUTTON TESTS***');
   // before each spec, set up the core-button element
   let element;
   let shadowRoot;
@@ -73,14 +75,14 @@ describe('CoreButton Unit Tests', () => {
 
     it('should remove the rounded effect from the button element', () => {
       element.rounded = true;
-      console.log('Button attribute: ', button.classList.contains('rounded'));
+      // console.log('Button attribute: ', button.classList.contains('rounded'));
       element.rounded = false;
       expect(element.rounded).toBe(false);
     });
 
     it('should remove the rounded effect from the button classlist', () => {
       element.rounded = true;
-      console.log('Button attribute: ', button.classList.contains('rounded'));
+      // console.log('Button attribute: ', button.classList.contains('rounded'));
       element.rounded = false;
       expect(button.classList.contains('rounded')).toBe(false);
     });

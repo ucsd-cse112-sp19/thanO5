@@ -30,5 +30,3 @@ script:
 - npm run docs
 after_success:
 - bash scripts/after_script.sh $TRAVIS_PULL_REQUEST
-- ./cc-test-reporter format-coverage -t lcov "./coverage/lcov.info"
-- ./cc-test-reporter upload-coverage

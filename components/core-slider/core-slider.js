@@ -1,4 +1,16 @@
-// const uuid = require('uuid/v1');
+import uuid from 'uuid/v1';
+import templateString from './core-slider.html';
+import styleString from './core-slider.css';
+import '../core-button/core-button';
+import '../core-modal/core-modal';
+
+// Create template element
+const template = document.createElement('template');
+template.innerHTML = templateString;
+
+// Create style element
+const style = document.createElement('style');
+style.innerHTML = styleString;
 
 /**
  * ImageSlider Class
@@ -13,23 +25,10 @@ class coreSlider extends HTMLElement {
     this._index = 0;
     this._controlInitialized = false;
 
-    // Create template prototype
-    const template = document.createElement('template');
-    template.innerHTML = `
-      <link rel="stylesheet" href="../core-slider/core-slider.css">
-      <div id="slider">
-        <!-- This allows us to place children into the element -->
-        <slot></slot>
-        <div id="description">
-          <slot name="title"><span>Title</span></slot>
-          <slot name="content"><p>Description of these pictures.</p></slot>
-        </div>
-      </div>
-    `;
-
     // Create the shadow dom
     const shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(template.content);
+    shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(style.cloneNode(true));
 
     // Store slider link
     this._slider = this.shadowRoot.getElementById('slider');
@@ -295,7 +294,6 @@ class coreSlider extends HTMLElement {
    * @param {*} newV
    */
   attributeChangedCallback(attr, oldV, newV) {
-    console.log(oldV);
     switch (attr) {
       case 'time': {
         this._slider.style.transitionDuration = newV;
@@ -414,4 +412,7 @@ class coreSlider extends HTMLElement {
   }
 }
 
-window.customElements.define('core-slider', coreSlider);
+if (!customElements.get('core-slier')) {
+  customElements.define('core-slider', coreSlider);
+}
+

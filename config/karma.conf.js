@@ -6,51 +6,36 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      'components/**/*.js',
-      'test/*.test.js',
-      'test/utils/*.js',
-    ],
-
-    exclude: [
-      // 'test/core-hello.test.js',
-      // 'test/core-button.test.js',
-      // 'test/core-slider.test.js',
-      'components/core-modal/core-modal.js',
+      '../tests/unit/*.test.js',
     ],
 
     preprocessors: {
-      '**/components/**/*.js': ['coverage'],
-      'test/*.test.js': [],
+      '../components/**/*.js': ['webpack', 'sourcemap'],
+      '../tests/unit/*.test.js': ['webpack', 'sourcemap'],      
     },
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage-istanbul'],
 
-    coverageReporter: {
-      'type': 'lcov',
-      'subdir': '.',
-      'file': 'lcov.info',
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly', 'text-summary'],
+      fixWebpackSourcePaths: true
     },
 
     port: 9876,
 
-
     // enable / disable colors in the output (reporters and logs)
     colors: true,
-
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
-
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome', 'Firefox'],
-
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -59,9 +44,12 @@ module.exports = function (config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
-    webpack: {
-      devtool: 'inline-source-map', // generate source map
-      mode: 'production',
-    },
+
+    // webpack: {
+    //   devtool: 'inline-source-map', // generate source map
+    //   mode: 'production',
+    // },
+
+    webpack: require("./webpack.dev"),
   });
 }

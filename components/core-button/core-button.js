@@ -1,3 +1,6 @@
+import templateString from './core-button.html';
+import styleString from './core-button.css';
+
 const coreBtnSizes = {
   tiny: 'tiny',
   xsmall: 'xsmall',
@@ -12,15 +15,13 @@ const coreColor = {
   dark: 'dark',
 };
 
-const templateString = `
-    <link rel="stylesheet" href="../core-button/core-button.css">
-    <div id="button">
-      <span><slot></slot></span>
-    </div>
-  `;
-
+// Create template element
 const template = document.createElement('template');
 template.innerHTML = templateString;
+
+// Create style element
+const style = document.createElement('style');
+style.innerHTML = styleString;
 
 /**
  * Core button class.
@@ -40,8 +41,12 @@ class CoreButton extends HTMLElement {
     super(); // HTMLElement does class definitions by calling super()
 
     const shadowRoot = this.attachShadow({mode: 'open'});
-    const templateHTML = template.content.cloneNode(true);
-    shadowRoot.appendChild(templateHTML);
+
+    // Set up the template
+    shadowRoot.appendChild(template.content.cloneNode(true));
+
+    // Set up the style
+    shadowRoot.appendChild(style.cloneNode(true));
 
     // Get message button element and message slot element
     this._button = shadowRoot.getElementById('button');
@@ -208,4 +213,6 @@ class CoreButton extends HTMLElement {
 }
 
 // define core button element
-customElements.define('core-button', CoreButton);
+if (!customElements.get('core-button')) {
+  customElements.define('core-button', CoreButton);
+}
