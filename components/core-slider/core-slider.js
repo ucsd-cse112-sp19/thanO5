@@ -35,9 +35,9 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * _hideContent
+   * _handleLongText
    */
-  _hideContent() {
+  _handleLongText() {
     const content = this._content.innerHTML;
     const title = this._title.innerHTML;
     const size = this.getAttribute('size');
@@ -82,36 +82,47 @@ class coreSlider extends HTMLElement {
     }
 
     if (needHide) {
-      // generate a modal name
-      const id = uuid();
-
-      // create a button linked to the modal
-      const button = document.createElement('core-button');
-      button.setAttribute('rounded', true);
-      button.setAttribute('size', buttonSize);
-      // button.setAttribute('theme', 'standard');
-      button.setAttribute('color', 'secondary');
-      button.setAttribute('modal', id);
-
-      if (theme !== 'circle') {
-        button.setAttribute('style', 'float: right; margin: 10px 20px;');
-      } else {
-        button.setAttribute('style', 'margin: 20px 20px;');
-        this._content.style['align-items'] = 'center';
-      }
-
-      button.innerHTML = 'Read more';
-      this._content.appendChild(button);
-
-      // create a modal to show all description
-      const modal = document.createElement('core-modal');
-      modal.setAttribute('name', id);
-      modal.innerHTML = `
-        <h1 slot="header">${title}</h1>
-        <p>${content}</p>
-      `;
-      document.body.appendChild(modal);
+      this._hideContent(buttonSize, theme, title, content);
     }
+  }
+
+  /**
+   * _hideContent
+   * @param {*} buttonSize
+   * @param {*} theme
+   * @param {*} title
+   * @param {*} content
+   */
+  _hideContent(buttonSize, theme, title, content) {
+    // generate a modal name
+    const id = uuid();
+
+    // create a button linked to the modal
+    const button = document.createElement('core-button');
+    button.setAttribute('rounded', true);
+    button.setAttribute('size', buttonSize);
+    // button.setAttribute('theme', 'standard');
+    button.setAttribute('color', 'secondary');
+    button.setAttribute('modal', id);
+
+    if (theme !== 'circle') {
+      button.setAttribute('style', 'float: right; margin: 10px 20px;');
+    } else {
+      button.setAttribute('style', 'margin: 20px 20px;');
+      this._content.style['align-items'] = 'center';
+    }
+
+    button.innerHTML = 'Read more';
+    this._content.appendChild(button);
+
+    // create a modal to show all description
+    const modal = document.createElement('core-modal');
+    modal.setAttribute('name', id);
+    modal.innerHTML = `
+      <h1 slot="header">${title}</h1>
+      <p>${content}</p>
+    `;
+    document.body.appendChild(modal);
   }
 
   /**
@@ -243,7 +254,17 @@ class coreSlider extends HTMLElement {
     this._imageChildren = this.getElementsByTagName('img');
     this._imageChildCount = this._imageChildren.length;
 
-    // Set up control menu
+    // Initialize menu
+    this._initMenu();
+
+    // Initialize arrows
+    this._initArrows();
+  }
+
+  /**
+   * _initMenu()
+   */
+  _initMenu() {
     let menuHTML = '';
 
     for (let i = 0; i < this._imageChildCount; i ++) {
@@ -261,8 +282,13 @@ class coreSlider extends HTMLElement {
     });
 
     this._menuItems = Array.from(menu.children);
+    this._menu = menu;
+  }
 
-    // Set up control arrows
+  /**
+   * _initArrows()
+   */
+  _initArrows() {
     const leftArrow = document.createElement('div');
     const rightArrow = document.createElement('div');
 
@@ -281,8 +307,6 @@ class coreSlider extends HTMLElement {
       this.index += 1;
       this._start(this.index);
     });
-
-    this._menu = menu;
     this._leftArrow = leftArrow;
     this._rightArrow = rightArrow;
   }
@@ -301,21 +325,7 @@ class coreSlider extends HTMLElement {
       }
 
       case 'control': {
-        // Set up control
-        if (!this._controlInitialized) {
-          this._initControl();
-          this._controlInitialized = false;
-        }
-
-        if (this.control) {
-          this._slider.appendChild(this._menu);
-          this._slider.appendChild(this._leftArrow);
-          this._slider.appendChild(this._rightArrow);
-        } else if (oldV === '') {
-          this._slider.removeChild(this._slider.querySelector('#menu'));
-          this._slider.removeChild(this._slider.querySelector('#left-arrow'));
-          this._slider.removeChild(this._slider.querySelector('#right-arrow'));
-        }
+        this._setUpControl(oldV);
       }
 
       case 'text': {
@@ -325,7 +335,7 @@ class coreSlider extends HTMLElement {
           this._content = this.querySelector('[slot="content"]');
 
           if (this.text && this._title !== null && this._content !== null) {
-            this._hideContent();
+            this._handleLongText();
           }
         }
       }
@@ -408,6 +418,28 @@ class coreSlider extends HTMLElement {
         item.removeAttribute('selected', '');
       });
       this._menuItems[index].setAttribute('selected', '');
+    }
+  }
+
+  /**
+   * _setUpControl
+   * @param {*} oldV
+   */
+  _setUpControl(oldV) {
+    // Set up control
+    if (!this._controlInitialized) {
+      this._initControl();
+      this._controlInitialized = false;
+    }
+
+    if (this.control) {
+      this._slider.appendChild(this._menu);
+      this._slider.appendChild(this._leftArrow);
+      this._slider.appendChild(this._rightArrow);
+    } else if (oldV === '') {
+      this._slider.removeChild(this._slider.querySelector('#menu'));
+      this._slider.removeChild(this._slider.querySelector('#left-arrow'));
+      this._slider.removeChild(this._slider.querySelector('#right-arrow'));
     }
   }
 }
