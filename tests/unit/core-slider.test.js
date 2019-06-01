@@ -1,4 +1,4 @@
-import '../components/core-slider/core-slider';
+import '../../components/core-slider/core-slider';
 
 describe('CoreSlider Unit Tests', () => {
   // console.log('***STARTING CORE-SLIDER TESTS***');

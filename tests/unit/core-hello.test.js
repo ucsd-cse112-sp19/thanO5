@@ -1,4 +1,4 @@
-﻿import '../components/core-hello/core-hello.js';
+﻿import '../../components/core-hello/core-hello.js';
 
 describe('CoreHello Unit Tests', () => {
   // console.log('***STARTING CORE-HELLO TESTS***');

@@ -6,12 +6,12 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      '../test/*.test.js',
+      '../tests/unit/*.test.js',
     ],
 
     preprocessors: {
       '../components/**/*.js': ['webpack', 'sourcemap'],
-      '../test/*.test.js': ['webpack', 'sourcemap'],      
+      '../tests/unit/*.test.js': ['webpack', 'sourcemap'],      
     },
 
     reporters: ['progress', 'coverage-istanbul'],
