@@ -10,7 +10,8 @@
     "docs": "npx jsdoc -r . -c jsdoc.json -d docs",
     "build": "npx webpack --config config/webpack.prod.js",
     "build:watch": "npx webpack --config config/webpack.prod.js --watch",
-    "serve": "npx webpack-dev-server --config config/webpack.dev.js"
+    "serve": "npx webpack-dev-server --config config/webpack.dev.js",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/ucsd-cse112/thanO5#readme",
   "devDependencies": {
+    "@storybook/addon-knobs": "^5.0.11",
+    "@storybook/html": "^5.0.11",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.3",
