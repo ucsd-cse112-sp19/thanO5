@@ -4,7 +4,7 @@ an Image Slider Web Component
 
 ## Demo
 
-[Check out our Image Sliders!](http://ucsd-cse112.github.io/thanOS/components/core-slider/slider.html)
+[Check out our Image Sliders!](http://ucsd-cse112.github.io/thanO5/components/core-slider/slider.html)
 
 ![](image_slider_2.gif)
 

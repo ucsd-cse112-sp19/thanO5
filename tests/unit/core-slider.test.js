@@ -265,9 +265,16 @@ describe('CoreSlider Unit Tests', () => {
   });
 
   describe('text', () => {
-  //  it('should not render description given without text attribute', () => {
-  //
-  //  });
+    const text = 'Lorem ipsum dolor sit amet, consectetur ' +
+                 'adipiscing elit, sed do eiusmod tempor ' +
+                 'incididunt ut labore et dolore magna aliqua. ' +
+                 'Ut enim ad minim veniam, quis nostrud ' +
+                 'exercitation ullamco laboris nisi ut aliquip ' +
+                 'ex ea commodo consequat.';
+
+    //  it('should not render description given without text attribute', () => {
+    //
+    //  });
 
     it('should not render text given when wrong text value is given', () => {
       element.text = false;
@@ -292,21 +299,63 @@ describe('CoreSlider Unit Tests', () => {
       //  });
 
       it('should show a small number of characters', () => {
+        // ASSUMES THEME IS NOT CIRCLE
         element.size = 'small';
+        const spanNode = document.createElement('span');
+        const spanText = document.createTextNode('ThanO5');
+        spanNode.appendChild(spanText);
+        spanNode.setAttribute('slot', 'title');
+        element.appendChild(spanNode);
+        const pNode = document.createElement('p');
+        const pText = document.createTextNode(text);
+        pNode.appendChild(pText);
+        pNode.setAttribute('slot', 'content');
+        element.appendChild(pNode);
+
         element.text = true;
-        // TODO run some expects
+        const smallLen = 33; // 33 because 30 + '...'
+
+        expect(element._content.firstChild.nodeValue.length).toBe(smallLen);
       });
 
       it('should show a medium number of characters', () => {
+        // ASSUMES THEME IS NOT CIRCLE
         element.size = 'medium';
+        const spanNode = document.createElement('span');
+        const spanText = document.createTextNode('ThanO5');
+        spanNode.appendChild(spanText);
+        spanNode.setAttribute('slot', 'title');
+        element.appendChild(spanNode);
+        const pNode = document.createElement('p');
+        const pText = document.createTextNode(text);
+        pNode.appendChild(pText);
+        pNode.setAttribute('slot', 'content');
+        element.appendChild(pNode);
+
+        const mediumLen = 83; // 83 because 80 + '...'
         element.text = true;
-        // TODO run some expects
+
+        expect(element._content.firstChild.nodeValue.length).toBe(mediumLen);
       });
 
       it('should show a large number of characters', () => {
+        // ASSUMES THEME IS NOT CIRCLE
         element.size = 'large';
+        const spanNode = document.createElement('span');
+        const spanText = document.createTextNode('ThanO5');
+        spanNode.appendChild(spanText);
+        spanNode.setAttribute('slot', 'title');
+        element.appendChild(spanNode);
+        const pNode = document.createElement('p');
+        const pText = document.createTextNode(text);
+        pNode.appendChild(pText);
+        pNode.setAttribute('slot', 'content');
+        element.appendChild(pNode);
+
+        const largeLen = 203; // 203 because 200 + '...'
         element.text = true;
-        // TODO run some expects
+
+        expect(element._content.firstChild.nodeValue.length).toBe(largeLen);
       });
     });
 
