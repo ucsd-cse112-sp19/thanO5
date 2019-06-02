@@ -27,5 +27,5 @@ checks:
   identical-code:
     config:
       threshold: # language-specific defaults. an override will affect all languages.
-  exclude_patterns:
-    - "element-helpers/"
+exclude_patterns:
+  - "element-helpers/"
