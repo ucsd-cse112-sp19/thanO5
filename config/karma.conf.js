@@ -16,7 +16,7 @@ module.exports = function (config) {
       // '../tests/unit/core-badge.test.js',
       // '../tests/unit/core-progress.test.js',
       '../tests/unit/core-modal.test.js',
-      '../components/core-modal/core-modal.js'
+      // '../components/core-modal/core-modal.js'
     ],
 
     preprocessors: {
@@ -45,7 +45,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['ChromeHeadless'], //, 'Firefox'],
+    browsers: ['Chrome', 'Firefox'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
