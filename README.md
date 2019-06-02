@@ -25,15 +25,11 @@
 3. Download all necessary dependencies locally
 	- `npm install`
 
-## Unit Testing
-**To run all the unit tests:**
+## Unit Testing and Integration Testing
+**To run all the unit and integration tests:**
 - `npm test` or `npm run test`
 
 A much more detailed guide and explanation to Unit Testing can be found [here](https://docs.google.com/document/d/1N5Mdvw3mUZzqnDy4j3Zy-UZNi_xN5Kv3ctdWr3Vi5T4/edit)
-
-## Integration Testing
-**To run all the integration tests:**
-- `npm run integrationtest`
 
 A much more detailed guide and explanation to Integration Testing can be found [here](https://docs.google.com/document/d/1ZXp29jMGDu2BMSO8LRCvTIIiLbpRYNt_g1ojZT9xwA0/edit)
 
