@@ -51,157 +51,197 @@ export default class CoreProgress extends HTMLElement {
     this._percentage = this.getAttribute('percentage') || 0;
     this._status = this.getAttribute('status') || undefined;
     this._strokeWidth = this.getAttribute('stroke-width') || 6;
-    this._textInside = this.hasAttribute('text-inside') || false; // this.hasAttribute('text-inside')
+    this._textInside = this.hasAttribute('text-inside') || false;
     this._width = this.getAttribute('width') || 126;
-    this._showText = this.hasAttribute('show-text') || true; // true
+    this._showText = this.hasAttribute('show-text') || false;
     this._color = this.getAttribute('color') || undefined;
-
-    // define type
-    Object.defineProperty(this, 'type', {
-      get() {
-        return this._type;
-      },
-      set(val) {
-        if (['line', 'circle'].indexOf(val) > -1) {
-          this._type = val;
-          this.setAttribute('type', val);
-        } else {
-          this._type = 'line';
-          this.setAttribute('type', 'line');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define percentage
-    Object.defineProperty(this, 'percentage', {
-      get() {
-        return this._percentage;
-      },
-      set(val) {
-        if (typeof val === 'number' &amp;&amp; val &lt;= 100 &amp;&amp; val >= 0) {
-          this._percentage = val;
-          this.setAttribute('percentage', val);
-        } else {
-          this._percentage = 0;
-          this.setAttribute('percentage', 0);
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define status
-    Object.defineProperty(this, 'status', {
-      get() {
-        return this._status;
-      },
-      set(val) {
-        if (['success', 'exception', 'text'].indexOf(val) > -1) {
-          this._status = val;
-          this.setAttribute('status', val);
-        } else {
-          this._status = undefined;
-          this.removeAttribute('status');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define strokeWidth
-    Object.defineProperty(this, 'strokeWidth', {
-      get() {
-        return this._strokeWidth;
-      },
-      set(val) {
-        if (typeof val === 'number') {
-          this._strokeWidth = val;
-          this.setAttribute('stroke-width', val);
-        } else {
-          this._strokeWidth = 6;
-          this.setAttribute('stroke-width', 6);
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define textInside
-    Object.defineProperty(this, 'textInside', {
-      get() {
-        return this._textInside;
-      },
-      set(val) {
-        if (val === true) {
-          this._textInside = true;
-          this.setAttribute('text-inside', '');
-        } else {
-          this._textInside = false;
-          this.removeAttribute('text-inside');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define width
-    Object.defineProperty(this, 'width', {
-      get() {
-        return this._width;
-      },
-      set(val) {
-        if (typeof val === 'number') {
-          this._width = val;
-          this.setAttribute('width', val);
-        } else {
-          this._width = 126;
-          this.setAttribute('width', 126);
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define showText
-    Object.defineProperty(this, 'showText', {
-      get() {
-        return this._showText;
-      },
-      set(val) {
-        if (val === true) {
-          this._showText = true;
-          this.setAttribute('show-text', '');
-        } else {
-          this._showText = false;
-          this.removeAttribute('show-text');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define color
-    Object.defineProperty(this, 'color', {
-      get() {
-        return this._color;
-      },
-      set(val) {
-        if (typeof val === 'string') {
-          this._color = val;
-          this.setAttribute('color', val);
-        } else {
-          this._color = undefined;
-          this.removeAttribute('color');
-        }
-
-        this._updateTemplate();
-      },
-    });
 
     this.attachShadow({mode: 'open'});
     this._template = document.createElement('template');
+    this._updateTemplate();
+  }
+
+  /**
+   * type getter
+   */
+  get type() {
+    return this._type;
+  }
+
+  /**
+   * type setter
+   * @param {*} val
+   */
+  set type(val) {
+    if (['line', 'circle'].indexOf(val) > -1) {
+      this._type = val;
+      this.setAttribute('type', val);
+    } else {
+      this._type = 'line';
+      this.setAttribute('type', 'line');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * percentage setter
+   */
+  get percentage() {
+    return this._percentage;
+  }
+
+  /**
+   * percentage setter
+   * @param {*} val
+   */
+  set percentage(val) {
+    if (typeof val === 'number' &amp;&amp; val &lt;= 100 &amp;&amp; val >= 0) {
+      this._percentage = val;
+      this.setAttribute('percentage', val);
+    } else {
+      this._percentage = 0;
+      this.setAttribute('percentage', 0);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * status getter
+   */
+  get status() {
+    return this._status;
+  }
+
+  /**
+   * status setter
+   * @param {*} val
+   */
+  set status(val) {
+    if (['success', 'exception', 'text'].indexOf(val) > -1) {
+      this._status = val;
+      this.setAttribute('status', val);
+    } else {
+      this._status = undefined;
+      this.removeAttribute('status');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * strokeWidth getter
+   */
+  get strokeWidth() {
+    return this._strokeWidth;
+  }
+
+  /**
+   * strokeWidth setter
+   * @param {*} val
+   */
+  set strokeWidth(val) {
+    if (typeof val === 'number') {
+      this._strokeWidth = val;
+      this.setAttribute('stroke-width', val);
+    } else {
+      this._strokeWidth = 6;
+      this.setAttribute('stroke-width', 6);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * textInside getter
+   */
+  get textInside() {
+    return this._textInside;
+  }
+
+  /**
+   * textInside setter
+   * @param {*} val
+   */
+  set textInside(val) {
+    if (val === true) {
+      this._textInside = true;
+      this.setAttribute('text-inside', '');
+    } else {
+      this._textInside = false;
+      this.removeAttribute('text-inside');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * width getter
+   */
+  get width() {
+    return this._width;
+  }
+
+  /**
+   * width setter
+   * @param {*} val
+   */
+  set width(val) {
+    if (typeof val === 'number') {
+      this._width = val;
+      this.setAttribute('width', val);
+    } else {
+      this._width = 126;
+      this.setAttribute('width', 126);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * showText getter
+   */
+  get showText() {
+    return this._showText;
+  }
+
+  /**
+   * showText setter
+   * @param {*} val
+   */
+  set showText(val) {
+    if (val === true) {
+      this._showText = true;
+      this.setAttribute('show-text', '');
+    } else {
+      this._showText = false;
+      this.removeAttribute('show-text');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * color getter
+   */
+  get color() {
+    return this._color;
+  }
+
+  /**
+   * color setter
+   * @param {*} val
+   */
+  set color(val) {
+    if (typeof val === 'string') {
+      this._color = val;
+      this.setAttribute('color', val);
+    } else {
+      this._color = undefined;
+      this.removeAttribute('color');
+    }
+
     this._updateTemplate();
   }
 
@@ -371,13 +411,13 @@ if (!customElements.get('core-progress')) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Popper.modifiers.html">modifiers</a></li></ul><h3>Classes</h3><ul><li><a href="aria.html">aria</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="coreSlider.html">coreSlider</a></li><li><a href="fecha.html">fecha</a></li><li><a href="module.html#.exports">exports</a></li><li><a href="Popper.html">Popper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_addLazyLoadListener">_addLazyLoadListener</a></li><li><a href="global.html#_getImageStyle">_getImageStyle</a></li><li><a href="global.html#_handleError">_handleError</a></li><li><a href="global.html#_handleLazyLoad">_handleLazyLoad</a></li><li><a href="global.html#_handleLoad">_handleLoad</a></li><li><a href="global.html#_loadImage">_loadImage</a></li><li><a href="global.html#_removeLazyLoadListener">_removeLazyLoadListener</a></li><li><a href="global.html#_updateTemplate">_updateTemplate</a></li><li><a href="global.html#alignCenter">alignCenter</a></li><li><a href="global.html#attributeChangedCallback">attributeChangedCallback</a></li><li><a href="global.html#barStyle">barStyle</a></li><li><a href="global.html#circlePathStyle">circlePathStyle</a></li><li><a href="global.html#connectedCallback">connectedCallback</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#disconnectedCallback">disconnectedCallback</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#fit">fit</a></li><li><a href="global.html#iconClass">iconClass</a></li><li><a href="global.html#imageStyle">imageStyle</a></li><li><a href="global.html#lazy">lazy</a></li><li><a href="global.html#loading">loading</a></li><li><a href="global.html#observedAttributes">observedAttributes</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#perimeter">perimeter</a></li><li><a href="global.html#progressTextSize">progressTextSize</a></li><li><a href="global.html#relativeStrokeWidth">relativeStrokeWidth</a></li><li><a href="global.html#src">src</a></li><li><a href="global.html#stroke">stroke</a></li><li><a href="global.html#trackPath">trackPath</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Popper.modifiers.html">modifiers</a></li></ul><h3>Classes</h3><ul><li><a href="aria.html">aria</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="coreSlider.html">coreSlider</a></li><li><a href="fecha.html">fecha</a></li><li><a href="module.html#.exports">exports</a></li><li><a href="Popper.html">Popper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_addLazyLoadListener">_addLazyLoadListener</a></li><li><a href="global.html#_getImageStyle">_getImageStyle</a></li><li><a href="global.html#_handleError">_handleError</a></li><li><a href="global.html#_handleLazyLoad">_handleLazyLoad</a></li><li><a href="global.html#_handleLoad">_handleLoad</a></li><li><a href="global.html#_loadImage">_loadImage</a></li><li><a href="global.html#_removeLazyLoadListener">_removeLazyLoadListener</a></li><li><a href="global.html#_updateTemplate">_updateTemplate</a></li><li><a href="global.html#alignCenter">alignCenter</a></li><li><a href="global.html#color">color</a></li><li><a href="global.html#connectedCallback">connectedCallback</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#attributeChangedCallback">attributeChangedCallback</a></li><li><a href="global.html#barStyle">barStyle</a></li><li><a href="global.html#circlePathStyle">circlePathStyle</a></li><li><a href="global.html#disconnectedCallback">disconnectedCallback</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#fit">fit</a></li><li><a href="global.html#hidden">hidden</a></li><li><a href="global.html#iconClass">iconClass</a></li><li><a href="global.html#imageStyle">imageStyle</a></li><li><a href="global.html#isDot">isDot</a></li><li><a href="global.html#lazy">lazy</a></li><li><a href="global.html#loading">loading</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#observedAttributes">observedAttributes</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#percentage">percentage</a></li><li><a href="global.html#perimeter">perimeter</a></li><li><a href="global.html#progressTextSize">progressTextSize</a></li><li><a href="global.html#relativeStrokeWidth">relativeStrokeWidth</a></li><li><a href="global.html#showText">showText</a></li><li><a href="global.html#src">src</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#stroke">stroke</a></li><li><a href="global.html#strokeWidth">strokeWidth</a></li><li><a href="global.html#textInside">textInside</a></li><li><a href="global.html#trackPath">trackPath</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#value">value</a></li><li><a href="global.html#width">width</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Sun Jun 02 2019 05:55:05 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Sun Jun 02 2019 10:24:40 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

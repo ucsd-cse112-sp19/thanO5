@@ -305,7 +305,7 @@ export default class CoreImage extends HTMLElement {
     }
     if (_scrollContainer) {
       this._scrollContainer = _scrollContainer;
-      this._lazyLoadHandler = throttle(250, this._handleLazyLoad.bind(this));
+      this._lazyLoadHandler = throttle(500, this._handleLazyLoad.bind(this));
       on(_scrollContainer, 'scroll', this._lazyLoadHandler);
       this._handleLazyLoad();
     }

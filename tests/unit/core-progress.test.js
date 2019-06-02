@@ -34,8 +34,8 @@ describe('CoreProgress Unit Tests', () => {
       expect(element.width).toBe(126);
     });
 
-    it('showText attribute should be true', () => {
-      expect(element.showText).toBe(true);
+    it('showText attribute should be false', () => {
+      expect(element.showText).toBe(false);
     });
 
     it('color attribute should be undefined', () => {

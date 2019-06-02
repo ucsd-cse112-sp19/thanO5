@@ -23,157 +23,197 @@ export default class CoreProgress extends HTMLElement {
     this._percentage = this.getAttribute('percentage') || 0;
     this._status = this.getAttribute('status') || undefined;
     this._strokeWidth = this.getAttribute('stroke-width') || 6;
-    this._textInside = this.hasAttribute('text-inside') || false; // this.hasAttribute('text-inside')
+    this._textInside = this.hasAttribute('text-inside') || false;
     this._width = this.getAttribute('width') || 126;
-    this._showText = this.hasAttribute('show-text') || true; // true
+    this._showText = this.hasAttribute('show-text') || false;
     this._color = this.getAttribute('color') || undefined;
-
-    // define type
-    Object.defineProperty(this, 'type', {
-      get() {
-        return this._type;
-      },
-      set(val) {
-        if (['line', 'circle'].indexOf(val) > -1) {
-          this._type = val;
-          this.setAttribute('type', val);
-        } else {
-          this._type = 'line';
-          this.setAttribute('type', 'line');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define percentage
-    Object.defineProperty(this, 'percentage', {
-      get() {
-        return this._percentage;
-      },
-      set(val) {
-        if (typeof val === 'number' && val <= 100 && val >= 0) {
-          this._percentage = val;
-          this.setAttribute('percentage', val);
-        } else {
-          this._percentage = 0;
-          this.setAttribute('percentage', 0);
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define status
-    Object.defineProperty(this, 'status', {
-      get() {
-        return this._status;
-      },
-      set(val) {
-        if (['success', 'exception', 'text'].indexOf(val) > -1) {
-          this._status = val;
-          this.setAttribute('status', val);
-        } else {
-          this._status = undefined;
-          this.removeAttribute('status');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define strokeWidth
-    Object.defineProperty(this, 'strokeWidth', {
-      get() {
-        return this._strokeWidth;
-      },
-      set(val) {
-        if (typeof val === 'number') {
-          this._strokeWidth = val;
-          this.setAttribute('stroke-width', val);
-        } else {
-          this._strokeWidth = 6;
-          this.setAttribute('stroke-width', 6);
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define textInside
-    Object.defineProperty(this, 'textInside', {
-      get() {
-        return this._textInside;
-      },
-      set(val) {
-        if (val === true) {
-          this._textInside = true;
-          this.setAttribute('text-inside', '');
-        } else {
-          this._textInside = false;
-          this.removeAttribute('text-inside');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define width
-    Object.defineProperty(this, 'width', {
-      get() {
-        return this._width;
-      },
-      set(val) {
-        if (typeof val === 'number') {
-          this._width = val;
-          this.setAttribute('width', val);
-        } else {
-          this._width = 126;
-          this.setAttribute('width', 126);
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define showText
-    Object.defineProperty(this, 'showText', {
-      get() {
-        return this._showText;
-      },
-      set(val) {
-        if (val === true) {
-          this._showText = true;
-          this.setAttribute('show-text', '');
-        } else {
-          this._showText = false;
-          this.removeAttribute('show-text');
-        }
-
-        this._updateTemplate();
-      },
-    });
-
-    // define color
-    Object.defineProperty(this, 'color', {
-      get() {
-        return this._color;
-      },
-      set(val) {
-        if (typeof val === 'string') {
-          this._color = val;
-          this.setAttribute('color', val);
-        } else {
-          this._color = undefined;
-          this.removeAttribute('color');
-        }
-
-        this._updateTemplate();
-      },
-    });
 
     this.attachShadow({mode: 'open'});
     this._template = document.createElement('template');
+    this._updateTemplate();
+  }
+
+  /**
+   * type getter
+   */
+  get type() {
+    return this._type;
+  }
+
+  /**
+   * type setter
+   * @param {*} val
+   */
+  set type(val) {
+    if (['line', 'circle'].indexOf(val) > -1) {
+      this._type = val;
+      this.setAttribute('type', val);
+    } else {
+      this._type = 'line';
+      this.setAttribute('type', 'line');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * percentage setter
+   */
+  get percentage() {
+    return this._percentage;
+  }
+
+  /**
+   * percentage setter
+   * @param {*} val
+   */
+  set percentage(val) {
+    if (typeof val === 'number' && val <= 100 && val >= 0) {
+      this._percentage = val;
+      this.setAttribute('percentage', val);
+    } else {
+      this._percentage = 0;
+      this.setAttribute('percentage', 0);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * status getter
+   */
+  get status() {
+    return this._status;
+  }
+
+  /**
+   * status setter
+   * @param {*} val
+   */
+  set status(val) {
+    if (['success', 'exception', 'text'].indexOf(val) > -1) {
+      this._status = val;
+      this.setAttribute('status', val);
+    } else {
+      this._status = undefined;
+      this.removeAttribute('status');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * strokeWidth getter
+   */
+  get strokeWidth() {
+    return this._strokeWidth;
+  }
+
+  /**
+   * strokeWidth setter
+   * @param {*} val
+   */
+  set strokeWidth(val) {
+    if (typeof val === 'number') {
+      this._strokeWidth = val;
+      this.setAttribute('stroke-width', val);
+    } else {
+      this._strokeWidth = 6;
+      this.setAttribute('stroke-width', 6);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * textInside getter
+   */
+  get textInside() {
+    return this._textInside;
+  }
+
+  /**
+   * textInside setter
+   * @param {*} val
+   */
+  set textInside(val) {
+    if (val === true) {
+      this._textInside = true;
+      this.setAttribute('text-inside', '');
+    } else {
+      this._textInside = false;
+      this.removeAttribute('text-inside');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * width getter
+   */
+  get width() {
+    return this._width;
+  }
+
+  /**
+   * width setter
+   * @param {*} val
+   */
+  set width(val) {
+    if (typeof val === 'number') {
+      this._width = val;
+      this.setAttribute('width', val);
+    } else {
+      this._width = 126;
+      this.setAttribute('width', 126);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * showText getter
+   */
+  get showText() {
+    return this._showText;
+  }
+
+  /**
+   * showText setter
+   * @param {*} val
+   */
+  set showText(val) {
+    if (val === true) {
+      this._showText = true;
+      this.setAttribute('show-text', '');
+    } else {
+      this._showText = false;
+      this.removeAttribute('show-text');
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * color getter
+   */
+  get color() {
+    return this._color;
+  }
+
+  /**
+   * color setter
+   * @param {*} val
+   */
+  set color(val) {
+    if (typeof val === 'string') {
+      this._color = val;
+      this.setAttribute('color', val);
+    } else {
+      this._color = undefined;
+      this.removeAttribute('color');
+    }
+
     this._updateTemplate();
   }
 
