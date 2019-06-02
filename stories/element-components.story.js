@@ -60,7 +60,6 @@ stories.add('<core-progress>', () => {
   const TYPES = {
     line: 'line',
     circle: 'circle',
-    dashboard: 'dashboard',
   };
 
   const STATUSES = {
@@ -76,8 +75,8 @@ stories.add('<core-progress>', () => {
   const textInside = boolean('Text Inside', false) ? 'text-inside' : '';
   const status = select('Status', STATUSES, '');
   const color = text('Color', '');
-  const width = number('Width', 126) || 6;
-  const showText = boolean('Show Text', false) ? 'show-text' : '';
+  const width = number('Width', 126) || 126;
+  const showText = boolean('Show Text', true) ? 'show-text' : '';
 
   const content = `
     <style>
