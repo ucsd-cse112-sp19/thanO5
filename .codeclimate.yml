@@ -7,14 +7,15 @@ checks:
     config:
       threshold: 4
   file-lines:
-    config:
-      threshold: 250
+    enabled:false
   method-complexity:
     config:
       threshold: 10
   method-count:
     config:
       threshold: 30
+  method-lines:
+    enabled: false
   nested-control-flow:
     config:
       threshold: 4
@@ -29,3 +30,5 @@ checks:
       threshold: # language-specific defaults. an override will affect all languages.
 exclude_patterns:
   - "element-helpers/"
+	- "**/node_modules/"
+	- "**/tests/"
