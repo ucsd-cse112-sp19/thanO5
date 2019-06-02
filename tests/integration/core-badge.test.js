@@ -7,7 +7,7 @@ describe('CoreBadge Integration Tests', () => {
 
   // make sure the default badge works as expected
   it('should start out as a default badge', () => {
-    console.log("TEST 1");
+    console.log('TEST 1');
 
     expect(element.innerHTML).toBe('');
     expect(element.content).toBeUndefined();
@@ -19,7 +19,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should give the default badge a number value', () => {
-    console.log("TEST 2");
+    console.log('TEST 2');
 
     element.value = 10;
     expect(element.value).toBe(10);
@@ -27,7 +27,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should add the max attribute to the badge', () => {
-    console.log("TEST 3");
+    console.log('TEST 3');
 
     element.max = 100;
     expect(element.value).toBe(10);
@@ -37,7 +37,7 @@ describe('CoreBadge Integration Tests', () => {
 
   // TODO - should this remove value/max since it doesn't display anymore
   it('should change the badge to be a dot', () => {
-    console.log("TEST 4");
+    console.log('TEST 4');
 
     element.isDot = true;
     expect(element.value).toBe(10);
@@ -47,7 +47,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should hide the badge but still maintain its attributes', () => {
-    console.log("TEST 5");
+    console.log('TEST 5');
 
     element.hidden = true;
     expect(element.value).toBe(10);
@@ -58,7 +58,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should change the type/color of the badge', () => {
-    console.log("TEST 6");
+    console.log('TEST 6');
 
     element.type = 'success';
     expect(element.value).toBe(10);
@@ -70,7 +70,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should unhide the badge and no longer make it a dot', () => {
-    console.log("TEST 7");
+    console.log('TEST 7');
 
     element.isDot = false;
     element.hidden = false;
@@ -83,7 +83,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should cap the value at max when value is > max', () => {
-    console.log("TEST 8");
+    console.log('TEST 8');
 
     element.value = 112;
     expect(element.value).toBe(112);
@@ -95,7 +95,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('should not cap the value is value is a string', () => {
-    console.log("TEST 9");
+    console.log('TEST 9');
 
     element.value = 'new';
     expect(element.value).toBe('new');
@@ -107,7 +107,7 @@ describe('CoreBadge Integration Tests', () => {
   });
 
   it('reset attributes 1 by 1', () => {
-    console.log("TEST 10");
+    console.log('TEST 10');
 
     expect(element.value).toBe('new');
     expect(element.max).toBe(100);
@@ -126,7 +126,6 @@ describe('CoreBadge Integration Tests', () => {
 
   // TODO? - Tests for Integration with innerHTML like button component
   it('', () => {
-    console.log("TEST 11");
-
+    console.log('TEST 11');
   });
 });

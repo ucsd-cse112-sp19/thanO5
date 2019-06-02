@@ -7,7 +7,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // make sure the default progress element works as expected
   it('should start out as a default progress element', () => {
-    console.log("TEST 1");
+    console.log('TEST 1');
 
     expect(element.type).toBe('line');
     expect(element.percentage).toBe(0);
@@ -18,11 +18,11 @@ describe('CoreProgress Integration Tests', () => {
     expect(element.showText).toBe(false);
     expect(element.color).toBeUndefined();
     expect(element.iconClass).toBe('el-icon-circle-close');
-  }); 
+  });
 
   // status changes, doesn't affect other attributes
   it('should add status to the default progress element', () => {
-    console.log("TEST 2");
+    console.log('TEST 2');
 
     element.status = 'exception';
     expect(element.type).toBe('line');
@@ -38,7 +38,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // text is now inside, doesn't affect other attributes
   it('should set textInside to be true', () => {
-    console.log("TEST 3");
+    console.log('TEST 3');
 
     element.textInside = true;
     expect(element.type).toBe('line');
@@ -54,7 +54,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // showing text, doesn't affect other attributes
   it('should show text', () => {
-    console.log("TEST 4");
+    console.log('TEST 4');
 
     element.showText = true;
     expect(element.type).toBe('line');
@@ -70,7 +70,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // color changes, doesn't affect other attributes
   it('should change the color', () => {
-    console.log("TEST 5");
+    console.log('TEST 5');
 
     element.color = '#8e71c7';
     expect(element.type).toBe('line');
@@ -86,7 +86,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // percentage changes, doesn't affect other attributes
   it('should change the percentage', () => {
-    console.log("TEST 6");
+    console.log('TEST 6');
 
     element.percentage = 40;
     expect(element.type).toBe('line');
@@ -102,7 +102,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // strokeWidth changes, doesn't affect other attributes
   it('should change the strokeWidth', () => {
-    console.log("TEST 7");
+    console.log('TEST 7');
 
     element.strokeWidth = 20;
     expect(element.type).toBe('line');
@@ -118,7 +118,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // width changes, doesn't affect other attributes
   it('should change the width', () => {
-    console.log("TEST 8");
+    console.log('TEST 8');
 
     element.width = 150;
     expect(element.type).toBe('line');
@@ -134,7 +134,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // icon type changes, doesn't affect other attributes
   it('should change icon based on type', () => {
-    console.log("TEST 9");
+    console.log('TEST 9');
 
     element.type = 'circle';
     expect(element.type).toBe('circle');
@@ -150,7 +150,7 @@ describe('CoreProgress Integration Tests', () => {
 
   // removing/resetting attributes don't affect others in unexpected way
   it('removal of attributes 1 by 1', () => {
-    console.log("TEST 10");
+    console.log('TEST 10');
 
     expect(element.type).toBe('circle');
     expect(element.percentage).toBe(40);
@@ -182,7 +182,6 @@ describe('CoreProgress Integration Tests', () => {
 
   // More integrations
   it('', () => {
-    console.log("TEST 11");
-
+    console.log('TEST 11');
   });
 });
