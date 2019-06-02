@@ -4,9 +4,9 @@ import '../../components/core-button/core-button';
 describe('CoreModal Unit Tests', () => {
   // before each spec, set up the core-modal element
   let element;
-  // let shadowRoot;
+  let button;
   beforeEach(() => {
-    const button = document.createElement('core-button');
+    button = document.createElement('core-button');
     button.innerHTML = 'Submit';
     button.setAttribute('modal', 'test');
     document.body.appendChild(button);
@@ -28,33 +28,18 @@ describe('CoreModal Unit Tests', () => {
     document.body.appendChild(element);
   });
 
-  describe('default', () => {
-    // function afterMutation(cb) {
-    //   const doc = globals.getKeyValue('document');
-    //   const div = doc.createElement('div');
-    //   domMutate.onNodeInsertion(div, function() {
-    //     doc.body.removeChild(div);
-    //     setTimeout(cb, 5);
-    //   });
-    //   domMutateNode.appendChild.call(doc.body, div);
-    // }
-
-    it('should set up a default modal', () => {
-      // console.log('Element = ', element);
-      // console.log('element.innerhtml = ', element.innerHTML);
-      // const element = document.createElement('core-modal');
-      // element.setAttribute('name', 'Test Modal');
-      // element.innerHTML = '<h1 slot="header">${title}</h1><p>${content}</p>';
-      // document.body.append(element);
-      expect(true).toBe(true);
-      // afterMutation(() => {
-      //   expect(true).toBe(true);
-      //   done();
-      // });
-    });
+  it('should show the modal', () => {
+    button.click();
+    // TODO run some expect
   });
 
-  // afterEach(() => {
-  // document.body.removeChild(element);
-  // });
+  it('should hide the modal', () => {
+    const close = element.shadowRoot.querySelector('.close');
+    close.click();
+    // TODO run some expect
+  });
+
+  afterEach(() => {
+    document.body.removeChild(element);
+  });
 });
