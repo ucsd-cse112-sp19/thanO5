@@ -127,9 +127,12 @@ export default class CoreBadge extends HTMLElement {
     if (this.isDot) return '';
     const value = this.value;
     const max = this.max;
-    if (typeof value === 'number' && typeof max === 'number') {
-      return max < value ? `${max}+` : value;
+    const valueNum = parseInt(value);
+    const maxNum = parseInt(max);
+    if (!isNaN(valueNum) && !isNaN(maxNum)) {
+      return maxNum < valueNum ? `${maxNum}+` : valueNum;
     }
+
     return value;
   }
 
