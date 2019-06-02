@@ -52,7 +52,7 @@ export default class CoreProgress extends HTMLElement {
         return this._percentage;
       },
       set(val) {
-        if (val <= 100 && val >= 0) {
+        if (typeof val === 'number' && val <= 100 && val >= 0) {
           this._percentage = val;
           this.setAttribute('percentage', val);
         } else {
@@ -82,7 +82,7 @@ export default class CoreProgress extends HTMLElement {
       },
     });
 
-    // define strokeWith
+    // define strokeWidth
     Object.defineProperty(this, 'strokeWidth', {
       get() {
         return this._strokeWidth;
@@ -144,7 +144,7 @@ export default class CoreProgress extends HTMLElement {
       set(val) {
         if (val === true) {
           this._showText = true;
-          this, setAttribute('show-text', '');
+          this.setAttribute('show-text', '');
         } else {
           this._showText = false;
           this.removeAttribute('show-text');
@@ -310,7 +310,7 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * ironClass getter
+   * iconClass getter
    */
   get iconClass() {
     if (this.type === 'line') {

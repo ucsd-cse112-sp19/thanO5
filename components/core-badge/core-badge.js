@@ -28,7 +28,7 @@ export default class CoreBadge extends HTMLElement {
         return this._max;
       },
       set(val) {
-        if (typeof val === 'string' || typeof val === 'number') {
+        if (typeof val === 'number') {
           this._max = val;
           this.setAttribute('max', val);
         } else {
@@ -100,7 +100,7 @@ export default class CoreBadge extends HTMLElement {
           this._type = val;
           this.setAttribute('type', val);
         } else {
-          this._tpye = undefined;
+          this._type = undefined;
           this.removeAttribute('type');
         }
 
