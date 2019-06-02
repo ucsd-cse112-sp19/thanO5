@@ -126,7 +126,7 @@ class CoreHello extends HTMLElement {
    * @param {string} val
    */
   set lang(val) {
-    this._hello.textContent = helloTranslations[val] + ', ';
+    this._hello.textContent = helloTranslations[val] + ' ';
   }
 
   /**
