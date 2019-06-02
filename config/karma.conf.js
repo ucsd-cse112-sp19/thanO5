@@ -7,21 +7,25 @@ module.exports = function (config) {
 
     files: [
       '../tests/unit/*.test.js',
+      '../tests/integration/*.test.js',
     ],
 
     exclude: [
-      // '../tests/unit/core-hello.test.js',
-      // '../tests/unit/core-slider.test.js',
-      // '../tests/unit/core-button.test.js',
-      // '../tests/unit/core-badge.test.js',
-      // '../tests/unit/core-progress.test.js',
+      '../tests/unit/core-hello.test.js',
+      '../tests/unit/core-slider.test.js',
+      '../tests/unit/core-button.test.js',
+      '../tests/unit/core-badge.test.js',
+      '../tests/unit/core-progress.test.js',
       '../tests/unit/core-modal.test.js',
-      // '../components/core-modal/core-modal.js'
+      '../tests/integration/core-button.test.js',
+      '../tests/integration/core-badge.test.js',
+      '../components/core-modal/core-modal.js',
     ],
 
     preprocessors: {
       '../components/**/*.js': ['webpack', 'sourcemap'],
-      '../tests/unit/*.test.js': ['webpack', 'sourcemap'],      
+      '../tests/unit/*.test.js': ['webpack', 'sourcemap'],
+      '../tests/integration/*.test.js': ['webpack', 'sourcemap'],      
     },
 
     reporters: ['progress', 'coverage-istanbul'],
@@ -45,7 +49,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['ChromeHeadless'], //, 'Firefox'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -54,6 +58,12 @@ module.exports = function (config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
+
+    client: {
+      jasmine: {
+        random: false
+      }
+    },
 
     // webpack: {
     //   devtool: 'inline-source-map', // generate source map
