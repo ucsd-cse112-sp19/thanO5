@@ -30,5 +30,5 @@ checks:
       threshold: # language-specific defaults. an override will affect all languages.
 exclude_patterns:
   - "element-helpers/"
-	- "**/node_modules/"
-	- "**/tests/"
+  - "**/node_modules/"
+  - "**/tests/"
