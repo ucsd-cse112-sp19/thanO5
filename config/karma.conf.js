@@ -6,12 +6,22 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      '../test/*.test.js',
+      '../tests/unit/*.test.js',
+    ],
+
+    exclude: [
+      // '../tests/unit/core-hello.test.js',
+      // '../tests/unit/core-slider.test.js',
+      // '../tests/unit/core-button.test.js',
+      // '../tests/unit/core-badge.test.js',
+      // '../tests/unit/core-progress.test.js',
+      '../tests/unit/core-modal.test.js',
+      // '../components/core-modal/core-modal.js'
     ],
 
     preprocessors: {
       '../components/**/*.js': ['webpack', 'sourcemap'],
-      '../test/*.test.js': ['webpack', 'sourcemap'],      
+      '../tests/unit/*.test.js': ['webpack', 'sourcemap'],      
     },
 
     reporters: ['progress', 'coverage-istanbul'],
