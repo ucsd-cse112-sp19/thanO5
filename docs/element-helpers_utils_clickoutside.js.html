@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: element-helpers/utils/clickoutside.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,149 +17,94 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: element-helpers/utils/clickoutside.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Vue from 'vue';
+import { on } from 'element-ui/src/utils/dom';
 
+const nodeList = [];
+const ctx = '@@clickoutsideContext';
 
-    <h3> </h3>
+let startClick;
+let seed = 0;
 
+!Vue.prototype.$isServer &amp;&amp; on(document, 'mousedown', e => (startClick = e));
 
+!Vue.prototype.$isServer &amp;&amp; on(document, 'mouseup', e => {
+  nodeList.forEach(node => node[ctx].documentHandler(e, startClick));
+});
 
+function createDocumentHandler(el, binding, vnode) {
+  return function(mouseup = {}, mousedown = {}) {
+    if (!vnode ||
+      !vnode.context ||
+      !mouseup.target ||
+      !mousedown.target ||
+      el.contains(mouseup.target) ||
+      el.contains(mousedown.target) ||
+      el === mouseup.target ||
+      (vnode.context.popperElm &amp;&amp;
+      (vnode.context.popperElm.contains(mouseup.target) ||
+      vnode.context.popperElm.contains(mousedown.target)))) return;
 
+    if (binding.expression &amp;&amp;
+      el[ctx].methodName &amp;&amp;
+      vnode.context[el[ctx].methodName]) {
+      vnode.context[el[ctx].methodName]();
+    } else {
+      el[ctx].bindingFn &amp;&amp; el[ctx].bindingFn();
+    }
+  };
+}
 
+/**
+ * v-clickoutside
+ * @desc 点击元素外面才会触发的事件
+ * @example
+ * ```vue
+ * &lt;div v-element-clickoutside="handleClose">
+ * ```
+ */
+export default {
+  bind(el, binding, vnode) {
+    nodeList.push(el);
+    const id = seed++;
+    el[ctx] = {
+      id,
+      documentHandler: createDocumentHandler(el, binding, vnode),
+      methodName: binding.expression,
+      bindingFn: binding.value
+    };
+  },
 
+  update(el, binding, vnode) {
+    el[ctx].documentHandler = createDocumentHandler(el, binding, vnode);
+    el[ctx].methodName = binding.expression;
+    el[ctx].bindingFn = binding.value;
+  },
 
+  unbind(el) {
+    let len = nodeList.length;
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>element-helpers/utils/popper.js</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Kickass library to create and place poppers near their reference elements.</div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>{{version}}</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-license">License:</dt>
-    <dd class="tag-license"><ul class="dummy"><li>Copyright (c) 2016 Federico Zivolo and contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="element-helpers_utils_popper.js.html">element-helpers/utils/popper.js</a>, <a href="element-helpers_utils_popper.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    for (let i = 0; i &lt; len; i++) {
+      if (nodeList[i][ctx].id === el[ctx].id) {
+        nodeList.splice(i, 1);
+        break;
+      }
+    }
+    delete el[ctx];
+  }
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
