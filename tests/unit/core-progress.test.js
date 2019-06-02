@@ -120,7 +120,7 @@ describe('CoreProgress Unit Tests', () => {
     });
 
     it('should reset the strokeWidth if input type is not a number', () => {
-      element.strokeWidth = true
+      element.strokeWidth = true;
       expect(element.strokeWidth).toBe(6);
     });
   });
