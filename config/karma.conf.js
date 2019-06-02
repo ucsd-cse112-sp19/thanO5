@@ -15,7 +15,7 @@ module.exports = function (config) {
       // '../tests/unit/core-button.test.js',
       // '../tests/unit/core-badge.test.js',
       // '../tests/unit/core-progress.test.js',
-      '../tests/unit/core-modal.test.js',
+      // '../tests/unit/core-modal.test.js',
       // '../components/core-modal/core-modal.js'
     ],
 
