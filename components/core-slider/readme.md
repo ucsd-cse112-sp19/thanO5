@@ -8,12 +8,12 @@ core-slider is a Web Component providing an accessible and customizable slider, 
 
 Attribute | Description
 --------- | -----------
-![time](#core-slider-time-attribute) | time between image transitions
-![size](#core-slider-size-attribute) | set size of images displayed to "small", "medium", or "large"
-![theme](#core-slider-theme-attribute) | choose shape of images as either "circle" or rectangle
-![shadow](#core-slider-shadow-attribute) | create images with shadows
-![text](#core-slider-text-attribute) | add a description to the image
-![control](#core-slider-control-attribute) | manually control image transitions
+time | time between image transitions
+size | set size of images displayed to "small", "medium", or "large"
+theme | choose shape of images as either "circle" or rectangle
+shadow | create images with shadows
+text | add a description to the image
+control | manually control image transitions
 
 ## core-slider time attribute
 
@@ -71,4 +71,4 @@ The core-slider web component can include an attribute tag to manually control i
 ```
 
 
-## For more information on ThanO5 web components getting started, testing, and development click ![here](https://github.com/ucsd-cse112/thanOS#thanos)
+## For more information on ThanO5 web components getting started, testing, and development click [here](https://github.com/ucsd-cse112/thanOS#thanos)
