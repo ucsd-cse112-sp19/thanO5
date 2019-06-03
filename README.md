@@ -50,6 +50,10 @@ A much more detailed guide and explanation to Integration Testing can be found [
 
 A much more detailed guide and explanation to Browser Testing and how to set up the variables can be found [here](https://docs.google.com/document/d/1RcgaIx0Ty2WkElnowXgwl0UY5Z8WI2w-KNIHo9UeGPA/edit#)
 
+## Development
+
+Click [here](https://docs.google.com/document/d/1-PSiYhWP0Uz_Ak9F2LCTVf9Y82Gx_e08Ako-RwMxUXk/edit) if you'd like to learn more about how to contribute to thanO5.
+
 
 ## Acknowledgement
 We would like to thank [SauceLabs](https://saucelabs.com/) for supporting open source projects like ours.
