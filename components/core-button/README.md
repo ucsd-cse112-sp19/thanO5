@@ -1,12 +1,17 @@
-[![Build Status](https://travis-ci.com/ucsd-cse112/thanOS.svg?token=Jx8LU2RPAYJqzazeHJ5U&branch=master)](https://travis-ci.com/ucsd-cse112/thanOS)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/maintainability)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/test_coverage)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/test_coverage)
-
 #  core-button
 
 core-button is a Web Component providing an accessible and customizable button, part of the ThanOS components.
 
-# core-button color attribute
+Attribute | Description
+--------- | -----------
+![color](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-color-attribute) | control the color of the button
+![animated](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-animated-attribute) | add an animation to the button
+![size](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-size-attribute) | control the size of the button
+![shadow](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-shadow-attribute) | create a shadow effect
+![rounded](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-rounded-attribute) | makes the button appear with rounded corners
+![circle](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-circle-attribute) | creates a circular button
+
+## core-button color attribute
 
 The core-button web component can include an attribute tag to control the color of the button.
 The color can be specified in the core-button tag as follows: color="primary". The possible color attribute values are primary, secondary, and dark. If no color attribute is specified a default color will be applied.
@@ -20,7 +25,7 @@ The color can be specified in the core-button tag as follows: color="primary". T
 
 ![](https://media.giphy.com/media/1BGfuBiHcidJuNqKEm/giphy.gif)
 
-# core-button animated attribute
+## core-button animated attribute
 
 The core-button web component can include an attribute tag to add an animation to the button. To add an animated add the animated attribute inside the core-button tag.
 
@@ -33,7 +38,7 @@ The core-button web component can include an attribute tag to add an animation t
 
 ![](https://media.giphy.com/media/2yvQC4WFKXhziNnYJG/giphy.gif)
 
-# core-button size attribute
+## core-button size attribute
 
 The core-button web component can include an attribute tag to control the size of the button. The size can be specified in the core-button tag as follows: size="small". The possible size attributes are small, medium, and large. If no size attribute is specified a default size will be applied.
 
@@ -46,7 +51,7 @@ The core-button web component can include an attribute tag to control the size o
 
 ![](https://media.giphy.com/media/5z5Shs1phB1hU3hzai/giphy.gif)
 
-# core-button shadow attribute
+## core-button shadow attribute
 
 The core-button web component can include an attribute tag to add a shadow below the button. To add a button shadow add the shadow attribute inside the core-button tag.
 
@@ -59,7 +64,7 @@ The core-button web component can include an attribute tag to add a shadow below
 
 ![](https://media.giphy.com/media/8BkMenwYFshncAKkh0/giphy.gif)
 
-# core-button rounded attribute
+## core-button rounded attribute
 
 The core-button web component can include an attribute tag to add rounded corners to a button. To add rounded corners add the rounded attribute inside the core-button tag.
 
@@ -72,7 +77,7 @@ The core-button web component can include an attribute tag to add rounded corner
 
 ![](https://media.giphy.com/media/pOOnt4GLuq7NIV1d3m/giphy.gif)
 
-# core-button circle attribute
+## core-button circle attribute
 
 The core-button web component can include an attribute tag to make circular buttons. To create circular buttons add the circle attribute inside the core-button tag.
 
@@ -85,7 +90,7 @@ The core-button web component can include an attribute tag to make circular butt
 
 ![](https://media.giphy.com/media/KVGmuhmrMptuDdq9QO/giphy.gif)
 
-
+## For more information on ThanO5 web components getting started, testing, and development click ![here](https://github.com/ucsd-cse112/thanOS#thanos)
 
 
 
