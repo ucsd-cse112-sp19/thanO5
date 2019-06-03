@@ -2,6 +2,10 @@
 
 core-slider is a Web Component providing an accessible and customizable slider, part of the ThanOS components.
 
+## Demo
+
+[Check out a live demo!](http://ucsd-cse112.github.io/thanOS/components/core-slider/slider.html)
+
 Attribute | Description
 --------- | -----------
 ![time](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-time-attribute) | time between image transitions
