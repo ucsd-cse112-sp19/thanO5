@@ -23,9 +23,11 @@ stories.add('<core-hello>', () => {
   const rainbow = boolean('Rainbow', false) ? 'rainbow' : '';
 
   const content = `
-    <core-hello lang="${lang}" ${rainbow}>
-      <span slot="name">Mark</span>
-    </core-hello>
+    <div style="margin: 30px;">
+      <core-hello lang="${lang}" ${rainbow}>
+        <span slot="name">Mark</span>
+      </core-hello>
+    </div>
   `;
 
   return content;
@@ -50,11 +52,14 @@ stories.add('<core-button>', () => {
   const shadow = boolean('Shadow', false) ? 'shadow' : '';
   const rounded = boolean('Rounded', false) ? 'rounded' : '';
   const circle = boolean('Circle', false) ? 'circle' : '';
+  const animated = boolean('Animated', false) ? 'animated' : '';
 
   const content = `
-    <core-button color=${color} size=${size} ${shadow} ${rounded} ${circle} style="margin: 20px;">
-      Submit
-    </core-button>
+    <div style="margin: 30px;">
+      <core-button color=${color} size=${size} ${shadow} ${rounded} ${circle} ${animated}>
+        Submit
+      </core-button>
+    </div>
   `;
 
   return content;
@@ -68,13 +73,14 @@ stories.add('<core-slider>', () => {
   };
 
   const THEMES = {
+    default: 'default',
     rounded: 'rounded',
     circle: 'circle',
   };
 
   const time = text('Time', '2s');
   const size = select('Size', SIZES, SIZES.small);
-  const theme = select('Theme', THEMES, THEMES.rounded);
+  const theme = select('Theme', THEMES, THEMES.default);
   const control = boolean('Control', true) ? 'control' : '';
   const shadow = boolean('Shadow', true) ? 'shadow' : '';
   const showText = boolean('Text', true) ? 'text': '';
