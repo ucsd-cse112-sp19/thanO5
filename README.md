@@ -28,16 +28,6 @@ Component | Description
 [core-modal](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-modal#core-modal) | a pop up text box
 [core-progress](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-progress#core-progress) | a customizable progress bar
 [core-badge](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-badge#core-badge) | a customizable badge
-
-## Components
-Component | Description
---------- | -----------
-[core-button](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button) | an accessible and customizable button
-[core-slider](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider#core-slider) | an accessible and customizable image carousel
-[core-hello](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-hello#core-hello) | a simple web component to say hello
-[core-modal](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-modal#core-modal) | a pop up text box
-[core-progress](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-progress#core-progress) | a customizable progress bar
-[core-badge](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-badge#core-badge) | a customizable badge
  
 ## Getting Started
 1. Make sure you have [Node Package Manager](https://nodejs.org/en/download/) (npm) installed.
