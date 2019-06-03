@@ -8,12 +8,12 @@ core-slider is a Web Component providing an accessible and customizable slider, 
 
 Attribute | Description
 --------- | -----------
-![time](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-time-attribute) | time between image transitions
-![size](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-size-attribute) | set size of images displayed to "small", "medium", or "large"
-![theme](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-theme-attribute) | choose shape of images as either "circle" or rectangle
-![shadow](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-shadow-attribute) | create images with shadows
-![text](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-text-attribute) | add a description to the image
-![control](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-slider##core-slider-control-attribute) | manually control image transitions
+![time](#core-slider-time-attribute) | time between image transitions
+![size](#core-slider-size-attribute) | set size of images displayed to "small", "medium", or "large"
+![theme](#core-slider-theme-attribute) | choose shape of images as either "circle" or rectangle
+![shadow](#core-slider-shadow-attribute) | create images with shadows
+![text](#core-slider-text-attribute) | add a description to the image
+![control](#core-slider-control-attribute) | manually control image transitions
 
 ## core-slider time attribute
 
