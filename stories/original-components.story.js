@@ -52,10 +52,11 @@ stories.add('<core-button>', () => {
   const shadow = boolean('Shadow', false) ? 'shadow' : '';
   const rounded = boolean('Rounded', false) ? 'rounded' : '';
   const circle = boolean('Circle', false) ? 'circle' : '';
+  const animated = boolean('Animated', false) ? 'animated' : '';
 
   const content = `
     <div style="margin: 30px;">
-      <core-button color=${color} size=${size} ${shadow} ${rounded} ${circle}>
+      <core-button color=${color} size=${size} ${shadow} ${rounded} ${circle} ${animated}>
         Submit
       </core-button>
     </div>
