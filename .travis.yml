@@ -6,6 +6,7 @@ services:
 - xvfb
 addons:
   firefox: latest
+  sauce_connect: true
 notifications:
   slack:
     rooms:
