@@ -1,3 +1,0 @@
-const uuid = () => {
-  return 'HAHAHAHA';
-};

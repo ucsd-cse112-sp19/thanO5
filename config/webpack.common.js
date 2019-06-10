@@ -1,7 +1,15 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const components = ["core-button", "core-hello", "core-modal", "core-slider"];
+const components = [
+    "core-button", 
+    "core-hello", 
+    "core-modal", 
+    "core-slider", 
+    "core-badge", 
+    "core-progress",
+    "core-image",
+];
 const componentsEntries = {};
 
 components.forEach((component) => {
@@ -25,9 +33,14 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'raw-loader'
             },
+            // use the file loader
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=/fonts/[name].[ext]'
+            },
             // use the url loaders
             {
-                test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
+                test: /\.(png|gif|jpg|jpeg|xml|json)$/,
                 loader: 'url-loader'
             },
             // use the html loader
