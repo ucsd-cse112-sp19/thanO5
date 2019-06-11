@@ -30,7 +30,7 @@
     
         <h2><span class="attribs"><span class="type-signature"></span></span>CoreImage<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><element-image> component</div>
+            <div class="class-description">An image with lazy-loading option</div>
         
     
 </header>
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    constructor
+    Initialize private fields, shadowRoot and the view
 </div>
 
 
@@ -97,7 +97,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line34">line 34</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -153,7 +153,7 @@
 
 
 <div class="description">
-    alignCenter getter
+    If the image should aligned at the center
 </div>
 
 
@@ -191,7 +191,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line191">line 191</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line170">line 170</a>
     </li></ul></dd>
     
 
@@ -215,7 +215,7 @@
 
 
 <div class="description">
-    error getter
+    Whether an error is detected when the image is beging loaded
 </div>
 
 
@@ -253,69 +253,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line161">line 161</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="error"><span class="type-signature"></span>error<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    error setter
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line169">line 169</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line144">line 144</a>
     </li></ul></dd>
     
 
@@ -339,7 +277,8 @@
 
 
 <div class="description">
-    fit setter
+    The object-fit mode
+<br> chosen from [none, contain, cover, fill, scale-down]
 </div>
 
 
@@ -377,69 +316,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line108">line 108</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="fit"><span class="type-signature"></span>fit<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    fit getter
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line100">line 100</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line93">line 93</a>
     </li></ul></dd>
     
 
@@ -463,7 +340,7 @@
 
 
 <div class="description">
-    imageStyle getter
+    CSS style of the image element
 </div>
 
 
@@ -501,7 +378,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line176">line 176</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -525,7 +402,7 @@
 
 
 <div class="description">
-    lazy setter
+    If the lazy loading option is turned on
 </div>
 
 
@@ -563,69 +440,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line131">line 131</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="lazy"><span class="type-signature"></span>lazy<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    lazy getter
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line123">line 123</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -649,7 +464,7 @@
 
 
 <div class="description">
-    loading getter
+    Whether the image is still loading
 </div>
 
 
@@ -687,7 +502,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line145">line 145</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -749,7 +564,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line153">line 153</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line137">line 137</a>
     </li></ul></dd>
     
 
@@ -773,7 +588,7 @@
 
 
 <div class="description">
-    src setter
+    The image source URL
 </div>
 
 
@@ -811,69 +626,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line84">line 84</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="src"><span class="type-signature"></span>src<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    src getter
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line76">line 76</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line72">line 72</a>
     </li></ul></dd>
     
 
@@ -909,7 +662,7 @@
 
 
 <div class="description">
-    addLazyLoadListener()
+    Add a lazy loading linstener that listenes to lazy-loaded event
 </div>
 
 
@@ -918,298 +671,6 @@
 
 
 
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line295">line 295</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="_getImageStyle"><span class="type-signature"></span>_getImageStyle<span class="signature">(fit)</span><span class="type-signature"> &rarr; {*}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    simulate object-fit behavior to compatible with IE11 and other browsers which not support object-fit
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line330">line 330</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="_handleError"><span class="type-signature"></span>_handleError<span class="signature">(e)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    handleError()
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>e</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1281,7 +742,7 @@
     
 
     
-    <h4 class="name" id="_handleLazyLoad"><span class="type-signature"></span>_handleLazyLoad<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="_getImageStyle"><span class="type-signature"></span>_getImageStyle<span class="signature">(fit)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -1289,7 +750,7 @@
 
 
 <div class="description">
-    handleLazyLoad()
+    simulate object-fit behavior to compatible with IE11 and other browsers which not support object-fit
 </div>
 
 
@@ -1298,6 +759,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the object-fit mode</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1333,7 +843,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line284">line 284</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line309">line 309</a>
     </li></ul></dd>
     
 
@@ -1358,6 +868,24 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1369,7 +897,7 @@
     
 
     
-    <h4 class="name" id="_handleLoad"><span class="type-signature"></span>_handleLoad<span class="signature">(e, img)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="_handleError"><span class="type-signature"></span>_handleError<span class="signature">(e)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1377,7 +905,7 @@
 
 
 <div class="description">
-    handleLoad()
+    Handle error event
 </div>
 
 
@@ -1419,7 +947,7 @@
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">Object</span>
 
 
             
@@ -1429,35 +957,100 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>img</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last">the error event</td>
         </tr>
 
     
     </tbody>
 </table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line253">line 253</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_handleLazyLoad"><span class="type-signature"></span>_handleLazyLoad<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Load the image in the lazy-loading fashion
+</div>
+
+
+
+
+
+
+
 
 
 
@@ -1529,6 +1122,166 @@
     
 
     
+    <h4 class="name" id="_handleLoad"><span class="type-signature"></span>_handleLoad<span class="signature">(e, img)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handle image-loaded event
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>e</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the image-loaded event</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>img</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the img element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line242">line 242</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="_loadImage"><span class="type-signature"></span>_loadImage<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -1537,7 +1290,7 @@
 
 
 <div class="description">
-    loadImage()
+    Loading the image
 </div>
 
 
@@ -1581,7 +1334,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line245">line 245</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -1625,7 +1378,7 @@
 
 
 <div class="description">
-    removeLazyLoadListener()
+    Remove the lazy loading linstener
 </div>
 
 
@@ -1669,7 +1422,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line317">line 317</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line296">line 296</a>
     </li></ul></dd>
     
 
@@ -1713,7 +1466,7 @@
 
 
 <div class="description">
-    loadTemplate
+    Update the template so as to update the view
 </div>
 
 
@@ -1757,7 +1510,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line198">line 198</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -1801,7 +1554,7 @@
 
 
 <div class="description">
-    connectedCallback
+    Handle lazy-loading option when the element is appended to the DOM
 </div>
 
 
@@ -1845,7 +1598,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line58">line 58</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -1889,7 +1642,8 @@
 
 
 <div class="description">
-    disconnectedCallback
+    Clean up possible lazy loading linsteners 
+when the element is disconnected with the DOM
 </div>
 
 
@@ -1933,7 +1687,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line69">line 69</a>
+        <a href="core-image_core-image.js.html">core-image/core-image.js</a>, <a href="core-image_core-image.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -1985,7 +1739,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Mon Jun 10 2019 18:07:35 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Mon Jun 10 2019 19:58:36 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
