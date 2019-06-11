@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/core-hello/core-hello.js | thanos</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Team 05 code repo"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="thanos"><meta property="twitter:description" content="Team 05 code repo"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/ucsd-cse112/thanO5"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">components/core-hello/core-hello.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import templateString from &apos;./core-hello.html&apos;;
+import styleString from &apos;./core-hello.css&apos;;
+
+// Translation map for &quot;Hello World&quot; message in 68 languages
+const helloTranslations = {
+  af: &apos;Hello W&#xEA;reld&apos;,
+  sq: &apos;P&#xEB;rshendetje Bot&#xEB;&apos;,
+  am: &apos;&#x1230;&#x120B;&#x121D; &#x120D;&#x12D1;&#x120D;&apos;,
+  hy: &apos;&#x532;&#x561;&#x580;&#x565;&#x582; &#x561;&#x577;&#x56D;&#x561;&#x580;&#x570;&apos;,
+  eu: &apos;Kaixo Mundua&apos;,
+  be: &apos;&#x41F;&#x440;&#x44B;&#x432;&#x456;&#x442;&#x430;&#x43D;&#x43D;&#x435; &#x421;&#x443;&#x441;&#x432;&#x435;&#x442;&apos;,
+  bn: &apos;&#x993;&#x9B9;&#x9C7; &#x9AC;&#x9BF;&#x9B6;&#x9CD;&#x9AC;&apos;,
+  bg: &apos;&#x417;&#x434;&#x440;&#x430;&#x432;&#x435;&#x439; &#x441;&#x432;&#x44F;&#x442;&apos;,
+  ca: &apos;Hola m&#xF3;n&apos;,
+  ny: &apos;Moni Dziko Lapansi&apos;,
+  zh: &apos;&#x4F60;&#x597D;&#x4E16;&#x754C;&apos;,
+  hr: &apos;Pozdrav svijete&apos;,
+  cs: &apos;Ahoj sv&#x11B;te&apos;,
+  da: &apos;Hej Verden&apos;,
+  nl: &apos;Hallo Wereld&apos;,
+  en: &apos;Hello World&apos;,
+  et: &apos;Tere maailm&apos;,
+  fi: &apos;Hei maailma&apos;,
+  fr: &apos;Bonjour monde&apos;,
+  ka: &apos;&#x10D2;&#x10D0;&#x10DB;&#x10D0;&#x10E0;&#x10EF;&#x10DD;&#x10D1;&#x10D0; &#x10DB;&#x10E1;&#x10DD;&#x10E4;&#x10DA;&#x10D8;&#x10DD;&apos;,
+  de: &apos;Hallo Welt&apos;,
+  el: &apos;&#x393;&#x3B5;&#x3B9;&#x3AC; &#x3C3;&#x3BF;&#x3C5; &#x39A;&#x3CC;&#x3C3;&#x3BC;&#x3B5;&apos;,
+  ha: &apos;Sannu Duniya&apos;,
+  he: &apos;&#x5E9;&#x5DC;&#x5D5;&#x5DD; &#x5E2;&#x5D5;&#x5DC;&#x5DD;&apos;,
+  hi: &apos;&#x928;&#x92E;&#x938;&#x94D;&#x924;&#x947; &#x926;&#x941;&#x928;&#x93F;&#x92F;&#x93E;&apos;,
+  hu: &apos;Hell&#xF3; Vil&#xE1;g&apos;,
+  is: &apos;Hall&#xF3; heimur&apos;,
+  ig: &apos;Ndewo &#x1EE4;wa&apos;,
+  id: &apos;Halo Dunia&apos;,
+  it: &apos;Ciao mondo&apos;,
+  jp: &apos;&#x3053;&#x3093;&#x306B;&#x3061;&#x306F;&#x4E16;&#x754C;&apos;,
+  kk: &apos;&#x421;&#x4D9;&#x43B;&#x435;&#x43C; &#x4D8;&#x43B;&#x435;&#x43C;&apos;,
+  km: &apos;&#x179F;&#x17BD;&#x179F;&#x17D2;&#x178F;&#x17B8;&#x200B;&#x1796;&#x17B7;&#x1797;&#x1796;&#x179B;&#x17C4;&#x1780;&apos;,
+  ky: &apos;&#x421;&#x430;&#x43B;&#x430;&#x43C; &#x434;&#x4AF;&#x439;&#x43D;&#x4E9;&apos;,
+  lo: &apos;&#xEAA;&#xEB0;&#x200B;&#xE9A;&#xEB2;&#xE8D;&#x200B;&#xE94;&#xEB5;&#x200B;&#xE8A;&#xEB2;&#xEA7;&#x200B;&#xEC2;&#xEA5;&#xE81;&apos;,
+  lv: &apos;Sveika pasaule&apos;,
+  lt: &apos;Labas pasauli&apos;,
+  lb: &apos;Moien Welt&apos;,
+  mk: &apos;&#x417;&#x434;&#x440;&#x430;&#x432;&#x43E; &#x441;&#x432;&#x435;&#x442;&#x443;&apos;,
+  ms: &apos;Hai dunia&apos;,
+  ml: &apos;&#xD39;&#xD32;&#xD47;&#xD3E; &#xD35;&#xD47;&#xD7E;&#xD21;&#xD4D;&apos;,
+  mn: &apos;&#x421;&#x430;&#x439;&#x43D; &#x443;&#x443; &#x434;&#x44D;&#x43B;&#x445;&#x438;&#x439;&apos;,
+  ne: &apos;&#x928;&#x92E;&#x938;&#x94D;&#x915;&#x93E;&#x930; &#x938;&#x902;&#x938;&#x93E;&#x930;&apos;,
+  nb: &apos;Hei Verden&apos;,
+  fa: &apos;&#x633;&#x644;&#x627;&#x645; &#x62F;&#x646;&#x6CC;&#x627;&apos;,
+  pl: &apos;Witaj &#x15B;wiecie&apos;,
+  pt: &apos;Ol&#xE1; Mundo&apos;,
+  pa: &apos;&#xA38;&#xA24;&#xA3F; &#xA38;&#xA4D;&#xA30;&#xA40; &#xA05;&#xA15;&#xA3E;&#xA32; &#xA26;&#xA41;&#xA28;&#xA3F;&#xA06;&apos;,
+  ro: &apos;Salut Lume&apos;,
+  ru: &apos;&#x41F;&#x440;&#x438;&#x432;&#x435;&#x442; &#x43C;&#x438;&#x440;&apos;,
+  sr: &apos;&#x417;&#x434;&#x440;&#x430;&#x432;&#x43E; &#x421;&#x432;&#x435;&#x442;&#x435;&apos;,
+  si: &apos;&#xDC4;&#xDD9;&#xDBD;&#xDDD; &#xDC0;&#xDBB;&#xDCA;&#xDBD;&#xDCA;&#xDA9;&#xDCA;&apos;,
+  sl: &apos;Pozdravljen svet&apos;,
+  es: &apos;Hola Mundo&apos;,
+  su: &apos;Halo Dunya&apos;,
+  sw: &apos;Salamu Dunia&apos;,
+  sv: &apos;Hej v&#xE4;rlden&apos;,
+  tg: &apos;&#x421;&#x430;&#x43B;&#x43E;&#x43C; &#x4B6;&#x430;&#x4B3;&#x43E;&#x43D;&apos;,
+  th: &apos;&#xE2A;&#xE27;&#xE31;&#xE2A;&#xE14;&#xE35;&#xE0A;&#xE32;&#xE27;&#xE42;&#xE25;&#xE01;&apos;,
+  tk: &apos;Selam D&#xFC;nya&apos;,
+  uk: &apos;&#x41F;&#x440;&#x438;&#x432;&#x456;&#x442; &#x421;&#x432;&#x456;&#x442;&apos;,
+  uz: &apos;Salom Dunyo&apos;,
+  vi: &apos;Ch&#xE0;o th&#x1EBF; gi&#x1EDB;i&apos;,
+  cy: &apos;Helo Byd&apos;,
+  xh: &apos;Molo Lizwe&apos;,
+  yi: &apos;&#x5D4;&#x5E2;&#x5DC;&#x5D0; &#x5D5;&#x5D5;&#x5E2;&#x5DC;&#x5D8;&apos;,
+  yo: &apos;Mo ki O Ile Aiye&apos;,
+  zu: &apos;Sawubona Mhlab&apos;,
+};
+
+// Create template element
+const template = document.createElement(&apos;template&apos;);
+template.innerHTML = templateString;
+
+// Create style element
+const style = document.createElement(&apos;style&apos;);
+style.innerHTML = styleString;
+
+/**
+ * A hello messsage with a name
+ */
+class CoreHello extends HTMLElement {
+  /**
+   * The list of attribute to observe
+   */
+  static get observedAttributes() {
+    return [&apos;rainbow&apos;, &apos;lang&apos;];
+  }
+
+  /**
+   * Initialize the shadowDOM
+   */
+  constructor() {
+    super();
+
+    // Attach element template to shadow root
+    const shadowRoot = this.attachShadow({mode: &apos;open&apos;});
+    shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(style.cloneNode(true));
+
+    // Get message p element and hello span element
+    this._message = shadowRoot.getElementById(&apos;message&apos;);
+    this._hello = shadowRoot.getElementById(&apos;hello&apos;);
+  }
+
+  /**
+   * Language of the hello message
+   */
+  get lang() {
+    return this.getAttribute(&apos;lang&apos;);
+  }
+
+  /**
+   * If the message has a shadow effect
+   */
+  get rainbow() {
+    return this.hasAttribute(&apos;rainbow&apos;);
+  }
+
+  set lang(val) {
+    this._hello.textContent = helloTranslations[val] + &apos; &apos;;
+  }
+
+  set rainbow(val) {
+    if (val) {
+      this._message.classList.add(&apos;rainbow&apos;);
+    } else {
+      this._message.classList.remove(&apos;rainbow&apos;);
+    }
+  }
+
+  /**
+   * Handle attribute changes
+   * @param {string} name name of attribute that changed
+   * @param {*} oldValue original value
+   * @param {*} newValue updated value
+   */
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case &apos;rainbow&apos;: {
+        this.rainbow = newValue == &apos;&apos;;
+        break;
+      }
+      case &apos;lang&apos;: {
+        const language = this.getAttribute(&apos;lang&apos;);
+        if (helloTranslations[language] != undefined) {
+          this.lang = language;
+        }
+      }
+    }
+  }
+}
+
+// Register the web component
+if (!customElements.get(&apos;core-hello&apos;)) {
+  customElements.define(&apos;core-hello&apos;, CoreHello);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

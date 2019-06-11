@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/core-button/core-button.js | thanos</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Team 05 code repo"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="thanos"><meta property="twitter:description" content="Team 05 code repo"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/ucsd-cse112/thanO5"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">components/core-button/core-button.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import templateString from &apos;./core-button.html&apos;;
+import styleString from &apos;./core-button.css&apos;;
+
+// Define valid button sizes
+const coreBtnSizes = {
+  tiny: &apos;tiny&apos;,
+  xsmall: &apos;xsmall&apos;,
+  small: &apos;small&apos;,
+  medium: &apos;medium&apos;,
+  large: &apos;large&apos;,
+};
+
+// Define valid button colors
+const coreColor = {
+  primary: &apos;primary&apos;,
+  secondary: &apos;secondary&apos;,
+  dark: &apos;dark&apos;,
+};
+
+// Create template element
+const template = document.createElement(&apos;template&apos;);
+template.innerHTML = templateString;
+
+// Create style element
+const style = document.createElement(&apos;style&apos;);
+style.innerHTML = styleString;
+
+/**
+ * A button with customizable styles
+ */
+class CoreButton extends HTMLElement {
+  /**
+   * The list of attribute to observe
+   */
+  static get observedAttributes() {
+    return [&apos;rounded&apos;, &apos;size&apos;, &apos;shadow&apos;, &apos;color&apos;, &apos;animated&apos;, &apos;circle&apos;];
+  }
+
+  /**
+   * Initialize the shadowDOM
+   */
+  constructor() {
+    super(); // HTMLElement does class definitions by calling super()
+
+    const shadowRoot = this.attachShadow({mode: &apos;open&apos;});
+
+    // Set up the template
+    shadowRoot.appendChild(template.content.cloneNode(true));
+
+    // Set up the style
+    shadowRoot.appendChild(style.cloneNode(true));
+
+    // Get message button element and message slot element
+    this._button = shadowRoot.getElementById(&apos;button&apos;);
+  }
+
+  /**
+   * If the button has rounded corners
+   */
+  get rounded() {
+    return this.hasAttribute(&apos;rounded&apos;);
+  }
+
+  /**
+   * Button size
+   */
+  get size() {
+    return this.getAttribute(&apos;size&apos;);
+  }
+
+  /**
+   * If the button has a border shadow
+   */
+  get shadow() {
+    return this.hasAttribute(&apos;shadow&apos;);
+  }
+
+  /**
+   * The color theme of the button
+   */
+  get color() {
+    return this.getAttribute(&apos;color&apos;);
+  }
+
+  /**
+   * If the button comes with an animated effect
+   */
+  get animated() {
+    return this.hasAttribute(&apos;animated&apos;);
+  }
+
+  /**
+   * If the button is circular
+   */
+  get circle() {
+    return this.hasAttribute(&apos;circle&apos;);
+  }
+
+  set rounded(val) {
+    if (val) {
+      this.setAttribute(&apos;rounded&apos;, &apos;&apos;);
+    } else {
+      this.removeAttribute(&apos;rounded&apos;);
+    }
+  }
+
+  set size(val) {
+    // TODO: need to sanitize the user input here
+    if (val) {
+      this.setAttribute(&apos;size&apos;, val);
+    } else {
+      this.removeAttribute(&apos;size&apos;);
+    }
+  }
+
+  set shadow(val) {
+    if (val) {
+      this.setAttribute(&apos;shadow&apos;, val);
+    } else {
+      this.removeAttribute(&apos;shadow&apos;);
+    }
+  }
+
+  set color(val) {
+    if (val) {
+      this.setAttribute(&apos;color&apos;, val);
+    } else {
+      this.removeAttribute(&apos;color&apos;);
+    }
+  }
+
+  set animated(val) {
+    if (val) {
+      this.setAttribute(&apos;animated&apos;, val);
+    } else {
+      this.removeAttribute(&apos;animated&apos;);
+    }
+  }
+
+  set circle(val) {
+    if (val) {
+      this.setAttribute(&apos;circle&apos;, val);
+    } else {
+      this.removeAttribute(&apos;circle&apos;);
+    }
+  }
+
+  /**
+   * Handle attribute changes
+   * @param {string} name name of attribute that changed
+   * @param {*} oldValue original value
+   * @param {*} newValue updated value
+   */
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case &apos;rounded&apos;:
+      case &apos;shadow&apos;:
+      case &apos;animated&apos;:
+      case &apos;circle&apos;: {
+        const toAdd = newValue == &apos;&apos;;
+        this.addToClassList(name, toAdd);
+        break;
+      }
+      case &apos;size&apos;: { // FIXME: how does this code know what the new size is?
+        const size = coreBtnSizes[newValue];
+        const toAdd = size != undefined;
+        this.addToClassList(size, toAdd);
+        break;
+      }
+      case &apos;color&apos;: { // FIXME: how does this code know what the new color is?
+        const tempColor = coreColor[newValue];
+        const toAdd = tempColor != undefined;
+        this.addToClassList(tempColor, toAdd);
+        break;
+      }
+    }
+  }
+
+  /**
+   * @param {string} className name of class
+   * @param {boolean} toAdd whether add the class or not
+   */
+  addToClassList(className, toAdd) {
+    if (toAdd) {
+      this._button.classList.add(className);
+    } else {
+      this._button.classList.remove(className);
+    }
+  }
+}
+
+// Register the web component
+if (!customElements.get(&apos;core-button&apos;)) {
+  customElements.define(&apos;core-button&apos;, CoreButton);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

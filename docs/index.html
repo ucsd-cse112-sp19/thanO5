@@ -1,65 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | thanos</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Team 05 code repo"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="thanos"><meta property="twitter:description" content="Team 05 code repo"></head>
+<body class="layout-container" data-ice="rootContainer">
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/ucsd-cse112/thanO5"><img width="20px" src="./image/github.png"></a></header>
 
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Home</h1>
-
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
     
-
-
-
-    
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
+  </ul>
 </div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoreBadge.html">CoreBadge</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="CoreImage.html">CoreImage</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="CoreProgress.html">CoreProgress</a></li><li><a href="coreSlider.html">coreSlider</a></li></ul>
 </nav>
 
-<br class="clear">
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="team-thano5--team-5--web-components">Team thanO5 (Team 5) Web Components</h1><p><em>Team 5 code repository</em> </p>
+<p><a href="https://travis-ci.com/ucsd-cse112/thanO5"><img src="https://travis-ci.com/ucsd-cse112/thanO5.svg?token=z2v5dXcEyJJpnTivhteB&amp;branch=master" alt="Build Status"></a>
+<a href="https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/maintainability"><img src="https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/maintainability" alt="Maintainability"></a>
+<a href="https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/test_coverage"><img src="https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/test_coverage" alt="Test Coverage"></a>
+<a href="https://saucelabs.com/u/team5thanos"><img src="https://saucelabs.com/buildstatus/team5thanos" alt="Sauce Test Status"></a>
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></p>
+<h2 id="the-team">The Team</h2><ol>
+<li>Dushyant Patel - <strong>Lead</strong></li>
+<li>Karissa Jacobsen - <strong>Co-lead</strong></li>
+<li>Brian Orensztein - <strong>Quality Assurance</strong></li>
+<li>Alex Iqbal - <strong>DevOps</strong></li>
+<li>Yufeng Gao - <strong>DevOps</strong></li>
+<li>Philip Kim - <strong>Tool &amp; Utility</strong></li>
+<li>Danny Fung - <strong>Tool &amp; Utility</strong></li>
+<li>Kevin Barron - <strong>Coder</strong></li>
+<li>John Lu - <strong>Coder</strong></li>
+<li>Rachel Barrow - <strong>Coder</strong></li>
+</ol>
+<h2 id="getting-started">Getting Started</h2><ol>
+<li>Make sure you have <a href="https://nodejs.org/en/download/">Node Package Manager</a> (npm) installed.</li>
+<li>Clone the repo/pull from the branch <em>master</em></li>
+<li>Download all necessary dependencies locally<ul>
+<li><code>npm install</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="unit-testing-and-integration-testing">Unit Testing and Integration Testing</h2><p><strong>To run all the unit and integration tests:</strong></p>
+<ul>
+<li><code>npm test</code> or <code>npm run test</code></li>
+</ul>
+<p>A much more detailed guide and explanation to Unit Testing can be found <a href="https://docs.google.com/document/d/1N5Mdvw3mUZzqnDy4j3Zy-UZNi_xN5Kv3ctdWr3Vi5T4/edit">here</a></p>
+<p>A much more detailed guide and explanation to Integration Testing can be found <a href="https://docs.google.com/document/d/1ZXp29jMGDu2BMSO8LRCvTIIiLbpRYNt_g1ojZT9xwA0/edit">here</a></p>
+<h2 id="browser-testing">Browser Testing</h2><p><strong>To run all the browser tests:</strong></p>
+<ul>
+<li><code>npm run browsertest</code></li>
+<li>You may need to set up the SauceLabs access key and username environment variables locally.</li>
+</ul>
+<p>A much more detailed guide and explanation to Browser Testing and how to set up the variables can be found <a href="https://docs.google.com/document/d/1RcgaIx0Ty2WkElnowXgwl0UY5Z8WI2w-KNIHo9UeGPA/edit#">here</a></p>
+<h2 id="acknowledgement">Acknowledgement</h2><p>We would like to thank <a href="https://saucelabs.com/">SauceLabs</a> for supporting open source projects like ours.</p>
+</div>
+</div>
 
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Mon Jun 10 2019 19:58:36 GMT-0700 (Pacific Daylight Time)
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
 </body>
 </html>

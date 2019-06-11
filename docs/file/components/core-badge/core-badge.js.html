@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/core-badge/core-badge.js | thanos</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Team 05 code repo"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="thanos"><meta property="twitter:description" content="Team 05 code repo"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/ucsd-cse112/thanO5"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">components/core-badge/core-badge.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import HTMLString from &apos;./core-badge.html&apos;;
+import styleString from &apos;./core-badge.scss&apos;;
+
+const template = document.createElement(&apos;template&apos;);
+template.innerHTML = HTMLString;
+
+const style = document.createElement(&apos;style&apos;);
+style.innerHTML = styleString;
+
+/**
+ * A number or status mark on buttons and icons.
+ */
+class CoreBadge extends HTMLElement {
+  /**
+   * Initialize private fields, shadowRoot and the view
+   */
+  constructor() {
+    super();
+
+    //  Initialize all private fields
+    this._value = this.getAttribute(&apos;value&apos;) || undefined;
+    this._max = this.getAttribute(&apos;max&apos;) || undefined;
+    this._isDot = this.hasAttribute(&apos;is-dot&apos;) || false;
+    this._hidden = this.hasAttribute(&apos;hidden&apos;) || false;
+    this._type = this.getAttribute(&apos;type&apos;) || undefined;
+
+    // Initialize the shadowRoot
+    this.attachShadow({mode: &apos;open&apos;});
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.appendChild(style.cloneNode(true));
+
+    // Add &apos;change&apos; event listener to this element so that
+    // every time a &apos;change&apos; event is observed, update the view
+    const config = {attributes: false, childList: true, subtree: true};
+    const observer = new MutationObserver(this._updateTemplate.bind(this));
+    observer.observe(this, config);
+    this.addEventListener(&apos;change&apos;, this._updateTemplate.bind(this));
+
+    // Initialize the view
+    this._updateTemplate();
+  }
+
+  get max() {
+    return this._max;
+  }
+
+  /**
+   * The maximum number that can be put in the badge
+   * &lt;br&gt;If the value field is a number larger than max field,
+   * `${max}+` will be displayed in the badge
+   * @param {number} val
+   */
+  set max(val) {
+    if (typeof val === &apos;number&apos;) {
+      this._max = val;
+      this.setAttribute(&apos;max&apos;, val);
+    } else {
+      this._max = undefined;
+      this.removeAttribute(&apos;max&apos;);
+    }
+
+    this._updateTemplate();
+  }
+
+  get isDot() {
+    return this._isDot;
+  }
+
+  /**
+   * If a little dot is displayed instead of the value
+   * @param {boolean} val
+   */
+  set isDot(val) {
+    if (val === true) {
+      this._isDot = true;
+      this.setAttribute(&apos;is-dot&apos;, &apos;&apos;);
+    } else {
+      this._isDot = false;
+      this.removeAttribute(&apos;is-dot&apos;);
+    }
+
+    this._updateTemplate();
+  }
+
+  get hidden() {
+    return this._hidden;
+  }
+
+  /**
+   * If the badge is displayed or not.
+   * @param {boolean} val
+   */
+  set hidden(val) {
+    if (val === true) {
+      this._hidden = true;
+      this.setAttribute(&apos;hidden&apos;, &apos;&apos;);
+    } else {
+      this._hidden = false;
+      this.removeAttribute(&apos;hidden&apos;);
+    }
+
+    this._updateTemplate();
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  /**
+   * The content that the badge tries to display but may not be the same as the acutal displayed content
+   * when the value is a number larger than max field.
+   * @param {number|string} val
+   */
+  set value(val) {
+    if (typeof val === &apos;string&apos; || typeof val === &apos;number&apos;) {
+      this._value = val;
+      this.setAttribute(&apos;value&apos;, val);
+    } else {
+      this._value = undefined;
+      this.removeAttribute(&apos;value&apos;);
+    }
+
+    this._updateTemplate();
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  /**
+   * The type of the badge chosen from [primary, success, warning, info, danger]
+   * @param {string} val
+   */
+  set type(val) {
+    if ([&apos;primary&apos;, &apos;success&apos;, &apos;warning&apos;, &apos;info&apos;, &apos;danger&apos;].indexOf(val) &gt; -1) {
+      this._type = val;
+      this.setAttribute(&apos;type&apos;, val);
+    } else {
+      this._type = undefined;
+      this.removeAttribute(&apos;type&apos;);
+    }
+
+    this._updateTemplate();
+  }
+
+  /**
+   * The actual content to be displayed. It may be different from the given value because of max field.
+   */
+  get content() {
+    if (this.isDot) return &apos;&apos;;
+    const value = this.value;
+    const max = this.max;
+    const valueNum = parseInt(value);
+    const maxNum = parseInt(max);
+    if (!isNaN(valueNum) &amp;&amp; !isNaN(maxNum)) {
+      return maxNum &lt; valueNum ? `${maxNum}+` : valueNum;
+    }
+
+    return value;
+  }
+
+  /**
+   * Update the content of the transition element inside our template
+   */
+  _updateTemplate() {
+    const update = !this.hidden &amp;&amp; (this.content || this.content === 0 || this.isDot) ? `
+      &lt;sup class=&quot;el-badge__content ${&apos;el-badge__content--&apos; + (this.type === null ? undefined : this.type)} ${this.innerHTML ? &apos;is-fixed&apos; : &apos;&apos;} ${this.isDot ? &apos;is-dot&apos; : &apos;&apos;}&quot;&gt;
+        ${this.content}
+      &lt;/sup&gt;
+    ` : &apos;&apos;;
+
+    this.shadowRoot.querySelector(&apos;transition&apos;).innerHTML = update;
+  }
+};
+
+// Register the web component
+if (!customElements.get(&apos;core-badge&apos;)) {
+  customElements.define(&apos;core-badge&apos;, CoreBadge);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

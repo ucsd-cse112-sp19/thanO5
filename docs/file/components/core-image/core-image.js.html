@@ -1,22 +1,58 @@
-import {on, off, getScrollContainer, isInContainer} from '../../element-helpers/utils/dom';
-import {isString, isHtmlElement} from '../../element-helpers/utils/types';
-import {throttle} from 'throttle-debounce';
-import styleString from './core-image.scss';
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/core-image/core-image.js | thanos</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Team 05 code repo"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="thanos"><meta property="twitter:description" content="Team 05 code repo"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/ucsd-cse112/thanO5"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">components/core-image/core-image.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {on, off, getScrollContainer, isInContainer} from &apos;../../element-helpers/utils/dom&apos;;
+import {isString, isHtmlElement} from &apos;../../element-helpers/utils/types&apos;;
+import {throttle} from &apos;throttle-debounce&apos;;
+import styleString from &apos;./core-image.scss&apos;;
 
 // create style element
-const style = document.createElement('style');
+const style = document.createElement(&apos;style&apos;);
 style.innerHTML = styleString;
 
 // Helper function: determine if the browser supports object-fit css rule
-const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined;
+const isSupportObjectFit = () =&gt; document.documentElement.style.objectFit !== undefined;
 
 // object-fit valid values
 const ObjectFit = {
-  NONE: 'none',
-  CONTAIN: 'contain',
-  COVER: 'cover',
-  FILL: 'fill',
-  SCALE_DOWN: 'scale-down',
+  NONE: &apos;none&apos;,
+  CONTAIN: &apos;contain&apos;,
+  COVER: &apos;cover&apos;,
+  FILL: &apos;fill&apos;,
+  SCALE_DOWN: &apos;scale-down&apos;,
 };
 
 /**
@@ -29,9 +65,9 @@ class CoreImage extends HTMLElement {
   constructor() {
     super();
 
-    this._src = this.getAttribute('src') || undefined;
-    this._fit = this.getAttribute('fit') || undefined;
-    this._lazy = this.hasAttribute('lazy') || false;
+    this._src = this.getAttribute(&apos;src&apos;) || undefined;
+    this._fit = this.getAttribute(&apos;fit&apos;) || undefined;
+    this._lazy = this.hasAttribute(&apos;lazy&apos;) || false;
 
     this._loading = true;
     this._error = false;
@@ -40,10 +76,10 @@ class CoreImage extends HTMLElement {
     this._imageWidth = 0;
     this._imageHeight = 0;
     this._scrollContainer = {};
-    this._isServer = !(typeof window != 'undefined' && window.document);
+    this._isServer = !(typeof window != &apos;undefined&apos; &amp;&amp; window.document);
 
-    this._template = document.createElement('template');
-    this.attachShadow({mode: 'open'});
+    this._template = document.createElement(&apos;template&apos;);
+    this.attachShadow({mode: &apos;open&apos;});
     this._updateTemplate();
   }
 
@@ -63,7 +99,7 @@ class CoreImage extends HTMLElement {
    * when the element is disconnected with the DOM
    */
   disconnectedCallback() {
-    this.lazy && this._removeLazyLoadListener();
+    this.lazy &amp;&amp; this._removeLazyLoadListener();
   }
 
   /**
@@ -74,33 +110,33 @@ class CoreImage extends HTMLElement {
   }
 
   set src(val) {
-    if (typeof val === 'string') {
+    if (typeof val === &apos;string&apos;) {
       this._src = val;
-      this.setAttribute('src', val);
+      this.setAttribute(&apos;src&apos;, val);
     } else {
       this._src = undefined;
-      this.removeAttribute('src');
+      this.removeAttribute(&apos;src&apos;);
     }
 
     this._updateTemplate();
-    this._show && this._loadImage();
+    this._show &amp;&amp; this._loadImage();
   }
 
   /**
    * The object-fit mode
-   * <br> chosen from [none, contain, cover, fill, scale-down]
+   * &lt;br&gt; chosen from [none, contain, cover, fill, scale-down]
    */
   get fit() {
     return this._fit;
   }
 
   set fit(val) {
-    if (['fill', 'contain', 'cover', 'none', 'scale-down'].indexOf(val) > -1) {
+    if ([&apos;fill&apos;, &apos;contain&apos;, &apos;cover&apos;, &apos;none&apos;, &apos;scale-down&apos;].indexOf(val) &gt; -1) {
       this._fit = val;
-      this.setAttribute('fit', val);
+      this.setAttribute(&apos;fit&apos;, val);
     } else {
       this._fit = undefined;
-      this.removeAttribute('fit');
+      this.removeAttribute(&apos;fit&apos;);
     }
 
     this._updateTemplate();
@@ -116,10 +152,10 @@ class CoreImage extends HTMLElement {
   set lazy(val) {
     if (val === true) {
       this._lazy = true;
-      this.setAttribute('lazy', '');
+      this.setAttribute(&apos;lazy&apos;, &apos;&apos;);
     } else {
       this._lazy = false;
-      this.removeAttribute('lazy');
+      this.removeAttribute(&apos;lazy&apos;);
     }
   }
 
@@ -153,7 +189,7 @@ class CoreImage extends HTMLElement {
    * CSS style of the image element
    */
   get imageStyle() {
-    if (!this._isServer && this.fit) {
+    if (!this._isServer &amp;&amp; this.fit) {
       if (isSupportObjectFit()) {
         return `object-fit:${this.fit}`;
       } else {
@@ -161,14 +197,14 @@ class CoreImage extends HTMLElement {
         return _imageStyle.substr(1, _imageStyle.length - 2);
       }
     }
-    return '';
+    return &apos;&apos;;
   }
 
   /**
    * If the image should aligned at the center
    */
   get alignCenter() {
-    return !this._isServer && !isSupportObjectFit() && this.fit !== ObjectFit.FILL;
+    return !this._isServer &amp;&amp; !isSupportObjectFit() &amp;&amp; this.fit !== ObjectFit.FILL;
   }
 
   /**
@@ -178,42 +214,42 @@ class CoreImage extends HTMLElement {
     let templateString;
     if (this.loading) {
       templateString = `
-        <slot name="placeholder">
-          <div class="el-image__placeholder"></div>
-        </slot>
+        &lt;slot name=&quot;placeholder&quot;&gt;
+          &lt;div class=&quot;el-image__placeholder&quot;&gt;&lt;/div&gt;
+        &lt;/slot&gt;
       `;
     } else if (this.error) {
       templateString = `
-        <slot name="error">
-          <div class="el-image__error"></div>
-        </slot>
+        &lt;slot name=&quot;error&quot;&gt;
+          &lt;div class=&quot;el-image__error&quot;&gt;&lt;/div&gt;
+        &lt;/slot&gt;
       `;
     } else {
       let classAttr;
       if (this.alignCenter) {
-        classAttr = `class="el-image__inner--center"`;
+        classAttr = `class=&quot;el-image__inner--center&quot;`;
       } else {
-        classAttr = '';
+        classAttr = &apos;&apos;;
       }
 
       let imageStyleAttr;
       if (this.imageStyle !== {}) {
         imageStyleAttr = `style=${this.imageStyle}`;
       } else {
-        imageStyleAttr = '';
+        imageStyleAttr = &apos;&apos;;
       }
 
       templateString = `
-        <img
-          class="el-image__inner"
+        &lt;img
+          class=&quot;el-image__inner&quot;
           src=${this.src}
           ${imageStyleAttr}
-          ${classAttr}>
+          ${classAttr}&gt;
       `;
     }
 
     this._template.innerHTML = templateString;
-    this.shadowRoot.innerHTML = '';
+    this.shadowRoot.innerHTML = &apos;&apos;;
     this.shadowRoot.appendChild(this._template.content);
     this.shadowRoot.appendChild(style.cloneNode(true));
   }
@@ -227,7 +263,7 @@ class CoreImage extends HTMLElement {
     this.loading = true;
     this.error = false;
     const img = new Image();
-    img.onload = (e) => this._handleLoad(e, img);
+    img.onload = (e) =&gt; this._handleLoad(e, img);
     img.onerror = this._handleError.bind(this);
     // If no src specified, an error appears in the console (this is the expected behavior)
 
@@ -254,7 +290,7 @@ class CoreImage extends HTMLElement {
     this.loading = false;
     this.error = true;
     this._updateTemplate();
-    // this.$emit('error', e);
+    // this.$emit(&apos;error&apos;, e);
   }
 
   /**
@@ -285,7 +321,7 @@ class CoreImage extends HTMLElement {
     if (_scrollContainer) {
       this._scrollContainer = _scrollContainer;
       this._lazyLoadHandler = throttle(500, this._handleLazyLoad.bind(this));
-      on(_scrollContainer, 'scroll', this._lazyLoadHandler);
+      on(_scrollContainer, &apos;scroll&apos;, this._lazyLoadHandler);
       this._handleLazyLoad();
     }
   }
@@ -296,7 +332,7 @@ class CoreImage extends HTMLElement {
   _removeLazyLoadListener() {
     const {_scrollContainer, _lazyLoadHandler} = this;
     if (this._isServer || !_scrollContainer || !_lazyLoadHandler) return;
-    off(_scrollContainer, 'scroll', _lazyLoadHandler);
+    off(_scrollContainer, &apos;scroll&apos;, _lazyLoadHandler);
     this._scrollContainer = null;
     this._lazyLoadHandler = null;
   }
@@ -313,18 +349,18 @@ class CoreImage extends HTMLElement {
       clientHeight: containerHeight,
     } = this;
     if (!imageWidth || !imageHeight || !containerWidth || !containerHeight) return {};
-    const vertical = imageWidth / imageHeight < 1;
+    const vertical = imageWidth / imageHeight &lt; 1;
     if (fit === ObjectFit.SCALE_DOWN) {
-      const isSmaller = imageWidth < containerWidth && imageHeight < containerHeight;
+      const isSmaller = imageWidth &lt; containerWidth &amp;&amp; imageHeight &lt; containerHeight;
       fit = isSmaller ? ObjectFit.NONE : ObjectFit.CONTAIN;
     }
     switch (fit) {
       case ObjectFit.NONE:
-        return {width: 'auto', height: 'auto'};
+        return {width: &apos;auto&apos;, height: &apos;auto&apos;};
       case ObjectFit.CONTAIN:
-        return vertical ? {width: 'auto'} : {height: 'auto'};
+        return vertical ? {width: &apos;auto&apos;} : {height: &apos;auto&apos;};
       case ObjectFit.COVER:
-        return vertical ? {height: 'auto'} : {width: 'auto'};
+        return vertical ? {height: &apos;auto&apos;} : {width: &apos;auto&apos;};
       default:
         return {};
     }
@@ -332,6 +368,23 @@ class CoreImage extends HTMLElement {
 }
 
 // Register the web component
-if (!customElements.get('core-image')) {
-  customElements.define('core-image', CoreImage);
+if (!customElements.get(&apos;core-image&apos;)) {
+  customElements.define(&apos;core-image&apos;, CoreImage);
 }
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

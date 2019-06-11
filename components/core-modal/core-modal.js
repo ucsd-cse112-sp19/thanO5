@@ -10,18 +10,12 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * beastTooltip custom element
+ * A modal that is triggered by any element that
+ * has attribute 'modal' with the same value as the value of the 'name' attribute of it
  */
 class coreModal extends HTMLElement {
   /**
-   * observedAttributes getter
-   */
-  static get observedAttributes() {
-    return [];
-  }
-
-  /**
-   * constructor
+   * Initialize the shadowDOM
    */
   constructor() {
     super();
@@ -29,18 +23,14 @@ class coreModal extends HTMLElement {
     // create shadowroot
     const shadowRoot = this.attachShadow({mode: 'open'});
 
-    // This won't work beacuse I set overflow to hidden
-    // $(this._modal).css('left', \
-    // window.innerWidth / 2 - $(this._modal).offset().left);
-    // $(this._modal).css('top', \
-    // window.innerHeight / 2 - $(this._modal).offset().top);
-
     shadowRoot.appendChild(template.content.cloneNode(true));
     shadowRoot.appendChild(style.cloneNode(true));
   }
 
   /**
-   * connectedCallback
+   * When the web component is appended to the DOM,
+   * <br>1. Store references to some components of <core-modal> 
+   * <br>2. Add click linsteners
    */
   connectedCallback() {
     // Store elements
@@ -51,15 +41,10 @@ class coreModal extends HTMLElement {
     // Add Listeners
     this._close.addEventListener('click', this._hideModal.bind(this));
     this._button.addEventListener('click', this._showModal.bind(this));
-
-    // Attach the modal to body
-    // This won't work because you only attach the template content to body
-    // document.body.appendChild(this._modal);
-    // document.body.appendChild(this.style);
   }
 
   /**
-   * disconnectedCallback
+   * Clean up linsteners when the web component is disconnected with the DOM
    */
   disconnectedCallback() {
     this._button.removeEventListener('click', this._showModal.bind(this));
@@ -67,7 +52,7 @@ class coreModal extends HTMLElement {
   }
 
   /**
-   * showModal function
+   * Show the modal content in a popup
    */
   _showModal() {
     this._modalVisible = true;
@@ -75,23 +60,15 @@ class coreModal extends HTMLElement {
   }
 
   /**
-   * hideModal function
+   * Hide the modal content
    */
   _hideModal() {
     this._modalVisible = false;
     this._modal.style.display = 'none';
   }
-
-  /**
-   * attribute change event handler
-   * @param {*} name
-   * @param {*} oldValue
-   * @param {*} newValue
-   */
-  attributeChangedCallback(name, oldValue, newValue) {}
 }
 
-// define the beast-tooltip element
+// Register the web component
 if (!customElements.get('core-modal')) {
   customElements.define('core-modal', coreModal);
 }
