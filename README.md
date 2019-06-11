@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.com/ucsd-cse112/thanO5.svg?token=z2v5dXcEyJJpnTivhteB&branch=master)](https://travis-ci.com/ucsd-cse112/thanO5)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/maintainability)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c46bd5e7fe5cc18e9541/test_coverage)](https://codeclimate.com/repos/5cbebc0cfbadb16720001ec7/test_coverage)
-[![Sauce Test Status](https://saucelabs.com/buildstatus/team5thanos)](https://saucelabs.com/u/team5thanos)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/team5thanO5)](https://saucelabs.com/u/team5thanO5)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## The Team
