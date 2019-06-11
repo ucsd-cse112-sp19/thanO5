@@ -13,11 +13,11 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * ImageSlider Class
+ * An carousel that shifts pictures in a fixed time interval
  */
 class coreSlider extends HTMLElement {
   /**
-   * constructor
+   * Initialize the shadowDOM
    */
   constructor() {
     super();
@@ -35,7 +35,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * _handleLongText
+   * Determine if the text is too long and needs to be hidden
+   * and determine the size of <core-button> which triggers <core-modal> to pop up
    */
   _handleLongText() {
     const content = this._content.innerHTML;
@@ -87,11 +88,11 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * _hideContent
-   * @param {*} buttonSize
-   * @param {*} theme
-   * @param {*} title
-   * @param {*} content
+   * Hide long text with a <core-modal> element
+   * @param {string} buttonSize
+   * @param {string} theme
+   * @param {string} title
+   * @param {string} content
    */
   _hideContent(buttonSize, theme, title, content) {
     // generate a modal name
@@ -101,7 +102,6 @@ class coreSlider extends HTMLElement {
     const button = document.createElement('core-button');
     button.setAttribute('rounded', true);
     button.setAttribute('size', buttonSize);
-    // button.setAttribute('theme', 'standard');
     button.setAttribute('color', 'secondary');
     button.setAttribute('modal', id);
 
@@ -126,7 +126,7 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * observedAttributes getter
+   * A list of attributes to be observed
    */
   static get observedAttributes() {
     return [
@@ -140,8 +140,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * size setter
-   * @param {*} val
+   * Size of the carousel, chosen from [small, medium, large]
+   * @param {string} val
    */
   set size(val) {
     if (val) {
@@ -152,8 +152,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * theme setter
-   * @param {*} val
+   * Theme of the carousel, chosen from [rounded, circle]
+   * @param {string} val
    */
   set theme(val) {
     if (val) {
@@ -164,8 +164,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * shadow setter
-   * @param {*} val
+   * Whether to show a shadow around the carousel
+   * @param {boolean} val
    */
   set shadow(val) {
     if (val === true) {
@@ -176,8 +176,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * text setter
-   * @param {*} val
+   * Whether to show text in the carousel
+   * @param {boolean} val
    */
   set text(val) {
     if (val === true) {
@@ -188,8 +188,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * control setter
-   * @param {*} val
+   * When to add control menu and control arrows to the carousel for manual image selection and navigation
+   * @param {boolean} val
    */
   set control(val) {
     if (val === true) {
@@ -199,43 +199,29 @@ class coreSlider extends HTMLElement {
     }
   }
 
-  /**
-   * size getter
-   */
   get size() {
     return this.getAttribute('size');
   }
 
-  /**
-   * theme getter
-   */
   get theme() {
     return this.getAttribute('theme');
   }
 
-  /**
-   * shadow getter
-   */
   get shadow() {
     return this.getAttribute('shadow') === '';
   }
 
-  /**
-   * text getter
-   */
   get text() {
     return this.getAttribute('text') === '';
   }
 
-  /**
-   * control getter
-   */
   get control() {
     return this.getAttribute('control') === '';
   }
 
   /**
-   * connectedCallback
+   * Save some references to components of the light DOM
+   * <br> Start the carousel effect
    */
   connectedCallback() {
     // Find all image children
@@ -247,7 +233,7 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * Initialize control
+   * Initialize the control panel on carousel
    */
   _initControl() {
     // Find all image children
@@ -262,7 +248,7 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * _initMenu()
+   * Initialize the control menu
    */
   _initMenu() {
     let menuHTML = '';
@@ -286,7 +272,7 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * _initArrows()
+   * Initialize control arrows
    */
   _initArrows() {
     const leftArrow = document.createElement('div');
@@ -312,8 +298,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * attributeChangedCallback
-   * @param {*} attr
+   * Handle attribute changes
+   * @param {string} attr
    * @param {*} oldV
    * @param {*} newV
    */
@@ -344,16 +330,13 @@ class coreSlider extends HTMLElement {
     }
   }
 
-  /**
-   * time getter
-   */
   get time() {
     return this.getAttribute('time') || '2s';
   }
 
   /**
-   * time setter
-   * @param {*} val
+   * Time interval between pictures
+   * @param {string} val
    */
   set time(val) {
     if (val) {
@@ -363,16 +346,13 @@ class coreSlider extends HTMLElement {
     }
   }
 
-  /**
-   * index getter
-   */
   get index() {
     return this._index;
   }
 
   /**
-   * index setter
-   * @param {Number} v
+   * Index of the current image being displayed in the carousel
+   * @param {number} v
    */
   set index(v) {
     this._index = v;
@@ -382,8 +362,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * start from a specific picture
-   * @param {Number} index
+   * Clear up last loop and start and start the carousel effect from a picture with a specific index
+   * @param {Number} index the index of picture that the carousel effect starts with
    */
   _start(index) {
     if (this._interval !== undefined) {
@@ -397,7 +377,7 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * tick function
+   * Increment the index of the picture being displayed by one
    */
   _tick() {
     this.index = Number(this.index) + 1;
@@ -405,7 +385,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * @param {Number} index
+   * Render the image with a specific index
+   * @param {number} index index of the image to be displayed
    */
   _reRender(index) {
     Array.from(this._imageChildren).forEach((child) => {
@@ -422,8 +403,8 @@ class coreSlider extends HTMLElement {
   }
 
   /**
-   * _setUpControl
-   * @param {*} oldV
+   * Hide or show the control according to the updated value of control attribute
+   * @param {boolean} oldV
    */
   _setUpControl(oldV) {
     // Set up control
@@ -444,6 +425,7 @@ class coreSlider extends HTMLElement {
   }
 }
 
+// Register the web component
 if (!customElements.get('core-slier')) {
   customElements.define('core-slider', coreSlider);
 }
