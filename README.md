@@ -24,6 +24,8 @@
 2. Clone the repo/pull from the branch *master*
 3. Download all necessary dependencies locally
 	- `npm install`
+4. Make sure to check out our onboarding doc to find out how you can contribute to team ThanO5!
+	- [Onboarding Doc](https://docs.google.com/document/d/1-PSiYhWP0Uz_Ak9F2LCTVf9Y82Gx_e08Ako-RwMxUXk/edit)
 
 ## Unit Testing and Integration Testing
 **To run all the unit and integration tests:**
