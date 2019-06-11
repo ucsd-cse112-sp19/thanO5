@@ -4,12 +4,12 @@ core-button is a Web Component providing an accessible and customizable button, 
 
 Attribute | Description
 --------- | -----------
-![color](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-color-attribute) | control the color of the button
-![animated](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-animated-attribute) | add an animation to the button
-![size](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-size-attribute) | control the size of the button
-![shadow](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-shadow-attribute) | create a shadow effect
-![rounded](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-rounded-attribute) | makes the button appear with rounded corners
-![circle](https://github.com/ucsd-cse112/thanOS/tree/master/components/core-button#core-button-circle-attribute) | creates a circular button
+[color](#core-button-color-attribute) | control the color of the button
+[animated](#core-button-animated-attribute) | add an animation to the button
+[size](core-button#core-button-size-attribute) | control the size of the button
+[shadow](#core-button-shadow-attribute) | create a shadow effect
+[rounded](#core-button-rounded-attribute) | makes the button appear with rounded corners
+[circle](#core-button-circle-attribute) | creates a circular button
 
 ## core-button color attribute
 
