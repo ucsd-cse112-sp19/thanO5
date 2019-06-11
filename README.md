@@ -24,6 +24,7 @@
 2. Clone the repo/pull from the branch *master*
 3. Download all necessary dependencies locally
 	- `npm install`
+4. Read our [onboarding doc](https://docs.google.com/document/d/1-PSiYhWP0Uz_Ak9F2LCTVf9Y82Gx_e08Ako-RwMxUXk) to begin contributing! 
 
 ## Unit Testing and Integration Testing
 **To run all the unit and integration tests:**
