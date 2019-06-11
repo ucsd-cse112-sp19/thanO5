@@ -1,4 +1,32 @@
-import styleString from './core-progress.scss';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: core-progress/core-progress.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: core-progress/core-progress.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import styleString from './core-progress.scss';
 
 // create style element
 const style = document.createElement('style');
@@ -55,7 +83,7 @@ class CoreProgress extends HTMLElement {
   }
 
   set percentage(val) {
-    if (typeof val === 'number' && val <= 100 && val >= 0) {
+    if (typeof val === 'number' &amp;&amp; val &lt;= 100 &amp;&amp; val >= 0) {
       this._percentage = val;
       this.setAttribute('percentage', val);
     } else {
@@ -189,29 +217,29 @@ class CoreProgress extends HTMLElement {
 
     if (this.type === 'line') {
       progressBar = `
-        <div class="el-progress-bar">
-          <div 
+        &lt;div class="el-progress-bar">
+          &lt;div 
             class="el-progress-bar__outer" 
             style="height: ${this.strokeWidth + 'px'};"
           >
-            <div class="el-progress-bar__inner" style="${this.barStyle}">
-              ${(this.showText && this.textInside) ? `<div class="el-progress-bar__innerText">${this.percentage}%</div>` : ''}
-            </div>
-          </div>
-        </div>
+            &lt;div class="el-progress-bar__inner" style="${this.barStyle}">
+              ${(this.showText &amp;&amp; this.textInside) ? `&lt;div class="el-progress-bar__innerText">${this.percentage}%&lt;/div>` : ''}
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
       `;
     } else {
       progressCircle = `
-        <div class="el-progress-circle" style="height: ${this.width + 'px'}; width: ${this.width + 'px'}">
-          <svg viewBox="0 0 100 100">
-            <path 
+        &lt;div class="el-progress-circle" style="height: ${this.width + 'px'}; width: ${this.width + 'px'}">
+          &lt;svg viewBox="0 0 100 100">
+            &lt;path 
               class="el-progress-circle__track" 
               d="${this.trackPath}" 
               stroke="#e5e9f2" 
               stroke-width=${this.relativeStrokeWidth} 
               fill="none">
-            </path>
-            <path 
+            &lt;/path>
+            &lt;path 
               class="el-progress-circle__path" 
               d="${this.trackPath}" 
               stroke-linecap="round" 
@@ -219,14 +247,14 @@ class CoreProgress extends HTMLElement {
               stroke-width=${this.relativeStrokeWidth} 
               fill="none" 
               style="${this.circlePathStyle}">
-            </path>
-          </svg>
-        </div>
+            &lt;/path>
+          &lt;/svg>
+        &lt;/div>
       `;
     }
 
     this._template.innerHTML = `
-      <div
+      &lt;div
         class="${`el-progress el-progress--${this.type} 
           ${this.status !== undefined ? `is-${this.status}` : ``} 
           ${!this.showText ? 'el-progress--without-text' : ''} 
@@ -238,11 +266,11 @@ class CoreProgress extends HTMLElement {
       >
         ${progressBar}
         ${progressCircle}
-        ${(this.showText && !this.textInside) ? ` 
-          <div class="el-progress__text" style="font-size: ${this.progressTextSize + 'px'}">
-            ${this.status === undefined ? `${this.percentage}%` : `<i class=${this.iconClass}></i>`}
-          </div>` : ''}
-      </div>
+        ${(this.showText &amp;&amp; !this.textInside) ? ` 
+          &lt;div class="el-progress__text" style="font-size: ${this.progressTextSize + 'px'}">
+            ${this.status === undefined ? `${this.percentage}%` : `&lt;i class=${this.iconClass}>&lt;/i>`}
+          &lt;/div>` : ''}
+      &lt;/div>
     `;
 
     this.shadowRoot.innerHTML = '';
@@ -251,7 +279,7 @@ class CoreProgress extends HTMLElement {
   }
 
   /**
-   * CSS styles of the progress bar
+   * CSS styles of the progress bar 
    * @readonly
    */
   get barStyle() {
@@ -345,3 +373,26 @@ class CoreProgress extends HTMLElement {
 if (!customElements.get('core-progress')) {
   customElements.define('core-progress', CoreProgress);
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoreBadge.html">CoreBadge</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="CoreImage.html">CoreImage</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="CoreProgress.html">CoreProgress</a></li><li><a href="coreSlider.html">coreSlider</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Tue Jun 11 2019 15:30:32 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
