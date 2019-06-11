@@ -89,10 +89,10 @@ class coreSlider extends HTMLElement {
 
   /**
    * Hide long text with a <core-modal> element
-   * @param {string} buttonSize
-   * @param {string} theme
-   * @param {string} title
-   * @param {string} content
+   * @param {string} buttonSize the size of <core-button> to be used
+   * @param {string} theme the theme of the carousel
+   * @param {string} title the title of the text area
+   * @param {string} content the content of the text area
    */
   _hideContent(buttonSize, theme, title, content) {
     // generate a modal name
@@ -299,9 +299,9 @@ class coreSlider extends HTMLElement {
 
   /**
    * Handle attribute changes
-   * @param {string} attr
-   * @param {*} oldV
-   * @param {*} newV
+   * @param {string} attr name of the attribute changed
+   * @param {*} oldV old value of the attribute changed
+   * @param {*} newV updated value of the attrubute changed
    */
   attributeChangedCallback(attr, oldV, newV) {
     switch (attr) {
@@ -404,7 +404,7 @@ class coreSlider extends HTMLElement {
 
   /**
    * Hide or show the control according to the updated value of control attribute
-   * @param {boolean} oldV
+   * @param {boolean} oldV teh old value of the control attribute
    */
   _setUpControl(oldV) {
     // Set up control
