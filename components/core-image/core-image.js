@@ -27,7 +27,7 @@ const ObjectFit = {
 /**
  * <element-image> component
  */
-export default class CoreImage extends HTMLElement {
+class CoreImage extends HTMLElement {
   /**
    * constructor
    */

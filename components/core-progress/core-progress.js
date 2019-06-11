@@ -12,7 +12,7 @@ style.innerHTML = styleString;
 /**
  * <element-image> component
  */
-export default class CoreProgress extends HTMLElement {
+class CoreProgress extends HTMLElement {
   /**
    * constructor
    */

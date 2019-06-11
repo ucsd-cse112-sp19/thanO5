@@ -7,7 +7,7 @@
     "test": "npx karma start config/karma.conf.js",
     "browsertest": "testcafe saucelabs:chrome,saucelabs:safari tests/browser/*.test.js",
     "lint": "npx eslint './**/*.js' && npx htmllint *.html && npx stylelint components",
-    "docs": "npx jsdoc -r . -c jsdoc.json -d docs",
+    "docs": "npx jsdoc -r components -c jsdoc.json -d docs",
     "build": "npx webpack --config config/webpack.prod.js",
     "build:watch": "npx webpack --config config/webpack.prod.js --watch",
     "serve": "npx webpack-dev-server --config config/webpack.dev.js",
