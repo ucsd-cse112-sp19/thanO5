@@ -49,7 +49,7 @@ class coreSlider extends HTMLElement {
 
     switch (size) {
       case 'small': {
-        const limit = 80;
+        const limit = 75;
         buttonSize = 'tiny';
         if (content.length > limit * themeScale) {
           this._content.innerHTML = content.substring(0, limit * themeScale * 0.8) + '...';

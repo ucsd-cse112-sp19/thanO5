@@ -313,7 +313,7 @@ describe('CoreSlider Unit Tests', () => {
         element.appendChild(pNode);
 
         element.text = true;
-        const smallLen = 67;
+        const smallLen = 63;
 
         expect(element._content.firstChild.nodeValue.length).toBe(smallLen);
       });
