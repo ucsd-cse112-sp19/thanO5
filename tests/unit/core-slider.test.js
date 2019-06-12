@@ -313,7 +313,7 @@ describe('CoreSlider Unit Tests', () => {
         element.appendChild(pNode);
 
         element.text = true;
-        const smallLen = 33; // 33 because 30 + '...'
+        const smallLen = 67;
 
         expect(element._content.firstChild.nodeValue.length).toBe(smallLen);
       });
@@ -332,7 +332,7 @@ describe('CoreSlider Unit Tests', () => {
         pNode.setAttribute('slot', 'content');
         element.appendChild(pNode);
 
-        const mediumLen = 83; // 83 because 80 + '...'
+        const mediumLen = 147; // 83 because 80 + '...'
         element.text = true;
 
         expect(element._content.firstChild.nodeValue.length).toBe(mediumLen);
@@ -352,7 +352,7 @@ describe('CoreSlider Unit Tests', () => {
         pNode.setAttribute('slot', 'content');
         element.appendChild(pNode);
 
-        const largeLen = 203; // 203 because 200 + '...'
+        const largeLen = 243; // 203 because 200 + '...'
         element.text = true;
 
         expect(element._content.firstChild.nodeValue.length).toBe(largeLen);

@@ -1,0 +1,66 @@
+/*
+this rule styles all core-sliders
+*/
+core-slider {
+  display: inline-block;
+}
+
+/*
+This rule gets rid of margins of <p> inside <core-slider>
+*/
+core-slider p {
+  margin: 0;
+}
+
+/*
+this rule styles text placed in a code tag such that it is distinguishable
+from text in a p element.
+*/
+code {
+  background-color: #eee;
+  border-radius: 3px;
+  font-family: courier, monospace;
+  padding: 0 3px;
+}
+
+/*
+This rule styles a block that describes an attribute of core-slider element
+*/
+.slider_block {
+  width: 75%;
+  margin: 20px auto;
+}
+
+/*
+slider_row is a div that will display core-sliders horizontally
+*/
+.slider_row {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+/*
+slider_container holds a single core-slider element and is used as a column to
+equally space all sliders in a row
+*/
+.slider_container {
+  display: inline-block;
+  margin: 20px;
+}
+
+/*
+This rule styles texts inside .slider_container for contrast
+*/
+.slider_container > p {
+  font-size: 20px;
+  color: #555;
+  text-align: center;
+}
+
+/* rule to center the h1 tag horizontally */
+h1 {
+  display: block;
+  width: 50%;
+  margin: 2rem auto;
+}
