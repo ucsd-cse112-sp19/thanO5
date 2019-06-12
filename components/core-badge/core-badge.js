@@ -8,43 +8,47 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * <core-radio> Web component
+ * A number or status mark on buttons and icons.
  */
-export default class CoreBadge extends HTMLElement {
+class CoreBadge extends HTMLElement {
   /**
-   * constructor
+   * Initialize private fields, shadowRoot and the view
    */
   constructor() {
     super();
 
+    //  Initialize all private fields
     this._value = this.getAttribute('value') || undefined;
     this._max = this.getAttribute('max') || undefined;
     this._isDot = this.hasAttribute('is-dot') || false;
     this._hidden = this.hasAttribute('hidden') || false;
     this._type = this.getAttribute('type') || undefined;
 
+    // Initialize the shadowRoot
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.shadowRoot.appendChild(style.cloneNode(true));
 
+    // Add 'change' event listener to this element so that
+    // every time a 'change' event is observed, update the view
     const config = {attributes: false, childList: true, subtree: true};
     const observer = new MutationObserver(this._updateTemplate.bind(this));
     observer.observe(this, config);
     this.addEventListener('change', this._updateTemplate.bind(this));
 
+    // Initialize the view
     this._updateTemplate();
   }
 
-  /**
-   * max getter
-   */
   get max() {
     return this._max;
   }
 
   /**
-   * max setter
-   * @param {*} val
+   * The maximum number that can be put in the badge
+   * <br>If the value field is a number larger than max field,
+   * `${max}+` will be displayed in the badge
+   * @param {number} val
    */
   set max(val) {
     if (typeof val === 'number') {
@@ -58,16 +62,13 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * isDot getter
-   */
   get isDot() {
     return this._isDot;
   }
 
   /**
-   * isDot setter
-   * @param {*} val
+   * If a little dot is displayed instead of the value
+   * @param {boolean} val
    */
   set isDot(val) {
     if (val === true) {
@@ -81,17 +82,13 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * hidden setter
-   * @param {*} val
-   */
   get hidden() {
     return this._hidden;
   }
 
   /**
-   * hidden setter
-   * @param {*} val
+   * If the badge is displayed or not.
+   * @param {boolean} val
    */
   set hidden(val) {
     if (val === true) {
@@ -105,16 +102,14 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * value getter
-   */
   get value() {
     return this._value;
   }
 
   /**
-   * value setter
-   * @param {*} val
+   * The content that the badge tries to display but may not be the same as the acutal displayed content
+   * when the value is a number larger than max field.
+   * @param {number|string} val
    */
   set value(val) {
     if (typeof val === 'string' || typeof val === 'number') {
@@ -128,16 +123,13 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * type getter
-   */
   get type() {
     return this._type;
   }
 
   /**
-   * type setter
-   * @param {*} val
+   * The type of the badge chosen from [primary, success, warning, info, danger]
+   * @param {string} val
    */
   set type(val) {
     if (['primary', 'success', 'warning', 'info', 'danger'].indexOf(val) > -1) {
@@ -152,7 +144,7 @@ export default class CoreBadge extends HTMLElement {
   }
 
   /**
-   * content getter
+   * The actual content to be displayed. It may be different from the given value because of max field.
    */
   get content() {
     if (this.isDot) return '';
@@ -168,7 +160,7 @@ export default class CoreBadge extends HTMLElement {
   }
 
   /**
-   * updateTemplate
+   * Update the content of the transition element inside our template
    */
   _updateTemplate() {
     const update = !this.hidden && (this.content || this.content === 0 || this.isDot) ? `
@@ -181,6 +173,7 @@ export default class CoreBadge extends HTMLElement {
   }
 };
 
+// Register the web component
 if (!customElements.get('core-badge')) {
   customElements.define('core-badge', CoreBadge);
 }

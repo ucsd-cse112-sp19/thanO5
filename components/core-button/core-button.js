@@ -1,6 +1,7 @@
 import templateString from './core-button.html';
 import styleString from './core-button.css';
 
+// Define valid button sizes
 const coreBtnSizes = {
   tiny: 'tiny',
   xsmall: 'xsmall',
@@ -9,6 +10,7 @@ const coreBtnSizes = {
   large: 'large',
 };
 
+// Define valid button colors
 const coreColor = {
   primary: 'primary',
   secondary: 'secondary',
@@ -24,18 +26,18 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * Core button class.
+ * A button with customizable styles
  */
 class CoreButton extends HTMLElement {
   /**
-   * observedAttributes getter
+   * The list of attribute to observe
    */
   static get observedAttributes() {
     return ['rounded', 'size', 'shadow', 'color', 'animated', 'circle'];
   }
 
   /**
-   * Constructor for CoreButton class.
+   * Initialize the shadowDOM
    */
   constructor() {
     super(); // HTMLElement does class definitions by calling super()
@@ -53,51 +55,47 @@ class CoreButton extends HTMLElement {
   }
 
   /**
-   * rounded getter
+   * If the button has rounded corners
    */
   get rounded() {
     return this.hasAttribute('rounded');
   }
 
   /**
-   * size getter
+   * Button size
    */
   get size() {
     return this.getAttribute('size');
   }
 
   /**
-   * shadow getter
+   * If the button has a border shadow
    */
   get shadow() {
     return this.hasAttribute('shadow');
   }
 
   /**
-   * color getter
+   * The color theme of the button
    */
   get color() {
     return this.getAttribute('color');
   }
 
   /**
-   * animated value getter
+   * If the button comes with an animated effect
    */
   get animated() {
     return this.hasAttribute('animated');
   }
 
   /**
-   * circle attribute getter
+   * If the button is circular
    */
   get circle() {
     return this.hasAttribute('circle');
   }
 
-  /**
-   * rounded setter
-   * @param {boolean} val
-   */
   set rounded(val) {
     if (val) {
       this.setAttribute('rounded', '');
@@ -106,10 +104,6 @@ class CoreButton extends HTMLElement {
     }
   }
 
-  /**
-   * size setter
-   * @param {string} val
-   */
   set size(val) {
     // TODO: need to sanitize the user input here
     if (val) {
@@ -119,10 +113,6 @@ class CoreButton extends HTMLElement {
     }
   }
 
-  /**
-   * shadow setter
-   * @param {boolean} val
-   */
   set shadow(val) {
     if (val) {
       this.setAttribute('shadow', val);
@@ -131,10 +121,6 @@ class CoreButton extends HTMLElement {
     }
   }
 
-  /**
-   * color setter
-   * @param {string} val
-   */
   set color(val) {
     if (val) {
       this.setAttribute('color', val);
@@ -143,10 +129,6 @@ class CoreButton extends HTMLElement {
     }
   }
 
-  /**
-   * animated setter
-   * @param {boolean} val
-   */
   set animated(val) {
     if (val) {
       this.setAttribute('animated', val);
@@ -155,10 +137,6 @@ class CoreButton extends HTMLElement {
     }
   }
 
-  /**
-   * circle attribute setter
-   * @param {boolean} val
-   */
   set circle(val) {
     if (val) {
       this.setAttribute('circle', val);
@@ -168,10 +146,10 @@ class CoreButton extends HTMLElement {
   }
 
   /**
-   * attribute change event handler
-   * @param {string} name
-   * @param {*} oldValue
-   * @param {*} newValue
+   * Handle attribute changes
+   * @param {string} name name of attribute that changed
+   * @param {*} oldValue original value
+   * @param {*} newValue updated value
    */
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
@@ -199,20 +177,19 @@ class CoreButton extends HTMLElement {
   }
 
   /**
-   * helper method to decrease complexity on code climate
-   * @param {*} value
-   * @param {boolean} toAdd
+   * @param {string} className name of class
+   * @param {boolean} toAdd whether add the class or not
    */
-  addToClassList(value, toAdd) {
+  addToClassList(className, toAdd) {
     if (toAdd) {
-      this._button.classList.add(value);
+      this._button.classList.add(className);
     } else {
-      this._button.classList.remove(value);
+      this._button.classList.remove(className);
     }
   }
 }
 
-// define core button element
+// Register the web component
 if (!customElements.get('core-button')) {
   customElements.define('core-button', CoreButton);
 }

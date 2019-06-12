@@ -1,21 +1,16 @@
-// import Locale from '../helpers/mixins/locale';
 import {on, off, getScrollContainer, isInContainer} from '../../element-helpers/utils/dom';
 import {isString, isHtmlElement} from '../../element-helpers/utils/types';
 import {throttle} from 'throttle-debounce';
-// import templateString from './element-image.html';
-// import styleString from '../styles/index.scss';
 import styleString from './core-image.scss';
-
-// create template element
-// const template = document.createElement('template');
-// template.innerHTML = templateString;
-// const template = document.createElement('template');
 
 // create style element
 const style = document.createElement('style');
 style.innerHTML = styleString;
 
+// Helper function: determine if the browser supports object-fit css rule
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined;
+
+// object-fit valid values
 const ObjectFit = {
   NONE: 'none',
   CONTAIN: 'contain',
@@ -25,11 +20,11 @@ const ObjectFit = {
 };
 
 /**
- * <element-image> component
+ * An image with lazy-loading option
  */
-export default class CoreImage extends HTMLElement {
+class CoreImage extends HTMLElement {
   /**
-   * constructor
+   * Initialize private fields, shadowRoot and the view
    */
   constructor() {
     super();
@@ -53,7 +48,7 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * connectedCallback
+   * Handle lazy-loading option when the element is appended to the DOM
    */
   connectedCallback() {
     if (this.lazy) {
@@ -64,23 +59,20 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * disconnectedCallback
+   * Clean up possible lazy loading linsteners
+   * when the element is disconnected with the DOM
    */
   disconnectedCallback() {
     this.lazy && this._removeLazyLoadListener();
   }
 
   /**
-   * src getter
+   * The image source URL
    */
   get src() {
     return this._src;
   }
 
-  /**
-   * src setter
-   * @param {String} val
-   */
   set src(val) {
     if (typeof val === 'string') {
       this._src = val;
@@ -95,16 +87,13 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * fit getter
+   * The object-fit mode
+   * <br> chosen from [none, contain, cover, fill, scale-down]
    */
   get fit() {
     return this._fit;
   }
 
-  /**
-   * fit setter
-   * @param {String} val
-   */
   set fit(val) {
     if (['fill', 'contain', 'cover', 'none', 'scale-down'].indexOf(val) > -1) {
       this._fit = val;
@@ -118,16 +107,12 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * lazy getter
+   * If the lazy loading option is turned on
    */
   get lazy() {
     return this._lazy;
   }
 
-  /**
-   * lazy setter
-   * @param {Boolean} val
-   */
   set lazy(val) {
     if (val === true) {
       this._lazy = true;
@@ -139,8 +124,7 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * loading getter
-   * @return {*}
+   * Whether the image is still loading
    */
   get loading() {
     return this._loading;
@@ -155,23 +139,18 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * error getter
-   * @return {*}
-  */
+   * Whether an error is detected when the image is beging loaded
+   */
   get error() {
     return this._error;
   }
 
-  /**
-   * error setter
-   * @param {*} val
-   */
   set error(val) {
     this._error = val;
   }
 
   /**
-   * imageStyle getter
+   * CSS style of the image element
    */
   get imageStyle() {
     if (!this._isServer && this.fit) {
@@ -186,14 +165,14 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * alignCenter getter
+   * If the image should aligned at the center
    */
   get alignCenter() {
     return !this._isServer && !isSupportObjectFit() && this.fit !== ObjectFit.FILL;
   }
 
   /**
-   * loadTemplate
+   * Update the template so as to update the view
    */
   _updateTemplate() {
     let templateString;
@@ -240,7 +219,7 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * loadImage()
+   * Loading the image
    */
   _loadImage() {
     if (this._isServer) return;
@@ -256,9 +235,9 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * handleLoad()
-   * @param {*} e
-   * @param {*} img
+   * Handle image-loaded event
+   * @param {Object} e the image-loaded event
+   * @param {Object} img the img element
    */
   _handleLoad(e, img) {
     this.imageWidth = img.width;
@@ -268,8 +247,8 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * handleError()
-   * @param {*} e
+   * Handle error event
+   * @param {Object} e the error event
    */
   _handleError(e) {
     this.loading = false;
@@ -279,7 +258,7 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * handleLazyLoad()
+   * Load the image in the lazy-loading fashion
    */
   _handleLazyLoad() {
     if (isInContainer(this, this._scrollContainer)) {
@@ -290,7 +269,7 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * addLazyLoadListener()
+   * Add a lazy loading linstener that listenes to lazy-loaded event
    */
   _addLazyLoadListener() {
     if (this._isServer) return;
@@ -312,7 +291,7 @@ export default class CoreImage extends HTMLElement {
   }
 
   /**
-   * removeLazyLoadListener()
+   * Remove the lazy loading linstener
    */
   _removeLazyLoadListener() {
     const {_scrollContainer, _lazyLoadHandler} = this;
@@ -324,8 +303,8 @@ export default class CoreImage extends HTMLElement {
 
   /**
    * simulate object-fit behavior to compatible with IE11 and other browsers which not support object-fit
-   * @param {*} fit
-   * @return {*}
+   * @param {string} fit the object-fit mode
+   * @return {Object}
    */
   _getImageStyle(fit) {
     // const {_imageWidth, _imageHeight} = this;
@@ -352,6 +331,7 @@ export default class CoreImage extends HTMLElement {
   }
 }
 
+// Register the web component
 if (!customElements.get('core-image')) {
   customElements.define('core-image', CoreImage);
 }

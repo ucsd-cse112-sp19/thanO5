@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/core-badge/core-badge.js</title>
+    <title>JSDoc: Source: core-badge/core-badge.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/core-badge/core-badge.js</h1>
+    <h1 class="page-title">Source: core-badge/core-badge.js</h1>
 
     
 
@@ -36,43 +36,47 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * &lt;core-radio> Web component
+ * A number or status mark on buttons and icons.
  */
-export default class CoreBadge extends HTMLElement {
+class CoreBadge extends HTMLElement {
   /**
-   * constructor
+   * Initialize private fields, shadowRoot and the view
    */
   constructor() {
     super();
 
+    //  Initialize all private fields
     this._value = this.getAttribute('value') || undefined;
     this._max = this.getAttribute('max') || undefined;
     this._isDot = this.hasAttribute('is-dot') || false;
     this._hidden = this.hasAttribute('hidden') || false;
     this._type = this.getAttribute('type') || undefined;
 
+    // Initialize the shadowRoot
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.shadowRoot.appendChild(style.cloneNode(true));
 
+    // Add 'change' event listener to this element so that
+    // every time a 'change' event is observed, update the view
     const config = {attributes: false, childList: true, subtree: true};
     const observer = new MutationObserver(this._updateTemplate.bind(this));
     observer.observe(this, config);
     this.addEventListener('change', this._updateTemplate.bind(this));
 
+    // Initialize the view
     this._updateTemplate();
   }
 
-  /**
-   * max getter
-   */
   get max() {
     return this._max;
   }
 
   /**
-   * max setter
-   * @param {*} val
+   * The maximum number that can be put in the badge
+   * &lt;br>If the value field is a number larger than max field,
+   * `${max}+` will be displayed in the badge
+   * @param {number} val
    */
   set max(val) {
     if (typeof val === 'number') {
@@ -86,16 +90,13 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * isDot getter
-   */
   get isDot() {
     return this._isDot;
   }
 
   /**
-   * isDot setter
-   * @param {*} val
+   * If a little dot is displayed instead of the value
+   * @param {boolean} val
    */
   set isDot(val) {
     if (val === true) {
@@ -109,17 +110,13 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * hidden setter
-   * @param {*} val
-   */
   get hidden() {
     return this._hidden;
   }
 
   /**
-   * hidden setter
-   * @param {*} val
+   * If the badge is displayed or not.
+   * @param {boolean} val
    */
   set hidden(val) {
     if (val === true) {
@@ -133,16 +130,14 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * value getter
-   */
   get value() {
     return this._value;
   }
 
   /**
-   * value setter
-   * @param {*} val
+   * The content that the badge tries to display but may not be the same as the acutal displayed content
+   * when the value is a number larger than max field.
+   * @param {number|string} val
    */
   set value(val) {
     if (typeof val === 'string' || typeof val === 'number') {
@@ -156,16 +151,13 @@ export default class CoreBadge extends HTMLElement {
     this._updateTemplate();
   }
 
-  /**
-   * type getter
-   */
   get type() {
     return this._type;
   }
 
   /**
-   * type setter
-   * @param {*} val
+   * The type of the badge chosen from [primary, success, warning, info, danger]
+   * @param {string} val
    */
   set type(val) {
     if (['primary', 'success', 'warning', 'info', 'danger'].indexOf(val) > -1) {
@@ -180,7 +172,7 @@ export default class CoreBadge extends HTMLElement {
   }
 
   /**
-   * content getter
+   * The actual content to be displayed. It may be different from the given value because of max field.
    */
   get content() {
     if (this.isDot) return '';
@@ -196,7 +188,7 @@ export default class CoreBadge extends HTMLElement {
   }
 
   /**
-   * updateTemplate
+   * Update the content of the transition element inside our template
    */
   _updateTemplate() {
     const update = !this.hidden &amp;&amp; (this.content || this.content === 0 || this.isDot) ? `
@@ -209,6 +201,7 @@ export default class CoreBadge extends HTMLElement {
   }
 };
 
+// Register the web component
 if (!customElements.get('core-badge')) {
   customElements.define('core-badge', CoreBadge);
 }
@@ -222,13 +215,13 @@ if (!customElements.get('core-badge')) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Popper.modifiers.html">modifiers</a></li></ul><h3>Classes</h3><ul><li><a href="aria.html">aria</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="coreSlider.html">coreSlider</a></li><li><a href="fecha.html">fecha</a></li><li><a href="module.html#.exports">exports</a></li><li><a href="Popper.html">Popper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_addLazyLoadListener">_addLazyLoadListener</a></li><li><a href="global.html#_getImageStyle">_getImageStyle</a></li><li><a href="global.html#_handleError">_handleError</a></li><li><a href="global.html#_handleLazyLoad">_handleLazyLoad</a></li><li><a href="global.html#_handleLoad">_handleLoad</a></li><li><a href="global.html#_loadImage">_loadImage</a></li><li><a href="global.html#_removeLazyLoadListener">_removeLazyLoadListener</a></li><li><a href="global.html#_updateTemplate">_updateTemplate</a></li><li><a href="global.html#alignCenter">alignCenter</a></li><li><a href="global.html#color">color</a></li><li><a href="global.html#connectedCallback">connectedCallback</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#attributeChangedCallback">attributeChangedCallback</a></li><li><a href="global.html#barStyle">barStyle</a></li><li><a href="global.html#circlePathStyle">circlePathStyle</a></li><li><a href="global.html#disconnectedCallback">disconnectedCallback</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#fit">fit</a></li><li><a href="global.html#hidden">hidden</a></li><li><a href="global.html#iconClass">iconClass</a></li><li><a href="global.html#imageStyle">imageStyle</a></li><li><a href="global.html#isDot">isDot</a></li><li><a href="global.html#lazy">lazy</a></li><li><a href="global.html#loading">loading</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#observedAttributes">observedAttributes</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#percentage">percentage</a></li><li><a href="global.html#perimeter">perimeter</a></li><li><a href="global.html#progressTextSize">progressTextSize</a></li><li><a href="global.html#relativeStrokeWidth">relativeStrokeWidth</a></li><li><a href="global.html#showText">showText</a></li><li><a href="global.html#src">src</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#stroke">stroke</a></li><li><a href="global.html#strokeWidth">strokeWidth</a></li><li><a href="global.html#textInside">textInside</a></li><li><a href="global.html#trackPath">trackPath</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#value">value</a></li><li><a href="global.html#width">width</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoreBadge.html">CoreBadge</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="CoreImage.html">CoreImage</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="CoreProgress.html">CoreProgress</a></li><li><a href="coreSlider.html">coreSlider</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Mon Jun 03 2019 05:30:45 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Tue Jun 11 2019 23:06:54 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/core-progress/core-progress.js</title>
+    <title>JSDoc: Source: core-progress/core-progress.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/core-progress/core-progress.js</h1>
+    <h1 class="page-title">Source: core-progress/core-progress.js</h1>
 
     
 
@@ -26,23 +26,18 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// import templateString from './element-image.html';
-import styleString from './core-progress.scss';
-
-// create template element
-// const template = document.createElement('template');
-// template.innerHTML = templateString;
+            <pre class="prettyprint source linenums"><code>import styleString from './core-progress.scss';
 
 // create style element
 const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * &lt;element-image> component
+ * A progress bar that shows the progress of current operation, and informs the user the current status.
  */
-export default class CoreProgress extends HTMLElement {
+class CoreProgress extends HTMLElement {
   /**
-   * constructor
+   * Initialize private fields, shadowRoot and the view
    */
   constructor() {
     super();
@@ -62,16 +57,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * type getter
+   * The type of progress bar
    */
   get type() {
     return this._type;
   }
 
-  /**
-   * type setter
-   * @param {*} val
-   */
   set type(val) {
     if (['line', 'circle'].indexOf(val) > -1) {
       this._type = val;
@@ -85,16 +76,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * percentage setter
+   * Percentage, required
    */
   get percentage() {
     return this._percentage;
   }
 
-  /**
-   * percentage setter
-   * @param {*} val
-   */
   set percentage(val) {
     if (typeof val === 'number' &amp;&amp; val &lt;= 100 &amp;&amp; val >= 0) {
       this._percentage = val;
@@ -108,16 +95,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * status getter
+   * the current status of progress bar
    */
   get status() {
     return this._status;
   }
 
-  /**
-   * status setter
-   * @param {*} val
-   */
   set status(val) {
     if (['success', 'exception', 'text'].indexOf(val) > -1) {
       this._status = val;
@@ -131,16 +114,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * strokeWidth getter
+   * the width of progress bar
    */
   get strokeWidth() {
     return this._strokeWidth;
   }
 
-  /**
-   * strokeWidth setter
-   * @param {*} val
-   */
   set strokeWidth(val) {
     if (typeof val === 'number') {
       this._strokeWidth = val;
@@ -154,16 +133,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * textInside getter
+   * Whether to place the percentage inside progress bar, only works when the type is 'line'
    */
   get textInside() {
     return this._textInside;
   }
 
-  /**
-   * textInside setter
-   * @param {*} val
-   */
   set textInside(val) {
     if (val === true) {
       this._textInside = true;
@@ -177,16 +152,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * width getter
+   * The canvas width of circle progress bar
    */
   get width() {
     return this._width;
   }
 
-  /**
-   * width setter
-   * @param {*} val
-   */
   set width(val) {
     if (typeof val === 'number') {
       this._width = val;
@@ -200,16 +171,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * showText getter
+   * Whether to show percentage
    */
   get showText() {
     return this._showText;
   }
 
-  /**
-   * showText setter
-   * @param {*} val
-   */
   set showText(val) {
     if (val === true) {
       this._showText = true;
@@ -223,16 +190,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * color getter
+   * Background color of progress bar which overrides status attribute
    */
   get color() {
     return this._color;
   }
 
-  /**
-   * color setter
-   * @param {*} val
-   */
   set color(val) {
     if (typeof val === 'string') {
       this._color = val;
@@ -246,7 +209,7 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * _updateTemplate()
+   * Update the view
    */
   _updateTemplate() {
     let progressBar = '';
@@ -316,21 +279,24 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * barStyle getter
+   * CSS styles of the progress bar
+   * @readonly
    */
   get barStyle() {
     return `width: ${this.percentage + '%'};` + ` ${this.color === null ? '' : 'background-color: ' + this.color + ';'}`;
   }
 
   /**
-   * relativeStrokeWidth getter
+   * The ratio of stroke width to canvas width as a percentage
+   * @readonly
    */
   get relativeStrokeWidth() {
     return (this.strokeWidth / this.width * 100).toFixed(1);
   }
 
   /**
-   * trackPath getter
+   * The trackpath of circular progress bar
+   * @readonly
    */
   get trackPath() {
     const radius = parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
@@ -338,7 +304,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * perimeter getter
+   * The perimeter of circular progress bar
+   * @readonly
    */
   get perimeter() {
     const radius = 50 - parseFloat(this.relativeStrokeWidth) / 2;
@@ -346,7 +313,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * circlePathStyle getter
+   * Styls of the path when the progress bar is circular
+   * @readonly
    */
   get circlePathStyle() {
     const perimeter = this.perimeter;
@@ -356,7 +324,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * stroke getter
+   * The stroke color represented as a hexadecimal number
+   * @readonly
    */
   get stroke() {
     let ret;
@@ -378,7 +347,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * iconClass getter
+   * The class name of icon when the status attribute is given
+   * @readonly
    */
   get iconClass() {
     if (this.type === 'line') {
@@ -389,7 +359,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * progressTextSize getter
+   * The text size inside the progress bar
+   * @readonly
    */
   get progressTextSize() {
     return this.type === 'line'
@@ -398,6 +369,7 @@ export default class CoreProgress extends HTMLElement {
   }
 }
 
+// Register the web component
 if (!customElements.get('core-progress')) {
   customElements.define('core-progress', CoreProgress);
 }
@@ -411,13 +383,13 @@ if (!customElements.get('core-progress')) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Popper.modifiers.html">modifiers</a></li></ul><h3>Classes</h3><ul><li><a href="aria.html">aria</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="coreSlider.html">coreSlider</a></li><li><a href="fecha.html">fecha</a></li><li><a href="module.html#.exports">exports</a></li><li><a href="Popper.html">Popper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_addLazyLoadListener">_addLazyLoadListener</a></li><li><a href="global.html#_getImageStyle">_getImageStyle</a></li><li><a href="global.html#_handleError">_handleError</a></li><li><a href="global.html#_handleLazyLoad">_handleLazyLoad</a></li><li><a href="global.html#_handleLoad">_handleLoad</a></li><li><a href="global.html#_loadImage">_loadImage</a></li><li><a href="global.html#_removeLazyLoadListener">_removeLazyLoadListener</a></li><li><a href="global.html#_updateTemplate">_updateTemplate</a></li><li><a href="global.html#alignCenter">alignCenter</a></li><li><a href="global.html#color">color</a></li><li><a href="global.html#connectedCallback">connectedCallback</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#attributeChangedCallback">attributeChangedCallback</a></li><li><a href="global.html#barStyle">barStyle</a></li><li><a href="global.html#circlePathStyle">circlePathStyle</a></li><li><a href="global.html#disconnectedCallback">disconnectedCallback</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#fit">fit</a></li><li><a href="global.html#hidden">hidden</a></li><li><a href="global.html#iconClass">iconClass</a></li><li><a href="global.html#imageStyle">imageStyle</a></li><li><a href="global.html#isDot">isDot</a></li><li><a href="global.html#lazy">lazy</a></li><li><a href="global.html#loading">loading</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#observedAttributes">observedAttributes</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#percentage">percentage</a></li><li><a href="global.html#perimeter">perimeter</a></li><li><a href="global.html#progressTextSize">progressTextSize</a></li><li><a href="global.html#relativeStrokeWidth">relativeStrokeWidth</a></li><li><a href="global.html#showText">showText</a></li><li><a href="global.html#src">src</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#stroke">stroke</a></li><li><a href="global.html#strokeWidth">strokeWidth</a></li><li><a href="global.html#textInside">textInside</a></li><li><a href="global.html#trackPath">trackPath</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#value">value</a></li><li><a href="global.html#width">width</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoreBadge.html">CoreBadge</a></li><li><a href="CoreButton.html">CoreButton</a></li><li><a href="CoreHello.html">CoreHello</a></li><li><a href="CoreImage.html">CoreImage</a></li><li><a href="coreModal.html">coreModal</a></li><li><a href="CoreProgress.html">CoreProgress</a></li><li><a href="coreSlider.html">coreSlider</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Mon Jun 03 2019 05:30:45 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Tue Jun 11 2019 23:06:54 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
