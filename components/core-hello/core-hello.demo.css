@@ -1,0 +1,67 @@
+/*
+this rule styles all core-hellos
+*/
+core-hello {
+  --big-size: 20px;
+  --small-size: 15px;
+
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+  margin-right: 30px;
+  border: yellowgreen solid 1px;
+}
+
+/*
+This rule gets rid of margins of <p> inside <core-hello>
+*/
+core-hello p {
+  margin: 0;
+}
+
+/*
+this rule styles text placed in a code tag such that it is distinguishable
+from text in a p element.
+*/
+code {
+  background-color: #eee;
+  border-radius: 3px;
+  font-family: courier, monospace;
+  padding: 0 3px;
+}
+
+.hello_block {
+  width: 50%;
+  margin: 20px auto;
+}
+
+/*
+hello_row is a div that will display core-hellos horizontally
+*/
+.hello_row {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*
+hello_container holds a single core-hello element and is used as a column to
+equally space all hellos in a row
+*/
+.hello_container {
+  display: inline-block;
+}
+
+/*
+This rule styles texts inside .badge_container for contrast
+*/
+.hello_container > p {
+  font-size: 12px;
+  color: #555;
+}
+
+/* rule to center the h1 tag horizontally */
+h1 {
+  display: block;
+  width: 50%;
+  margin: 2rem auto;
+}

@@ -20,7 +20,7 @@ code {
 }
 
 /*
-button_row is a div that will display four core-buttons horizontally
+badge_row is a div that will display four core-badges horizontally
 */
 .badge_row {
   width: 50%;
@@ -28,8 +28,8 @@ button_row is a div that will display four core-buttons horizontally
 }
 
 /*
-btn_container holds a single core-button element and is used as a column to
-equally space four buttons in a row
+badge_container holds a single core-badge element and is used as a column to
+equally space four badges in a row
 */
 .badge_container {
   width: 20%;

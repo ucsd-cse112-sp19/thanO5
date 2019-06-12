@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="core-hello.demo.css">
+</head>
+<body>
+  <div class="hello_block">
+    <h2>core-hello lang attribute</h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
+    </p>
+
+    <div class="hello_row">
+      <div class="hello_container">
+        <p>English</p>
+        <core-hello lang="en" size="small">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>Chinese</p>
+        <core-hello lang="zh">
+          <span slot="name">詹姆斯</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>Hindi</p>
+        <core-hello lang="hi">
+          <span slot="name">जेम्स</span>
+        </core-hello>
+      </div>
+    </div>
+  </div>
+
+  <div class="hello_block">
+    <h2>core-hello rainbow attribute</h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
+    </p>
+
+    <div class="hello_row">
+      <div class="hello_container">
+        <p>without rainbow attribute</p>
+        <core-hello lang="en" rainbow>
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>With rainbow attribute</p>
+        <core-hello lang="en" rainbow>
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+    </div>
+  </div>
+
+  <div class="hello_block">
+    <h2>core-hello --big-size css varible</h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
+    </p>
+
+    <div class="hello_row">
+      <div class="hello_container">
+        <p>--big-size=15px</p>
+        <core-hello lang="en" style="--big-size: 15px;">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>--big-size=20px</p>
+        <core-hello lang="en" style="--big-size: 20px;">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>--big-size=25px</p>
+        <core-hello lang="en" style="--big-size: 25px;">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+    </div>
+  </div>
+
+  <div class="hello_block">
+    <h2>core-hello --small-size css varible</h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
+    </p>
+
+    <div class="hello_row">
+      <div class="hello_container">
+        <p>--small-size=15px</p>
+        <core-hello lang="en" style="--small-size: 15px;">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>--small-size=20px</p>
+        <core-hello lang="en" style="--small-size: 20px;">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>--small-size=25px</p>
+        <core-hello lang="en" style="--small-size: 25px;">
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../dist/lib/core-hello/index.js"></script>
+</body>
+</html>
