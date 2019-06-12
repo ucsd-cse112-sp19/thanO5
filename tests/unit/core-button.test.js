@@ -124,7 +124,7 @@ describe('CoreButton Unit Tests', () => {
   });
 
   // test for shadow attribute
-  describe('shadow setters/getters', () => {
+  describe('shadow setters/getter', () => {
     it('should add the shadow effect', () => {
       element.shadow = true;
       expect(element.shadow).toBe(true);
