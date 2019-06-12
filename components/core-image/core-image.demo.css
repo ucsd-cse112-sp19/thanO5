@@ -30,9 +30,6 @@ code {
   padding: 0 3px;
 }
 
-/*
-This rule styles a block that describes an attribute of core-hello element
-*/
 .hello_block {
   width: 50%;
   margin: 20px auto;
@@ -55,7 +52,7 @@ equally space all hellos in a row
 }
 
 /*
-This rule styles texts inside .hello_container for contrast
+This rule styles texts inside .badge_container for contrast
 */
 .hello_container > p {
   font-size: 12px;
