@@ -5,11 +5,11 @@ core-badge is a Web Component providing an accessible and customizable UI used t
 
 Attribute | Description
 --------- | -----------
-![value](#core-badge-value-attribute) | used to change and display line or circle percentage
-![max](#core-badge-max-attribute) | used to display different types of progress bars
-![type](#core-badge-type-attribute) | used to change color of the progress line or circle
-![is-dot](#core-badge-is-dot-attribute) | used to display actual percentage number
-![hidden](#core-badge-hidden-attribute) | used to display actual percentage number
+![value](#core-badge-value-attribute) | used to display number of notifications
+![max](#core-badge-max-attribute) | used to set the max of the value shown in the dot
+![type](#core-badge-type-attribute) | used to change the type of notification dot
+![is-dot](#core-badge-is-dot-attribute) | used to hide the value, but still show the dot
+![hidden](#core-badge-hidden-attribute) | used to hide the dot
 
 ## core-badge requirements
 
