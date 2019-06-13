@@ -25,12 +25,11 @@ To use core-slider, it requires you to have images in the actual component itsel
     <img src="https://images.unsplash.com/photo-1557762371-3291582b3e1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2552&q=80" />
     <img src="https://images.unsplash.com/photo-1556950961-8c092986258e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2600&q=80" />
     <img src="https://images.unsplash.com/photo-1554996560-41f5023d85d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2468&q=80" />
-    
   </core-slider>
 
 ```
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/chtKLniZycf16pQj4o/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/chtKLniZycf16pQj4o/giphy.gif" /></div>
 
 ## core-slider time attribute
 
@@ -47,7 +46,7 @@ This time period can be specified in the core-slier tag as follows: time="4s". T
   </core-slider>
 ```
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/W5Iy7fPcHLLgXtSzGR/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/W5Iy7fPcHLLgXtSzGR/giphy.gif" /></div>
 
 
 
@@ -68,7 +67,7 @@ The core-slider web component can include an attribute tag to control the size o
   </core-slider>
 ```
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/U2MacRbbv5W0gCwEP1/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/U2MacRbbv5W0gCwEP1/giphy.gif" /></div>
 
 
 #### medium ####
@@ -85,7 +84,7 @@ The core-slider web component can include an attribute tag to control the size o
 ```
 
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/ZF9J7kyhof0tjuw0gH/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/ZF9J7kyhof0tjuw0gH/giphy.gif" /></div>
 
 #### large ####
 
@@ -100,7 +99,7 @@ The core-slider web component can include an attribute tag to control the size o
   </core-slider>
 ```
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/QArhtdL7MWVg2cbu25/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/QArhtdL7MWVg2cbu25/giphy.gif" /></div>
 
 ## core-slider theme attribute
 
@@ -119,7 +118,7 @@ The core-slider web component can include an theme tag to control the shape of t
   </core-slider>
 ```
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/SUtvTok25tcYaYB4sT/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/SUtvTok25tcYaYB4sT/giphy.gif" /></div>
 
 #### circle ####
 
@@ -134,7 +133,7 @@ The core-slider web component can include an theme tag to control the shape of t
   </core-slider>
 ```
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/RfXhD4MhhkBvWLaBn8/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/RfXhD4MhhkBvWLaBn8/giphy.gif" /></div>
 
 
 ## core-slider shadow attribute
@@ -152,7 +151,7 @@ The core-slider web component can include an attribute tag to add a shadow below
 ```
 
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/YT39QUATyKffDWUd5H/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/YT39QUATyKffDWUd5H/giphy.gif" /></div>
 
 
 ## core-slider text attribute
@@ -190,7 +189,7 @@ Similarily, to override the description you need to insert the p tag within the 
     </p>
   </core-slider>
 ```
-<div style="text-align:center"><img src="https://media.giphy.com/media/1NUPWJj5bC9YfoC9wE/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/1NUPWJj5bC9YfoC9wE/giphy.gif" /></div>
 
 
 ## core-slider control attribute
@@ -215,7 +214,7 @@ The core-slider web component can include an attribute tag to manually control i
 ```
 
 
-<div style="text-align:center"><img src="https://media.giphy.com/media/BWCR4vD8lmAsOHBuFA/giphy.gif" /></div>
+<div style="text-align: center;"><img src="https://media.giphy.com/media/BWCR4vD8lmAsOHBuFA/giphy.gif" /></div>
 
 
 
