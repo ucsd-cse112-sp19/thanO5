@@ -1,0 +1,14 @@
+.modal_block {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.modal_row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal_container {
+  margin: 20px;
+  display: inline-block;
+}
