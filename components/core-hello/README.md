@@ -5,8 +5,8 @@ core-hello is a Web Component providing an accessible and customizable block of 
 
 Attribute | Description
 --------- | -----------
-![lang](#core-hello lang attribute) | used to change languages
-![raninbow](#core-hello rainbow attribute) | used to display a rainbow effect
+[lang](#core-hello-lang-attribute) | used to change languages
+[raninbow](#core-hello-rainbow-attribute) | used to display a rainbow effect
 
 
 ## core-hello requirements
