@@ -5,13 +5,13 @@ core-progress is a Web Component providing an accessible and customizable UI use
 
 Attribute | Description
 --------- | -----------
-![percentage](#core-hello-percentage-attribute) | used to change and display line or circle percentage
-![status](#core-hello-lang-attribute) | used to display different types of progress bars
-![color](#core-progress-color-attribute) | used to change color of the progress line or circle
-![show-text](#core-progress-show-text-attribute) | used to display actual percentage number
-![stroke-width](#core-progress-stroke-width-attribute) | used to change the width of the progress line or circle
-![text-inside](#core-progress-text-inside-attribute) | used display actual percentage in the progress line or circle
-![type](#core-progress-type-attribute) | used to change between line or circle
+[percentage](#core-hello-percentage-attribute) | used to change and display line or circle percentage
+[status](#core-hello-lang-attribute) | used to display different types of progress bars
+[color](#core-progress-color-attribute) | used to change color of the progress line or circle
+[show-text](#core-progress-show-text-attribute) | used to display actual percentage number
+[stroke-width](#core-progress-stroke-width-attribute) | used to change the width of the progress line or circle
+[text-inside](#core-progress-text-inside-attribute) | used display actual percentage in the progress line or circle
+[type](#core-progress-type-attribute) | used to change between line or circle
 
 ## core-progress requirements
 
