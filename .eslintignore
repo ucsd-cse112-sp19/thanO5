@@ -6,4 +6,4 @@
 /element-helpers/**
 /coverage/**
 /*.js
-/test/**
+/tests/**
