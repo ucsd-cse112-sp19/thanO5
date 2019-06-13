@@ -8,16 +8,19 @@
   <link rel="stylesheet" href="core-hello.demo.css">
 </head>
 <body>
+
+    <h1>Example Usage of "core-hello"</h1>
   <div class="hello_block">
     <h2>core-hello lang attribute</h2>
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
+      The core-hello component supports different languages like English, Spanish, French, Mandarin, and etc. The way you would use this is by adding the lang attribute and assigning its shorthand language names like "hi" for hindi. Note that this only translates only the "Hello World" portion. 
+
     </p>
 
     <div class="hello_row">
       <div class="hello_container">
         <p>English</p>
-        <core-hello lang="en" size="small">
+        <core-hello>
           <span slot="name">James</span>
         </core-hello>
       </div>
@@ -41,13 +44,13 @@
   <div class="hello_block">
     <h2>core-hello rainbow attribute</h2>
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
+      The core-hello web component can make the text have a rainbow effect. This is done by including "rainbow" as part of the attributes in the core-hello tag.
     </p>
 
     <div class="hello_row">
       <div class="hello_container">
         <p>without rainbow attribute</p>
-        <core-hello lang="en" rainbow>
+        <core-hello lang="en" >
           <span slot="name">James</span>
         </core-hello>
       </div>
@@ -61,65 +64,7 @@
     </div>
   </div>
 
-  <div class="hello_block">
-    <h2>core-hello --big-size css varible</h2>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
-    </p>
-
-    <div class="hello_row">
-      <div class="hello_container">
-        <p>--big-size=15px</p>
-        <core-hello lang="en" style="--big-size: 15px;">
-          <span slot="name">James</span>
-        </core-hello>
-      </div>
-
-      <div class="hello_container">
-        <p>--big-size=20px</p>
-        <core-hello lang="en" style="--big-size: 20px;">
-          <span slot="name">James</span>
-        </core-hello>
-      </div>
-
-      <div class="hello_container">
-        <p>--big-size=25px</p>
-        <core-hello lang="en" style="--big-size: 25px;">
-          <span slot="name">James</span>
-        </core-hello>
-      </div>
-    </div>
-  </div>
-
-  <div class="hello_block">
-    <h2>core-hello --small-size css varible</h2>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem necessitatibus veniam ad accusantium saepe. Architecto consequuntur blanditiis delectus molestias tempora?
-    </p>
-
-    <div class="hello_row">
-      <div class="hello_container">
-        <p>--small-size=15px</p>
-        <core-hello lang="en" style="--small-size: 15px;">
-          <span slot="name">James</span>
-        </core-hello>
-      </div>
-
-      <div class="hello_container">
-        <p>--small-size=20px</p>
-        <core-hello lang="en" style="--small-size: 20px;">
-          <span slot="name">James</span>
-        </core-hello>
-      </div>
-
-      <div class="hello_container">
-        <p>--small-size=25px</p>
-        <core-hello lang="en" style="--small-size: 25px;">
-          <span slot="name">James</span>
-        </core-hello>
-      </div>
-    </div>
-  </div>
+  
 
   <script type="text/javascript" src="../../dist/lib/core-hello/index.js"></script>
 </body>
