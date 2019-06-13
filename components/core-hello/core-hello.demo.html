@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Core-Hello Web Component</title>
+  <link rel="stylesheet" type="text/css" href="hello.css">
+</head>
+
+<body>
+  <core-hello rainbow lang="en">
+    <span slot="name">Peter</span>
+  </core-hello>
+
+  <core-hello lang="en">
+    <span slot="name">Thomas</span>
+  </core-hello>
+
+  <core-hello lang="zh">
+    <span slot="name">马克</span>
+  </core-hello>
+
+  <core-hello lang="hi">
+    <span slot="name">Gary</span>
+  </core-hello>
+
+  <core-hello lang="hi" rainbow>
+    <span slot="name">Jose</span>
+  </core-hello>
+
+  <script src="dist/lib/core-hello/index.js"></script>
+</body>
+
+</html>
