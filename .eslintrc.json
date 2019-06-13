@@ -18,6 +18,7 @@
             "tabWidth": 2,
             "ignoreUrls": true,
             "ignorePattern": "^goog\\.(module|require)"
-        }]
+        }],
+        "require-jsdoc": 0
     }
 }

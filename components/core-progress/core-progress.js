@@ -1,20 +1,15 @@
-// import templateString from './element-image.html';
 import styleString from './core-progress.scss';
-
-// create template element
-// const template = document.createElement('template');
-// template.innerHTML = templateString;
 
 // create style element
 const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * <element-image> component
+ * A progress bar that shows the progress of current operation, and informs the user the current status.
  */
-export default class CoreProgress extends HTMLElement {
+class CoreProgress extends HTMLElement {
   /**
-   * constructor
+   * Initialize private fields, shadowRoot and the view
    */
   constructor() {
     super();
@@ -34,16 +29,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * type getter
+   * The type of progress bar
    */
   get type() {
     return this._type;
   }
 
-  /**
-   * type setter
-   * @param {*} val
-   */
   set type(val) {
     if (['line', 'circle'].indexOf(val) > -1) {
       this._type = val;
@@ -57,16 +48,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * percentage setter
+   * Percentage, required
    */
   get percentage() {
     return this._percentage;
   }
 
-  /**
-   * percentage setter
-   * @param {*} val
-   */
   set percentage(val) {
     if (typeof val === 'number' && val <= 100 && val >= 0) {
       this._percentage = val;
@@ -80,16 +67,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * status getter
+   * the current status of progress bar
    */
   get status() {
     return this._status;
   }
 
-  /**
-   * status setter
-   * @param {*} val
-   */
   set status(val) {
     if (['success', 'exception', 'text'].indexOf(val) > -1) {
       this._status = val;
@@ -103,16 +86,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * strokeWidth getter
+   * the width of progress bar
    */
   get strokeWidth() {
     return this._strokeWidth;
   }
 
-  /**
-   * strokeWidth setter
-   * @param {*} val
-   */
   set strokeWidth(val) {
     if (typeof val === 'number') {
       this._strokeWidth = val;
@@ -126,16 +105,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * textInside getter
+   * Whether to place the percentage inside progress bar, only works when the type is 'line'
    */
   get textInside() {
     return this._textInside;
   }
 
-  /**
-   * textInside setter
-   * @param {*} val
-   */
   set textInside(val) {
     if (val === true) {
       this._textInside = true;
@@ -149,16 +124,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * width getter
+   * The canvas width of circle progress bar
    */
   get width() {
     return this._width;
   }
 
-  /**
-   * width setter
-   * @param {*} val
-   */
   set width(val) {
     if (typeof val === 'number') {
       this._width = val;
@@ -172,16 +143,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * showText getter
+   * Whether to show percentage
    */
   get showText() {
     return this._showText;
   }
 
-  /**
-   * showText setter
-   * @param {*} val
-   */
   set showText(val) {
     if (val === true) {
       this._showText = true;
@@ -195,16 +162,12 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * color getter
+   * Background color of progress bar which overrides status attribute
    */
   get color() {
     return this._color;
   }
 
-  /**
-   * color setter
-   * @param {*} val
-   */
   set color(val) {
     if (typeof val === 'string') {
       this._color = val;
@@ -218,7 +181,7 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * _updateTemplate()
+   * Update the view
    */
   _updateTemplate() {
     let progressBar = '';
@@ -288,21 +251,24 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * barStyle getter
+   * CSS styles of the progress bar
+   * @readonly
    */
   get barStyle() {
     return `width: ${this.percentage + '%'};` + ` ${this.color === null ? '' : 'background-color: ' + this.color + ';'}`;
   }
 
   /**
-   * relativeStrokeWidth getter
+   * The ratio of stroke width to canvas width as a percentage
+   * @readonly
    */
   get relativeStrokeWidth() {
     return (this.strokeWidth / this.width * 100).toFixed(1);
   }
 
   /**
-   * trackPath getter
+   * The trackpath of circular progress bar
+   * @readonly
    */
   get trackPath() {
     const radius = parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
@@ -310,7 +276,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * perimeter getter
+   * The perimeter of circular progress bar
+   * @readonly
    */
   get perimeter() {
     const radius = 50 - parseFloat(this.relativeStrokeWidth) / 2;
@@ -318,7 +285,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * circlePathStyle getter
+   * Styls of the path when the progress bar is circular
+   * @readonly
    */
   get circlePathStyle() {
     const perimeter = this.perimeter;
@@ -328,7 +296,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * stroke getter
+   * The stroke color represented as a hexadecimal number
+   * @readonly
    */
   get stroke() {
     let ret;
@@ -350,7 +319,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * iconClass getter
+   * The class name of icon when the status attribute is given
+   * @readonly
    */
   get iconClass() {
     if (this.type === 'line') {
@@ -361,7 +331,8 @@ export default class CoreProgress extends HTMLElement {
   }
 
   /**
-   * progressTextSize getter
+   * The text size inside the progress bar
+   * @readonly
    */
   get progressTextSize() {
     return this.type === 'line'
@@ -370,6 +341,7 @@ export default class CoreProgress extends HTMLElement {
   }
 }
 
+// Register the web component
 if (!customElements.get('core-progress')) {
   customElements.define('core-progress', CoreProgress);
 }
