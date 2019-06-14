@@ -2,7 +2,9 @@
     "source": {
       "exclude": [
         "docs",
-        "node_modules"
+        "node_modules",
+        "element-styles",
+        "element-helpers"
       ]
     }
   }
