@@ -5,32 +5,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Core-Hello Web Component</title>
-  <link rel="stylesheet" type="text/css" href="hello.css">
+  <title>Document</title>
+  <link rel="stylesheet" href="core-hello.demo.css">
 </head>
-
 <body>
-  <core-hello rainbow lang="en">
-    <span slot="name">Peter</span>
-  </core-hello>
 
-  <core-hello lang="en">
-    <span slot="name">Thomas</span>
-  </core-hello>
+    <h1>Example Usage of "core-hello"</h1>
+  <div class="hello_block">
+    <h2>core-hello lang attribute</h2>
+    <p>
+      The core-hello component supports different languages like English, Spanish, French, Mandarin, and etc. The way you would use this is by adding the lang attribute and assigning its shorthand language names like "hi" for hindi. Note that this only translates only the "Hello World" portion. 
 
-  <core-hello lang="zh">
-    <span slot="name">马克</span>
-  </core-hello>
+    </p>
 
-  <core-hello lang="hi">
-    <span slot="name">Gary</span>
-  </core-hello>
+    <div class="hello_row">
+      <div class="hello_container">
+        <p>English</p>
+        <core-hello>
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
 
-  <core-hello lang="hi" rainbow>
-    <span slot="name">Jose</span>
-  </core-hello>
+      <div class="hello_container">
+        <p>Chinese</p>
+        <core-hello lang="zh">
+          <span slot="name">詹姆斯</span>
+        </core-hello>
+      </div>
 
-  <script src="dist/lib/core-hello/index.js"></script>
+      <div class="hello_container">
+        <p>Hindi</p>
+        <core-hello lang="hi">
+          <span slot="name">जेम्स</span>
+        </core-hello>
+      </div>
+    </div>
+  </div>
+
+  <div class="hello_block">
+    <h2>core-hello rainbow attribute</h2>
+    <p>
+      The core-hello web component can make the text have a rainbow effect. This is done by including "rainbow" as part of the attributes in the core-hello tag.
+    </p>
+
+    <div class="hello_row">
+      <div class="hello_container">
+        <p>without rainbow attribute</p>
+        <core-hello lang="en" >
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+
+      <div class="hello_container">
+        <p>With rainbow attribute</p>
+        <core-hello lang="en" rainbow>
+          <span slot="name">James</span>
+        </core-hello>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script type="text/javascript" src="../../dist/lib/core-hello/index.js"></script>
 </body>
-
 </html>

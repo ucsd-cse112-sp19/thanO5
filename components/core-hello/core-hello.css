@@ -30,12 +30,10 @@
 }
 
 #message {
-  --small-size: 2rem;
-  --big-size: 3rem;
-
-  font-size: var(--big-size);
+  font-size: var(--big-size, 3rem);
+  margin: 0;
 }
 
 #hello {
-  font-size: var(--small-size);
+  font-size: var(--small-size, 2rem);
 }

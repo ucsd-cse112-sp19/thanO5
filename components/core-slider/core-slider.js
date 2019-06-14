@@ -39,8 +39,8 @@ class coreSlider extends HTMLElement {
    * and determine the size of <core-button> which triggers <core-modal> to pop up
    */
   _handleLongText() {
-    const content = this._content.innerHTML;
-    const title = this._title.innerHTML;
+    const content = this._content.innerText;
+    const title = this._title.innerText;
     const size = this.getAttribute('size');
     const theme = this.getAttribute('theme');
     const themeScale = theme === 'circle' ? 0.5 : 1;
@@ -50,30 +50,30 @@ class coreSlider extends HTMLElement {
 
     switch (size) {
       case 'small': {
-        const limit = 30;
+        const limit = 75;
         buttonSize = 'tiny';
         if (content.length > limit * themeScale) {
-          this._content.innerHTML = content.substring(0, limit) + '...';
+          this._content.innerHTML = content.substring(0, limit * themeScale * 0.8) + '...';
           needHide = true;
         }
         break;
       }
 
       case 'medium': {
-        const limit = 80;
+        const limit = 180;
         buttonSize = theme === 'circle' ? 'tiny' : 'xsmall';
         if (content.length > limit * themeScale) {
-          this._content.innerHTML = content.substring(0, limit) + '...';
+          this._content.innerHTML = content.substring(0, limit * themeScale * 0.8) + '...';
           needHide = true;
         }
         break;
       }
 
       case 'large': {
-        const limit = 200;
+        const limit = 300;
         buttonSize = theme === 'circle' ? 'xsmall' : 'small';
         if (content.length > limit * themeScale) {
-          this._content.innerHTML = content.substring(0, limit) + '...';
+          this._content.innerHTML = content.substring(0, limit * themeScale * 0.8) + '...';
           needHide = true;
         }
         break;

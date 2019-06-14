@@ -5,52 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link href="core-badge.demo.css" rel="stylesheet">
 </head>
 <body>
-  <style>
-    .item {
-      display: inline-block;
-      position: relative;
-      margin-top: 20px;
-      margin-right: 30px;
-    }
-  </style>
+  <div class="badge_row">
+    <h2>core-badge value attribute</h2>
+    <p>
+      The core-badge value attribute is responsible for displaying the current value in the nofitication dot. It accepts numbers or strings. By default, the value is always 10. 
+    </p>
 
-  <core-badge value="12" class="item">
-    <core-button size="small" color="info">comments</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="10">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+    </div>
 
-  <core-badge value="3" class="item">
-    <core-button size="small" color="info">replies</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="20">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+    </div>
 
-  <core-badge value="1" class="item" type="primary">
-    <core-button size="small" color="info">comments</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="Hot">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+    </div>
 
-  <core-badge value="2" class="item" type="warning">
-    <core-button size="small" color="info">replies</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="New">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+    </div>
+  </div>
 
-  <core-badge value="200" max="99" class="item">
-    <core-button size="small">comments</core-button>
-  </core-badge>
+  <div class="badge_row">
+    <h2>core-badge max attribute</h2>
+    <p>
+      The core-badge features a max attrbiute that sets the maximum amount of notifications. This depends on the value attribute as if value's number is above max, it should show [max]+.
+    </p>
 
-  <core-badge value="100" max="10" class="item">
-    <core-button size="small">replies</core-button>
-  </core-badge>
-    
-  <core-badge value="hot" class="item">
-    <core-button size="small">comments</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="10" max="15">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+      <p>value="10" max="15"</p>
+    </div>
 
-  <core-badge value="new" class="item">
-    <core-button size="small">replies</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="20" max="15">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+      <p>value="20" max="15"</p>
+    </div>
 
-  <core-badge value="new" class="item" is-dot>
-    <core-button size="small">replies</core-button>
-  </core-badge>
+    <div class="badge_container">
+      <core-badge value="Hot" max="15">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+      <p>value="Hot" max="15"</p>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="New" max="15">
+        <core-button size="small" color="info">comments</core-button>
+      </core-badge>
+      <p>value="New" max="15"</p>
+    </div>
+  </div>
+
+  <div class="badge_row">
+    <h2>core-badge type attribute</h2>
+    <p>
+      The core-badge features a type attribute, which changes the type of badge is displayed. You have the choice between "primary", "success", "warning", and "info".
+    </p>
+
+    <div class="badge_container">
+      <core-badge value="10" type="primary">
+        <core-button size="small" color="info">primary</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="success">
+        <core-button size="small" color="info">success</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="warning">
+        <core-button size="small" color="info">warning</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="info">
+        <core-button size="small" color="info">info</core-button>
+      </core-badge>
+    </div>
+  </div>
+
+  <div class="badge_row">
+    <h2>core-badge is-dot attribute</h2>
+    <p>
+      The core-badge features a is-dot attribute, which tells the core-badge to keep the dot visible, but the value invisible on the binded element. 
+    </p>
+
+    <div class="badge_container">
+      <core-badge value="10" type="primary" is-dot>
+        <core-button size="small" color="info">primary</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="success" is-dot>
+        <core-button size="small" color="info">success</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="warning" is-dot>
+        <core-button size="small" color="info">warning</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="info" is-dot>
+        <core-button size="small" color="info">info</core-button>
+      </core-badge>
+    </div>
+  </div>
+
+  <div class="badge_row">
+    <h2>core-badge hidden attribute</h2>
+    <p>
+      The core-badge features the attribute hidden, which hides the dot.
+    </p>
+
+    <div class="badge_container">
+      <core-badge value="10" type="primary" hidden>
+        <core-button size="small" color="info">primary</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="success" hidden>
+        <core-button size="small" color="info">success</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="warning" hidden>
+        <core-button size="small" color="info">warning</core-button>
+      </core-badge>
+    </div>
+
+    <div class="badge_container">
+      <core-badge value="10" type="info" hidden>
+        <core-button size="small" color="info">info</core-button>
+      </core-badge>
+    </div>
+  </div>
 
   <script src="../../dist/lib/core-badge/index.js"></script>
   <script src="../../dist/lib/core-button/index.js"></script>

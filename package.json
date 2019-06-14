@@ -5,10 +5,10 @@
   "main": "foo.js",
   "scripts": {
     "test": "npx karma start config/karma.conf.js",
-    "browsertest": "testcafe saucelabs:chrome,saucelabs:safari tests/browser/*.test.js",
+    "browsertest": "testcafe saucelabs:chrome,saucelabs:safari tests/browser/**/*.test.js",
     "lint": "npx eslint './**/*.js' && npx htmllint *.html && npx stylelint components",
-    "docs": "npx jsdoc -r components -c jsdoc.json -d docs",
-    "build": "npx webpack --config config/webpack.prod.js",
+    "docs": "npm run build && rm -rf docs && npx jsdoc -r . -c jsdoc.json -d docs && npx build-storybook -c .storybook -o docs/storybook",
+    "build": "rm -rf dist && npx webpack --config config/webpack.prod.js",
     "build:watch": "npx webpack --config config/webpack.prod.js --watch",
     "serve": "npx webpack-dev-server --config config/webpack.dev.js",
     "storybook": "start-storybook"
@@ -58,6 +58,7 @@
     "node-sass": "^4.12.0",
     "raw-loader": "^2.0.0",
     "sass-loader": "^7.1.0",
+    "storybook": "^1.0.0",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",

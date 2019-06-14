@@ -6,3 +6,4 @@
 /element-helpers/**
 /coverage/**
 /*.js
+/tests/browser/**

@@ -336,7 +336,7 @@ class CoreProgress extends HTMLElement {
    */
   get progressTextSize() {
     return this.type === 'line'
-      ? 12 + this.strokeWidth * 0.4
+      ? 12 + this.strokeWidth * 0.2
       : this.width * 0.111111 + 2;
   }
 }
