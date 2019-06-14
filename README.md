@@ -26,6 +26,8 @@
 	- `npm install`
 4. To get familiar with our repository, please read our API documents [here](https://ucsd-cse112.github.io/thanO5/docs/)
 5. If you want to try out our web components, please observe our storybook [here](https://ucsd-cse112.github.io/thanO5/docs/storybook)
+6. Read our [onboarding doc](https://docs.google.com/document/d/1-PSiYhWP0Uz_Ak9F2LCTVf9Y82Gx_e08Ako-RwMxUXk) to begin contributing! 
+
 
 ## Unit Testing and Integration Testing
 **To run all the unit and integration tests:**

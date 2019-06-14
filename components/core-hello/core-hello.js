@@ -1,6 +1,7 @@
 import templateString from './core-hello.html';
 import styleString from './core-hello.css';
 
+// Translation map for "Hello World" message in 68 languages
 const helloTranslations = {
   af: 'Hello Wêreld',
   sq: 'Përshendetje Botë',
@@ -81,18 +82,18 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * A class for core-hello custom element
+ * A hello messsage with a name
  */
 class CoreHello extends HTMLElement {
   /**
-   * observedAttributes getter
+   * The list of attribute to observe
    */
   static get observedAttributes() {
     return ['rainbow', 'lang'];
   }
 
   /**
-   * Constructor for this element
+   * Initialize the shadowDOM
    */
   constructor() {
     super();
@@ -108,31 +109,23 @@ class CoreHello extends HTMLElement {
   }
 
   /**
-   * lang getter
+   * Language of the hello message
    */
   get lang() {
     return this.getAttribute('lang');
   }
 
   /**
-   * rainbow getter
+   * If the message has a shadow effect
    */
   get rainbow() {
     return this.hasAttribute('rainbow');
   }
 
-  /**
-   * lang setter
-   * @param {string} val
-   */
   set lang(val) {
     this._hello.textContent = helloTranslations[val] + ' ';
   }
 
-  /**
-   * rainbow setter
-   * @param {boolean} val
-   */
   set rainbow(val) {
     if (val) {
       this._message.classList.add('rainbow');
@@ -142,10 +135,10 @@ class CoreHello extends HTMLElement {
   }
 
   /**
-   * attribute change event handler
-   * @param {string} name
-   * @param {*} oldValue
-   * @param {*} newValue
+   * Handle attribute changes
+   * @param {string} name name of attribute that changed
+   * @param {*} oldValue original value
+   * @param {*} newValue updated value
    */
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
@@ -163,7 +156,7 @@ class CoreHello extends HTMLElement {
   }
 }
 
-// Define core-hello element
+// Register the web component
 if (!customElements.get('core-hello')) {
   customElements.define('core-hello', CoreHello);
 }
