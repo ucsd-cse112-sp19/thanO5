@@ -21,4 +21,4 @@ check out this document [here](https://docs.google.com/document/d/1RcgaIx0Ty2WkE
 ## What to test?
 In order to ensure you don't duplicate tests or struggle figuring out what needs to
 be tested, be sure to read this document [here](https://docs.google.com/document/d/1laSjGDSRdhnBVMY1Ml4Ua9ggVjCn2ad5wuw6BV6Vbc8/edit). It contains a list of what has already 
-been tested and what still needs to be tested for our current Web Components.
+been tested and what still needs to be tested for our current Web Components. 
