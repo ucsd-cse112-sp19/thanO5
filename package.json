@@ -7,8 +7,8 @@
     "test": "npx karma start config/karma.conf.js",
     "browsertest": "testcafe saucelabs:chrome,saucelabs:safari tests/browser/**/*.test.js",
     "lint": "npx eslint './**/*.js' && npx htmllint *.html && npx stylelint components",
-    "docs": "rm -rf docs && npx jsdoc -r . -c jsdoc.json -d docs && npx build-storybook -c .storybook -o docs/storybook",
-    "build": "npx webpack --config config/webpack.prod.js",
+    "docs": "npm run build && rm -rf docs && npx jsdoc -r . -c jsdoc.json -d docs && npx build-storybook -c .storybook -o docs/storybook",
+    "build": "rm -rf dist && npx webpack --config config/webpack.prod.js",
     "build:watch": "npx webpack --config config/webpack.prod.js --watch",
     "serve": "npx webpack-dev-server --config config/webpack.dev.js",
     "storybook": "start-storybook"
