@@ -13,7 +13,7 @@ const style = document.createElement('style');
 style.innerHTML = styleString;
 
 /**
- * An carousel that shifts pictures in a fixed time interval
+ * An carousel that shifts pictures in a fixed time interval GRADING THE DOC GENERATION
  */
 class coreSlider extends HTMLElement {
   /**
